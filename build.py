@@ -11,6 +11,7 @@ the sitemap point at the right place.
 """
 import logo, bgart, copy, datetime, hashlib, html, json, os, re, shutil, sys
 from bs4 import BeautifulSoup
+from tax_i18n_data import TAX_I18N
 
 BASE = (sys.argv[1] if len(sys.argv) > 1 else 'https://YOUR-DOMAIN.com').rstrip('/')
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -79,6 +80,19 @@ TAX_SLUG = {
 }
 URL_SLUG['tax'] = TAX_SLUG['us']
 TAX_SOURCES = json.load(open(os.path.join(HERE, 'data', 'tax-sources.json'), encoding='utf-8'))
+# small chrome labels on the tax pages (Sources box heading, Other-countries box heading,
+# "Rates for X, last checked Y." note), translated for all 9 languages.
+TAX_UI = {
+ 'en': dict(sources='Sources', other='Other countries', rates='Rates for %(y)s, last checked %(m)s.'),
+ 'es': dict(sources='Fuentes', other='Otros países', rates='Tarifas de %(y)s, última verificación: %(m)s.'),
+ 'pt': dict(sources='Fontes', other='Outros países', rates='Taxas de %(y)s, última verificação: %(m)s.'),
+ 'fr': dict(sources='Sources', other='Autres pays', rates='Taux pour %(y)s, dernière vérification : %(m)s.'),
+ 'de': dict(sources='Quellen', other='Andere Länder', rates='Sätze für %(y)s, zuletzt geprüft: %(m)s.'),
+ 'hi': dict(sources='स्रोत', other='अन्य देश', rates='%(y)s की दरें, अंतिम बार जांचा गया: %(m)s।'),
+ 'ar': dict(sources='المصادر', other='دول أخرى', rates='معدلات %(y)s، آخر تحقق: %(m)s.'),
+ 'zh': dict(sources='数据来源', other='其他国家', rates='%(y)s税率，最近核实于%(m)s。'),
+ 'id': dict(sources='Sumber', other='Negara lain', rates='Tarif untuk %(y)s, terakhir diperiksa: %(m)s.'),
+}
 # English-only for this pass (see brief: "English first"); FAQ facts are verified against the
 # official sources in tax-sources.json, not guessed (see the commit message / session notes for
 # what was checked and when).
@@ -531,7 +545,7 @@ def build_tax_page(lang, country):
     name, hl, locale = next((n, h, l) for c, n, h, l in LANGS if c == lang)
     dirn = 'rtl' if lang == 'ar' else 'ltr'
     slug = TAX_SLUG[country]
-    TP = TAX_PAGE[country]
+    TP = TAX_PAGE[country] if lang == 'en' else TAX_I18N[country][lang]
     src = TAX_SOURCES[country]
 
     hdr = copy.copy(header)
@@ -593,15 +607,18 @@ def build_tax_page(lang, country):
             d = BeautifulSoup('<details><summary>%s</summary><p>%s</p></details>' % (e(q), e(a_txt)), 'html.parser')
             about.append(d)
             faq_ld.append({'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a_txt}})
+        tui = TAX_UI[lang]
         src_links = ''.join('<li><a href="%s" rel="noopener">%s</a></li>' % (e(s['url']), e(s['name'])) for s in src['sources'])
         checked = src['last_checked']
+        rates_note = tui['rates'] % {'y': e(src['tax_year']), 'm': checked}
         sources_box = BeautifulSoup(
-            '<div class="sheet" id="tax-sources"><h2>Sources</h2><ul>%s</ul>'
-            '<p class="note">Rates for %s, last checked %s.</p></div>'
-            % (src_links, e(src['tax_year']), checked), 'html.parser').div
+            '<div class="sheet" id="tax-sources"><h2>%s</h2><ul>%s</ul>'
+            '<p class="note">%s</p></div>'
+            % (e(tui['sources']), src_links, rates_note), 'html.parser').div
         other = [c for c in ('us', 'uk', 'ca', 'au') if c != country]
-        related = ''.join('<li><a href="../%s/">%s</a></li>' % (TAX_SLUG[c], e(TAX_PAGE[c]['title'].split(' (')[0])) for c in other)
-        related_box = BeautifulSoup('<nav class="sheet" aria-label="Other tax pages"><h2>Other countries</h2><ul>%s</ul></nav>' % related, 'html.parser').nav
+        other_tp = lambda c: TAX_PAGE[c] if lang == 'en' else TAX_I18N[c][lang]
+        related = ''.join('<li><a href="../%s/">%s</a></li>' % (TAX_SLUG[c], e(other_tp(c)['title'].split(' (')[0])) for c in other)
+        related_box = BeautifulSoup('<nav class="sheet" aria-label="Other tax pages"><h2>%s</h2><ul>%s</ul></nav>' % (e(tui['other']), related), 'html.parser').nav
         sec.append(sources_box)
         sec.append(related_box)
     else:
