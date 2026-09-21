@@ -990,7 +990,6 @@ write('index.html', f"""<!doctype html>
   <div class="hero-mark" aria-hidden="true"><div class="tilt">{LAYERS}</div></div>
   <div class="hud h1" aria-hidden="true">Free tools<b>{len(REG)}</b></div>
   <div class="hud h2" aria-hidden="true">Languages<b>9</b></div>
-  <div class="hud h3" aria-hidden="true">Sign-ups needed<b>0</b></div>
   <section class="copy">
     <span class="tag">Freelance pricing, quote, invoice and tax tools in one place.</span>
     <h1>Freelancing <em>without</em> borders</h1>

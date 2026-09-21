@@ -34,7 +34,6 @@ a{color:inherit}
 .hud::after{content:"";position:absolute;border:0 dashed rgba(190,205,235,.45)}
 .h1{left:2%;top:22vh}.h1::after{left:0;top:100%;height:9vh;border-left-width:1.5px;margin-top:.4rem}
 .h2{right:2%;top:18vh;text-align:right}.h2::after{right:0;top:100%;height:12vh;border-right-width:1.5px;margin-top:.4rem}
-.h3{right:6%;top:50vh;text-align:right}.h3::after{right:0;bottom:100%;height:8vh;border-right-width:1.5px;margin-bottom:.4rem}
 
 .copy{position:relative;z-index:3;text-align:center;padding-top:54vh;max-width:46rem;margin:0 auto}
 .tag{display:inline-block;padding:.4rem 1rem;border:1px solid var(--line);border-radius:999px;font-size:.78rem;color:#c8d1e2;background:rgba(255,255,255,.06);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
@@ -59,10 +58,12 @@ h1 em{font-style:normal;color:var(--y)}
    the hud stats and hero copy are positioned with vh offsets that assume a tall viewport, so on
    a short one they collide with each other and with the ghost wordmark. Fall back to the same
    compact treatment already used below 820px wide. */
-@media (max-height:820px) and (min-width:821px){
+@media (max-height:960px) and (min-width:821px){
  .hero-mark{top:0;width:min(220px,32vw)}
- .ghost{top:15vh}
- .copy{padding-top:36vh}
+ /* fixed px, not vh: the logo above is a fixed ~220px wide (so a fixed ~180px tall) in this
+    range regardless of viewport height, so its clearance below must be fixed too */
+ .ghost{top:200px}
+ .copy{padding-top:320px}
  .hud{display:none}
 }
 
