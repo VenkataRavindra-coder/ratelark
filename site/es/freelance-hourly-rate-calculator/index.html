@@ -36,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="../../assets/app.css?v=4f5a7389">
+<link rel="stylesheet" href="../../assets/app.css?v=5ba3508a">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "Calculadora de tarifa por hora para freelancers (con impuestos y tiempo libre)", "url": "https://ratelark.app/es/freelance-hourly-rate-calculator/", "inLanguage": "es", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "description": "Calcula la tarifa mínima por hora que necesitas a partir de tus ingresos netos, impuestos, gastos y tiempo libre. Gratis, privado, sin registro.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cuántas horas puedo facturar?", "acceptedAnswer": {"@type": "Answer", "text": "Menos de las que trabajas. La administración, los correos, la captación de clientes y los huecos entre proyectos no se pagan, por eso muchos freelancers planifican entre 20 y 30 horas facturables por semana en lugar de 40. Baja las horas de arriba y verás cómo sube la tarifa."}}, {"@type": "Question", "name": "¿Es esta la tarifa que debo cotizar?", "acceptedAnswer": {"@type": "Answer", "text": "Considérala un mínimo: la tarifa por debajo de la cual pierdes dinero. Cotiza por encima para tener margen ante descuentos, clientes que pagan tarde y meses flojos."}}]}]</script>
 </head>
 <body data-tool="hourly-rate">
@@ -90,13 +90,13 @@
 <span class="hint">Solo las horas que puedes facturar. La administración, los correos y la búsqueda de clientes no cuentan.</span></label>
 </div>
 </div>
-<div class="about sheet">
+<div class="cta-row"><a class="btn" href="../project-quote-calculator/" id="connect-to-quote">Usa esta tarifa en un presupuesto →</a></div><div class="about sheet">
 <h2>Cómo se calcula esta tarifa</h2>
 <p>Tu ingreso neto se ajusta para cubrir impuestos, se suman los gastos del negocio y el total se divide entre las horas que puedes facturar: (ingreso neto ÷ (1 − tasa de impuestos) + gastos) ÷ horas facturables.</p>
 <details><summary>¿Cuántas horas puedo facturar?</summary><p>Menos de las que trabajas. La administración, los correos, la captación de clientes y los huecos entre proyectos no se pagan, por eso muchos freelancers planifican entre 20 y 30 horas facturables por semana en lugar de 40. Baja las horas de arriba y verás cómo sube la tarifa.</p></details>
 <details><summary>¿Es esta la tarifa que debo cotizar?</summary><p>Considérala un mínimo: la tarifa por debajo de la cual pierdes dinero. Cotiza por encima para tener margen ante descuentos, clientes que pagan tarde y meses flojos.</p></details>
 </div>
-</section>
+<div class="about sheet"><h2>Herramientas relacionadas</h2><div class="hub-grid"><a class="hub-card" href="/es/project-quote-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><rect height="18" rx="2" width="14" x="5" y="3"></rect><path d="M9 8h6M9 12h6M9 16h3"></path></svg></span><span class="hc-cat">Fija tu precio</span></span><h3>Presupuesto</h3><p>Calcula el precio de un proyecto con margen, costos y anticipo, y descubre cuánto te paga realmente por hora. Gratis, sin registro.</p></a><a class="hub-card" href="/es/markup-margin-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M19 5L5 19"></path><circle cx="7.5" cy="7.5" r="2"></circle><circle cx="16.5" cy="16.5" r="2"></circle></svg></span><span class="hc-cat">Fija tu precio</span></span><h3>Recargo y margen</h3><p>Introduce un costo y otro dato para ver el markup, el margen y el precio juntos, con la diferencia explicada.</p></a><a class="hub-card" href="/es/retainer-vs-hourly-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg></span><span class="hc-cat">Fija tu precio</span></span><h3>Iguala</h3><p>Compara una tarifa fija mensual con el cobro por hora y descubre el punto de equilibrio y qué cambia si el uso varía.</p></a></div></div></section>
 <div class="share">
 <button class="btn alt" id="share" type="button">Compartir esta herramienta</button>
 <span id="toast" role="status"></span>
@@ -106,8 +106,9 @@
 <footer><nav aria-label="Languages" class="langs"><a href="../../en/freelance-hourly-rate-calculator/" hreflang="en" lang="en">English</a><a aria-current="true" href="../../es/freelance-hourly-rate-calculator/" hreflang="es" lang="es">Español</a><a href="../../pt/freelance-hourly-rate-calculator/" hreflang="pt-BR" lang="pt">Português</a><a href="../../fr/freelance-hourly-rate-calculator/" hreflang="fr" lang="fr">Français</a><a href="../../de/freelance-hourly-rate-calculator/" hreflang="de" lang="de">Deutsch</a><a href="../../hi/freelance-hourly-rate-calculator/" hreflang="hi" lang="hi">हिन्दी</a><a href="../../ar/freelance-hourly-rate-calculator/" hreflang="ar" lang="ar">العربية</a><a href="../../zh/freelance-hourly-rate-calculator/" hreflang="zh-Hans" lang="zh">中文</a><a href="../../id/freelance-hourly-rate-calculator/" hreflang="id" lang="id">Bahasa Indonesia</a></nav>
 <p>RateLark funciona por completo en tu navegador y nada de lo que escribes se sube. Los resultados son estimaciones, no asesoría fiscal, financiera ni legal.</p>
 <p><a href="/privacy/">Privacidad</a> · <a href="mailto:hello@ratelark.com">Contacto</a></p></footer>
-<script src="../../assets/i18n.js?v=1a102765"></script>
+<script src="../../assets/i18n.js?v=9ed1d5cc"></script>
 <script src="../../assets/app.js?v=25de5a97"></script>
+<script src="../../assets/connect.js?v=5045e883" defer></script>
 <script src="../../assets/palette.js?v=9ceef2d7" defer></script>
 </body>
 </html>

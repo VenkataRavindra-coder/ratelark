@@ -250,6 +250,32 @@ def tool_desc(lang, slug):
     return MAPS[lang].get(d, d)
 
 
+# Stage 4 item 15: up to 3 related tools for the "Related tools" block on every page --
+# same category first, then fill from the rest of the registry so every page gets exactly 3.
+def related_tools(slug, n=3):
+    this = next(t for t in REG if t['slug'] == slug)
+    same_cat = [t for t in REG if t['slug'] != slug and t['cat'] == this['cat']]
+    rest = [t for t in REG if t['slug'] != slug and t['cat'] != this['cat']]
+    return (same_cat + rest)[:n]
+
+
+def related_tools_html(lang, slug):
+    e = lambda x: html.escape(x, quote=True)
+    cards = ''.join(hub_card(lang, t) for t in related_tools(slug))
+    return ('<div class="about sheet"><h2>%s</h2><div class="hub-grid">%s</div></div>'
+            % (e(tr('Related tools', lang)), cards))
+
+
+# Stage 4 items 13/14/16: hourly-rate -> quote -> invoice -> late-fee handoffs, carried through
+# localStorage by assets/connect.js (see that file). Maps a tool's internal slug to the button
+# id connect.js listens for, the English button text (translated via tr()) and the target tool.
+CONNECT_NEXT = {
+ 'hourly-rate': ('connect-to-quote', 'Use this rate in a quote →', 'quote'),
+ 'quote': ('connect-to-invoice', 'Turn this into an invoice →', 'invoice'),
+ 'invoice': ('connect-to-latefee', 'Track this invoice for late payment →', 'late-fee'),
+}
+
+
 def render_ppp(lang, T):
     """Server-side markup for the PPP Pricing Localizer (the interface script fills in the numbers)."""
     q = lambda x: html.escape(x, quote=True)
@@ -379,6 +405,17 @@ def build_page(lang, tool):
 
         sh = copy.copy(share); translate(sh, mp)
         fb = copy.copy(fallback)
+
+    if tool in CONNECT_NEXT:
+        btn_id, btn_text_en, next_tool = CONNECT_NEXT[tool]
+        btn_html = ('<div class="cta-row"><a id="%s" class="btn" href="%s">%s</a></div>'
+                    % (btn_id, html.escape('../%s/' % url_slug(next_tool), quote=True),
+                       html.escape(tr(btn_text_en, lang), quote=True)))
+        about = sec.find(class_='about')
+        if about is not None:
+            about.insert_before(BeautifulSoup(btn_html, 'html.parser').div)
+    sec.append(BeautifulSoup(related_tools_html(lang, tool), 'html.parser').div)
+
     ft = copy.copy(footer); translate(ft, mp)
     langs_nav = BeautifulSoup('<nav class="langs" aria-label="Languages"></nav>', 'html.parser').nav
     for code, nm, h, _ in LANGS:
@@ -418,10 +455,13 @@ def build_page(lang, tool):
     else:
         scripts = ('<script src="../../assets/i18n.js?v={0}"></script>\n'
                    '<script src="../../assets/app.js?v={1}"></script>').format(VER['i18n.js'], VER['app.js'])
+    if tool in CONNECT_NEXT:
+        scripts += '\n<script src="../../assets/connect.js?v=%s" defer></script>' % VER['connect.js']
     _r = next(t for t in REG if t['slug'] == tool)
     kicker = ('<div class="kicker"><span class="ico">%s</span><span class="cat">%s</span></div>'
               % (icon_svg(_r['icon']), html.escape(CATS[_r['cat']][lang])))
     e = lambda x: html.escape(x, quote=True)
+    quote_label_attr = ' data-quote-label="%s"' % e(tool_name(lang, 'quote')) if tool == 'quote' else ''
     page = f'''<!doctype html>
 <html lang="{lang}" dir="{dirn}">
 <head>
@@ -454,7 +494,7 @@ def build_page(lang, tool):
 <link rel="stylesheet" href="../../assets/app.css?v={VER['app.css']}">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False).replace('</', '<\\/')}</script>
 </head>
-<body data-tool="{tool}">
+<body data-tool="{tool}"{quote_label_attr}>
 <div class="tfx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
 {hdr}
 {nav}
@@ -566,6 +606,7 @@ def build_tax_page(lang, country):
         sec.append(related_box)
     else:
         faq_ld = []
+    sec.append(BeautifulSoup(related_tools_html(lang, 'tax'), 'html.parser').div)
 
     sh = copy.copy(share); translate(sh, mp)
     fb = copy.copy(fallback)
@@ -767,15 +808,18 @@ a.tab{text-decoration:none}
 .hub-card .hc-cat{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .hub-card h3{margin:0;font:700 1.05rem var(--display);color:var(--ink)}
 .hub-card p{margin:.35rem 0 0;color:var(--muted);font-size:.88rem;line-height:1.4}
+a.btn{text-decoration:none;display:inline-block}
+.cta-row{margin:0 0 1.25rem}
 '''
 PAL_CSS = open(os.path.join(HERE, 'palette.css'), encoding='utf-8').read()
 PAL_JS = open(os.path.join(HERE, 'palette.js'), encoding='utf-8').read()
 PLUGIN_CSS = ''.join(open(os.path.join(HERE, 'tools', t, 'tool.css'), encoding='utf-8').read() for t in PLUGINS)
 SHELL_JS = open(os.path.join(HERE, 'shell.js'), encoding='utf-8').read()
+CONNECT_JS = open(os.path.join(HERE, 'connect.js'), encoding='utf-8').read()
 LZ_JS = open(os.path.join(HERE, 'tools', 'ppp-pricing-calculator', 'lz-string.min.js'), encoding='utf-8').read()
 _css = css + extra_css + bgart.css() + PAL_CSS + PLUGIN_CSS
 VER = {n: hashlib.sha1(t.encode()).hexdigest()[:8] for n, t in
-       (('app.css', _css), ('i18n.js', i18n_js), ('app.js', main_js), ('palette.js', PAL_JS), ('shell.js', SHELL_JS), ('lz-string.min.js', LZ_JS))}
+       (('app.css', _css), ('i18n.js', i18n_js), ('app.js', main_js), ('palette.js', PAL_JS), ('shell.js', SHELL_JS), ('connect.js', CONNECT_JS), ('lz-string.min.js', LZ_JS))}
 for _t in PLUGINS:
     for _f in ('engine', 'ui'):
         VER['%s:%s' % (_f, _t)] = hashlib.sha1(open(os.path.join(HERE, 'tools', _t, _f + '.js'), 'rb').read()).hexdigest()[:8]
@@ -785,6 +829,7 @@ write('assets/app.js', main_js)
 write('assets/palette.js', PAL_JS)
 write('assets/palette.css', PAL_CSS)
 write('assets/shell.js', SHELL_JS)
+write('assets/connect.js', CONNECT_JS)
 write('assets/lz-string.min.js', LZ_JS)
 for _t in PLUGINS:
     for _f in ('engine.js', 'ui.js'):

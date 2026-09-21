@@ -36,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="../../assets/app.css?v=4f5a7389">
+<link rel="stylesheet" href="../../assets/app.css?v=5ba3508a">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "自由职业者时薪计算器(含税费和休假)", "url": "https://ratelark.app/zh/freelance-hourly-rate-calculator/", "inLanguage": "zh-Hans", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "description": "根据你的税后收入、税费、支出和休假,算出你需要的最低时薪。免费、私密、无需注册。", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "我能计费多少小时？", "acceptedAnswer": {"@type": "Answer", "text": "比你实际工作的时间少。行政事务、回邮件、接洽客户以及项目之间的空档都没有报酬，所以许多自由职业者按每周 20 到 30 个计费小时来规划，而不是 40 小时。调低上面的小时数，看看时薪如何上升。"}}, {"@type": "Question", "name": "这就是我应该报的价格吗？", "acceptedAnswer": {"@type": "Answer", "text": "把它当作底线：低于这个时薪你就是在亏钱。报价要高于它，才有余地应对折扣、拖欠付款的客户和淡季。"}}]}]</script>
 </head>
 <body data-tool="hourly-rate">
@@ -90,13 +90,13 @@
 <span class="hint">仅计入你能开发票收费的小时。行政事务、邮件和接洽客户不算。</span></label>
 </div>
 </div>
-<div class="about sheet">
+<div class="cta-row"><a class="btn" href="../project-quote-calculator/" id="connect-to-quote">将此费率用于报价 →</a></div><div class="about sheet">
 <h2>这个时薪是怎么算出来的</h2>
 <p>先把你的税后收入按税率还原，再加上经营支出，最后除以你能计费的小时数：（税后收入 ÷（1 − 税率）+ 支出）÷ 计费小时数。</p>
 <details><summary>我能计费多少小时？</summary><p>比你实际工作的时间少。行政事务、回邮件、接洽客户以及项目之间的空档都没有报酬，所以许多自由职业者按每周 20 到 30 个计费小时来规划，而不是 40 小时。调低上面的小时数，看看时薪如何上升。</p></details>
 <details><summary>这就是我应该报的价格吗？</summary><p>把它当作底线：低于这个时薪你就是在亏钱。报价要高于它，才有余地应对折扣、拖欠付款的客户和淡季。</p></details>
 </div>
-</section>
+<div class="about sheet"><h2>相关工具</h2><div class="hub-grid"><a class="hub-card" href="/zh/project-quote-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><rect height="18" rx="2" width="14" x="5" y="3"></rect><path d="M9 8h6M9 12h6M9 16h3"></path></svg></span><span class="hc-cat">为工作定价</span></span><h3>项目报价</h3><p>用缓冲金额、成本和定金为项目报价,看看这份报价实际上每小时能赚多少。免费,无需注册。</p></a><a class="hub-card" href="/zh/markup-margin-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M19 5L5 19"></path><circle cx="7.5" cy="7.5" r="2"></circle><circle cx="16.5" cy="16.5" r="2"></circle></svg></span><span class="hc-cat">为工作定价</span></span><h3>加价与利润率</h3><p>输入成本和另一个数值,即可同时看到加价率、毛利率和价格,并附有差异说明。</p></a><a class="hub-card" href="/zh/retainer-vs-hourly-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg></span><span class="hc-cat">为工作定价</span></span><h3>月度服务费</h3><p>比较每月固定费用与按小时计费,查看盈亏平衡点以及使用量变化时会发生什么。</p></a></div></div></section>
 <div class="share">
 <button class="btn alt" id="share" type="button">分享此工具</button>
 <span id="toast" role="status"></span>
@@ -106,8 +106,9 @@
 <footer><nav aria-label="Languages" class="langs"><a href="../../en/freelance-hourly-rate-calculator/" hreflang="en" lang="en">English</a><a href="../../es/freelance-hourly-rate-calculator/" hreflang="es" lang="es">Español</a><a href="../../pt/freelance-hourly-rate-calculator/" hreflang="pt-BR" lang="pt">Português</a><a href="../../fr/freelance-hourly-rate-calculator/" hreflang="fr" lang="fr">Français</a><a href="../../de/freelance-hourly-rate-calculator/" hreflang="de" lang="de">Deutsch</a><a href="../../hi/freelance-hourly-rate-calculator/" hreflang="hi" lang="hi">हिन्दी</a><a href="../../ar/freelance-hourly-rate-calculator/" hreflang="ar" lang="ar">العربية</a><a aria-current="true" href="../../zh/freelance-hourly-rate-calculator/" hreflang="zh-Hans" lang="zh">中文</a><a href="../../id/freelance-hourly-rate-calculator/" hreflang="id" lang="id">Bahasa Indonesia</a></nav>
 <p>RateLark 完全在你的浏览器中运行，你输入的任何内容都不会被上传。结果仅为估算，不构成税务、财务或法律建议。</p>
 <p><a href="/privacy/">隐私</a> · <a href="mailto:hello@ratelark.com">联系我们</a></p></footer>
-<script src="../../assets/i18n.js?v=1a102765"></script>
+<script src="../../assets/i18n.js?v=9ed1d5cc"></script>
 <script src="../../assets/app.js?v=25de5a97"></script>
+<script src="../../assets/connect.js?v=5045e883" defer></script>
 <script src="../../assets/palette.js?v=9ceef2d7" defer></script>
 </body>
 </html>

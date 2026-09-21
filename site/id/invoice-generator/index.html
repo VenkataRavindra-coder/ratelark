@@ -36,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="../../assets/app.css?v=4f5a7389">
+<link rel="stylesheet" href="../../assets/app.css?v=5ba3508a">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "Pembuat Invoice Gratis (PDF, Tanpa Daftar)", "url": "https://ratelark.app/id/invoice-generator/", "inLanguage": "id", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "description": "Buat invoice dengan rincian item dan pajak, lalu cetak atau simpan sebagai PDF. Apa pun yang kamu ketik tidak diunggah.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Di mana data saya disimpan?", "acceptedAnswer": {"@type": "Answer", "text": "Hanya di browser Anda. Tidak ada yang Anda ketik dikirim ke server. Data Anda diingat di perangkat ini sehingga invoice berikutnya sudah terisi."}}]}]</script>
 </head>
 <body data-tool="invoice">
@@ -100,12 +100,12 @@ Alamat" rows="3"></textarea></label>
 <p class="note" style="padding-top:.6rem">Mencetak akan membuka dialog cetak browser Anda. Pilih Simpan sebagai PDF di sana. Jika pencetakan diblokir di tampilan ini, gunakan Salin sebagai teks.</p>
 </div>
 </div>
-<div class="about sheet">
+<div class="cta-row"><a class="btn" href="../late-payment-fee-calculator/" id="connect-to-latefee">Lacak invoice ini untuk keterlambatan pembayaran →</a></div><div class="about sheet">
 <h2>Apa yang harus ada di invoice</h2>
 <p>Nomor invoice yang unik, data Anda dan klien, tanggal penerbitan dan jatuh tempo, rincian biaya, total yang harus dibayar, dan cara membayar Anda. Syarat yang jelas sejak awal memudahkan Anda menagih pembayaran yang terlambat.</p>
 <details><summary>Di mana data saya disimpan?</summary><p>Hanya di browser Anda. Tidak ada yang Anda ketik dikirim ke server. Data Anda diingat di perangkat ini sehingga invoice berikutnya sudah terisi.</p></details>
 </div>
-</section>
+<div class="about sheet"><h2>Alat terkait</h2><div class="hub-grid"><a class="hub-card" href="/id/late-payment-fee-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2 2"></path><path d="M5 3L2 6M22 6l-3-3"></path></svg></span><span class="hc-cat">Terima pembayaran</span></span><h3>Denda telat</h3><p>Tambahkan bunga dan denda tetap pada invoice yang jatuh tempo, lalu lihat total yang bisa Anda tagih.</p></a><a class="hub-card" href="/id/freelance-hourly-rate-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><span class="hc-cat">Tentukan harga kerja</span></span><h3>Tarif per jam</h3><p>Hitung tarif per jam minimum yang kamu butuhkan berdasarkan penghasilan bersih, pajak, biaya, dan cuti. Gratis, privat, tanpa daftar.</p></a><a class="hub-card" href="/id/project-quote-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><rect height="18" rx="2" width="14" x="5" y="3"></rect><path d="M9 8h6M9 12h6M9 16h3"></path></svg></span><span class="hc-cat">Tentukan harga kerja</span></span><h3>Penawaran</h3><p>Tentukan harga proyek dengan buffer, biaya, dan uang muka, lalu lihat berapa sebenarnya penawaran ini membayarmu per jam. Gratis, tanpa daftar.</p></a></div></div></section>
 <div class="share">
 <button class="btn alt" id="share" type="button">Bagikan alat ini</button>
 <span id="toast" role="status"></span>
@@ -115,8 +115,9 @@ Alamat" rows="3"></textarea></label>
 <footer><nav aria-label="Languages" class="langs"><a href="../../en/invoice-generator/" hreflang="en" lang="en">English</a><a href="../../es/invoice-generator/" hreflang="es" lang="es">Español</a><a href="../../pt/invoice-generator/" hreflang="pt-BR" lang="pt">Português</a><a href="../../fr/invoice-generator/" hreflang="fr" lang="fr">Français</a><a href="../../de/invoice-generator/" hreflang="de" lang="de">Deutsch</a><a href="../../hi/invoice-generator/" hreflang="hi" lang="hi">हिन्दी</a><a href="../../ar/invoice-generator/" hreflang="ar" lang="ar">العربية</a><a href="../../zh/invoice-generator/" hreflang="zh-Hans" lang="zh">中文</a><a aria-current="true" href="../../id/invoice-generator/" hreflang="id" lang="id">Bahasa Indonesia</a></nav>
 <p>RateLark berjalan sepenuhnya di browser Anda dan tidak ada yang Anda ketik yang diunggah. Hasilnya berupa perkiraan, bukan nasihat pajak, keuangan, atau hukum.</p>
 <p><a href="/privacy/">Privasi</a> · <a href="mailto:hello@ratelark.com">Kontak</a></p></footer>
-<script src="../../assets/i18n.js?v=1a102765"></script>
+<script src="../../assets/i18n.js?v=9ed1d5cc"></script>
 <script src="../../assets/app.js?v=25de5a97"></script>
+<script src="../../assets/connect.js?v=5045e883" defer></script>
 <script src="../../assets/palette.js?v=9ceef2d7" defer></script>
 </body>
 </html>

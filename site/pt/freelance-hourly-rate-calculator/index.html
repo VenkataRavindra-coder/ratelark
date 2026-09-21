@@ -36,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="../../assets/app.css?v=4f5a7389">
+<link rel="stylesheet" href="../../assets/app.css?v=5ba3508a">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "Calculadora de valor da hora para freelancers (com impostos e férias)", "url": "https://ratelark.app/pt/freelance-hourly-rate-calculator/", "inLanguage": "pt-BR", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "description": "Calcule o valor mínimo da hora que você precisa a partir da sua renda líquida, impostos, despesas e férias. Grátis, privado, sem cadastro.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Quantas horas consigo faturar?", "acceptedAnswer": {"@type": "Answer", "text": "Menos do que você trabalha. Administração, e-mails, prospecção e intervalos entre projetos não são pagos, por isso muitos freelancers planejam de 20 a 30 horas faturáveis por semana em vez de 40. Diminua as horas acima e veja o valor subir."}}, {"@type": "Question", "name": "É esse o valor que devo cobrar?", "acceptedAnswer": {"@type": "Answer", "text": "Considere-o um piso: o valor abaixo do qual você perde dinheiro. Cobre acima dele para ter folga diante de descontos, clientes que atrasam e meses fracos."}}]}]</script>
 </head>
 <body data-tool="hourly-rate">
@@ -90,13 +90,13 @@
 <span class="hint">Apenas as horas que você consegue faturar. Administração, e-mails e prospecção não contam.</span></label>
 </div>
 </div>
-<div class="about sheet">
+<div class="cta-row"><a class="btn" href="../project-quote-calculator/" id="connect-to-quote">Use este valor em um orçamento →</a></div><div class="about sheet">
 <h2>Como esse valor é calculado</h2>
 <p>Seu valor líquido é ajustado para cobrir os impostos, as despesas do negócio são somadas e o total é dividido pelas horas que você consegue faturar: (valor líquido ÷ (1 − alíquota) + despesas) ÷ horas faturáveis.</p>
 <details><summary>Quantas horas consigo faturar?</summary><p>Menos do que você trabalha. Administração, e-mails, prospecção e intervalos entre projetos não são pagos, por isso muitos freelancers planejam de 20 a 30 horas faturáveis por semana em vez de 40. Diminua as horas acima e veja o valor subir.</p></details>
 <details><summary>É esse o valor que devo cobrar?</summary><p>Considere-o um piso: o valor abaixo do qual você perde dinheiro. Cobre acima dele para ter folga diante de descontos, clientes que atrasam e meses fracos.</p></details>
 </div>
-</section>
+<div class="about sheet"><h2>Ferramentas relacionadas</h2><div class="hub-grid"><a class="hub-card" href="/pt/project-quote-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><rect height="18" rx="2" width="14" x="5" y="3"></rect><path d="M9 8h6M9 12h6M9 16h3"></path></svg></span><span class="hc-cat">Precifique seu trabalho</span></span><h3>Orçamento</h3><p>Calcule o preço de um projeto com margem de segurança, custos e sinal, e veja quanto o orçamento realmente paga por hora. Grátis, sem cadastro.</p></a><a class="hub-card" href="/pt/markup-margin-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M19 5L5 19"></path><circle cx="7.5" cy="7.5" r="2"></circle><circle cx="16.5" cy="16.5" r="2"></circle></svg></span><span class="hc-cat">Precifique seu trabalho</span></span><h3>Markup e margem</h3><p>Informe um custo e outro valor para ver o markup, a margem e o preço lado a lado, com a diferença explicada.</p></a><a class="hub-card" href="/pt/retainer-vs-hourly-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg></span><span class="hc-cat">Precifique seu trabalho</span></span><h3>Retainer</h3><p>Compare um valor fixo mensal com a cobrança por hora e veja o ponto de equilíbrio e o que muda se o uso variar.</p></a></div></div></section>
 <div class="share">
 <button class="btn alt" id="share" type="button">Compartilhar esta ferramenta</button>
 <span id="toast" role="status"></span>
@@ -106,8 +106,9 @@
 <footer><nav aria-label="Languages" class="langs"><a href="../../en/freelance-hourly-rate-calculator/" hreflang="en" lang="en">English</a><a href="../../es/freelance-hourly-rate-calculator/" hreflang="es" lang="es">Español</a><a aria-current="true" href="../../pt/freelance-hourly-rate-calculator/" hreflang="pt-BR" lang="pt">Português</a><a href="../../fr/freelance-hourly-rate-calculator/" hreflang="fr" lang="fr">Français</a><a href="../../de/freelance-hourly-rate-calculator/" hreflang="de" lang="de">Deutsch</a><a href="../../hi/freelance-hourly-rate-calculator/" hreflang="hi" lang="hi">हिन्दी</a><a href="../../ar/freelance-hourly-rate-calculator/" hreflang="ar" lang="ar">العربية</a><a href="../../zh/freelance-hourly-rate-calculator/" hreflang="zh-Hans" lang="zh">中文</a><a href="../../id/freelance-hourly-rate-calculator/" hreflang="id" lang="id">Bahasa Indonesia</a></nav>
 <p>O RateLark funciona inteiramente no seu navegador e nada do que você digita é enviado. Os resultados são estimativas, não aconselhamento fiscal, financeiro ou jurídico.</p>
 <p><a href="/privacy/">Privacidade</a> · <a href="mailto:hello@ratelark.com">Contato</a></p></footer>
-<script src="../../assets/i18n.js?v=1a102765"></script>
+<script src="../../assets/i18n.js?v=9ed1d5cc"></script>
 <script src="../../assets/app.js?v=25de5a97"></script>
+<script src="../../assets/connect.js?v=5045e883" defer></script>
 <script src="../../assets/palette.js?v=9ceef2d7" defer></script>
 </body>
 </html>

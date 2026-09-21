@@ -36,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="../../assets/app.css?v=4f5a7389">
+<link rel="stylesheet" href="../../assets/app.css?v=5ba3508a">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "Générateur de factures gratuit (PDF, sans inscription)", "url": "https://ratelark.app/fr/invoice-generator/", "inLanguage": "fr", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "description": "Créez une facture avec des lignes de détail et la taxe, puis imprimez-la ou enregistrez-la en PDF. Rien de ce que vous saisissez n'est envoyé en ligne.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Où sont stockées mes données ?", "acceptedAnswer": {"@type": "Answer", "text": "Uniquement dans votre navigateur. Rien de ce que vous saisissez n'est envoyé à un serveur. Vos informations sont mémorisées sur cet appareil pour que la prochaine facture soit déjà remplie."}}]}]</script>
 </head>
 <body data-tool="invoice">
@@ -100,12 +100,12 @@ Adresse" rows="3"></textarea></label>
 <p class="note" style="padding-top:.6rem">L'impression ouvre la boîte de dialogue d'impression de votre navigateur. Choisissez-y Enregistrer au format PDF. Si l'impression est bloquée dans cette vue, utilisez Copier en texte.</p>
 </div>
 </div>
-<div class="about sheet">
+<div class="cta-row"><a class="btn" href="../late-payment-fee-calculator/" id="connect-to-latefee">Suivre cette facture en cas de retard de paiement →</a></div><div class="about sheet">
 <h2>Ce que doit contenir une facture</h2>
 <p>Un numéro de facture unique, vos coordonnées et celles du client, les dates d'émission et d'échéance, le détail des prestations, le total dû et la façon de vous payer. Des conditions claires dès le départ facilitent la relance d'un paiement en retard.</p>
 <details><summary>Où sont stockées mes données ?</summary><p>Uniquement dans votre navigateur. Rien de ce que vous saisissez n'est envoyé à un serveur. Vos informations sont mémorisées sur cet appareil pour que la prochaine facture soit déjà remplie.</p></details>
 </div>
-</section>
+<div class="about sheet"><h2>Outils associés</h2><div class="hub-grid"><a class="hub-card" href="/fr/late-payment-fee-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2 2"></path><path d="M5 3L2 6M22 6l-3-3"></path></svg></span><span class="hc-cat">Se faire payer</span></span><h3>Retard</h3><p>Ajoutez des intérêts et une pénalité forfaitaire à une facture échue et voyez le total que vous pouvez réclamer.</p></a><a class="hub-card" href="/fr/freelance-hourly-rate-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><span class="hc-cat">Fixer vos prix</span></span><h3>Taux horaire</h3><p>Calculez le taux horaire minimum dont vous avez besoin à partir de votre revenu net, des impôts, des dépenses et des congés. Gratuit, privé, sans inscription.</p></a><a class="hub-card" href="/fr/project-quote-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><rect height="18" rx="2" width="14" x="5" y="3"></rect><path d="M9 8h6M9 12h6M9 16h3"></path></svg></span><span class="hc-cat">Fixer vos prix</span></span><h3>Devis</h3><p>Chiffrez un projet avec une marge de sécurité, des coûts et un acompte, et voyez ce que le devis vous rapporte vraiment par heure. Gratuit, sans inscription.</p></a></div></div></section>
 <div class="share">
 <button class="btn alt" id="share" type="button">Partager cet outil</button>
 <span id="toast" role="status"></span>
@@ -115,8 +115,9 @@ Adresse" rows="3"></textarea></label>
 <footer><nav aria-label="Languages" class="langs"><a href="../../en/invoice-generator/" hreflang="en" lang="en">English</a><a href="../../es/invoice-generator/" hreflang="es" lang="es">Español</a><a href="../../pt/invoice-generator/" hreflang="pt-BR" lang="pt">Português</a><a aria-current="true" href="../../fr/invoice-generator/" hreflang="fr" lang="fr">Français</a><a href="../../de/invoice-generator/" hreflang="de" lang="de">Deutsch</a><a href="../../hi/invoice-generator/" hreflang="hi" lang="hi">हिन्दी</a><a href="../../ar/invoice-generator/" hreflang="ar" lang="ar">العربية</a><a href="../../zh/invoice-generator/" hreflang="zh-Hans" lang="zh">中文</a><a href="../../id/invoice-generator/" hreflang="id" lang="id">Bahasa Indonesia</a></nav>
 <p>RateLark fonctionne entièrement dans votre navigateur et rien de ce que vous saisissez n'est envoyé. Les résultats sont des estimations, pas des conseils fiscaux, financiers ou juridiques.</p>
 <p><a href="/privacy/">Confidentialité</a> · <a href="mailto:hello@ratelark.com">Contact</a></p></footer>
-<script src="../../assets/i18n.js?v=1a102765"></script>
+<script src="../../assets/i18n.js?v=9ed1d5cc"></script>
 <script src="../../assets/app.js?v=25de5a97"></script>
+<script src="../../assets/connect.js?v=5045e883" defer></script>
 <script src="../../assets/palette.js?v=9ceef2d7" defer></script>
 </body>
 </html>

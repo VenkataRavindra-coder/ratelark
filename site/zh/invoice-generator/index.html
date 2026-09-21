@@ -36,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="../../assets/app.css?v=4f5a7389">
+<link rel="stylesheet" href="../../assets/app.css?v=5ba3508a">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "免费发票生成器(PDF,无需注册)", "url": "https://ratelark.app/zh/invoice-generator/", "inLanguage": "zh-Hans", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "description": "创建包含明细项和税费的发票,然后打印或保存为PDF。你输入的任何内容都不会被上传。", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "我的数据存在哪里？", "acceptedAnswer": {"@type": "Answer", "text": "仅存在你的浏览器中。你输入的任何内容都不会发送到服务器。你的信息会保存在本设备上，下次开发票时已自动填好。"}}]}]</script>
 </head>
 <body data-tool="invoice">
@@ -100,12 +100,12 @@ you@example.com" rows="3"></textarea></label>
 <p class="note" style="padding-top:.6rem">打印会打开浏览器的打印对话框，请在其中选择“另存为 PDF”。如果此视图中打印被拦截，请使用“复制为文本”。</p>
 </div>
 </div>
-<div class="about sheet">
+<div class="cta-row"><a class="btn" href="../late-payment-fee-calculator/" id="connect-to-latefee">跟踪此发票的逾期付款 →</a></div><div class="about sheet">
 <h2>发票应包含哪些内容</h2>
 <p>唯一的发票编号、你和客户的信息、开票日期和到期日、逐项费用、应付总额以及付款方式。一开始就写清条款，之后催收逾期款项会更容易。</p>
 <details><summary>我的数据存在哪里？</summary><p>仅存在你的浏览器中。你输入的任何内容都不会发送到服务器。你的信息会保存在本设备上，下次开发票时已自动填好。</p></details>
 </div>
-</section>
+<div class="about sheet"><h2>相关工具</h2><div class="hub-grid"><a class="hub-card" href="/zh/late-payment-fee-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2 2"></path><path d="M5 3L2 6M22 6l-3-3"></path></svg></span><span class="hc-cat">收款</span></span><h3>逾期费</h3><p>给逾期发票加上利息和固定滞纳金，看看你可以索要的总额。</p></a><a class="hub-card" href="/zh/freelance-hourly-rate-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><span class="hc-cat">为工作定价</span></span><h3>时薪</h3><p>根据你的税后收入、税费、支出和休假,算出你需要的最低时薪。免费、私密、无需注册。</p></a><a class="hub-card" href="/zh/project-quote-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><rect height="18" rx="2" width="14" x="5" y="3"></rect><path d="M9 8h6M9 12h6M9 16h3"></path></svg></span><span class="hc-cat">为工作定价</span></span><h3>项目报价</h3><p>用缓冲金额、成本和定金为项目报价,看看这份报价实际上每小时能赚多少。免费,无需注册。</p></a></div></div></section>
 <div class="share">
 <button class="btn alt" id="share" type="button">分享此工具</button>
 <span id="toast" role="status"></span>
@@ -115,8 +115,9 @@ you@example.com" rows="3"></textarea></label>
 <footer><nav aria-label="Languages" class="langs"><a href="../../en/invoice-generator/" hreflang="en" lang="en">English</a><a href="../../es/invoice-generator/" hreflang="es" lang="es">Español</a><a href="../../pt/invoice-generator/" hreflang="pt-BR" lang="pt">Português</a><a href="../../fr/invoice-generator/" hreflang="fr" lang="fr">Français</a><a href="../../de/invoice-generator/" hreflang="de" lang="de">Deutsch</a><a href="../../hi/invoice-generator/" hreflang="hi" lang="hi">हिन्दी</a><a href="../../ar/invoice-generator/" hreflang="ar" lang="ar">العربية</a><a aria-current="true" href="../../zh/invoice-generator/" hreflang="zh-Hans" lang="zh">中文</a><a href="../../id/invoice-generator/" hreflang="id" lang="id">Bahasa Indonesia</a></nav>
 <p>RateLark 完全在你的浏览器中运行，你输入的任何内容都不会被上传。结果仅为估算，不构成税务、财务或法律建议。</p>
 <p><a href="/privacy/">隐私</a> · <a href="mailto:hello@ratelark.com">联系我们</a></p></footer>
-<script src="../../assets/i18n.js?v=1a102765"></script>
+<script src="../../assets/i18n.js?v=9ed1d5cc"></script>
 <script src="../../assets/app.js?v=25de5a97"></script>
+<script src="../../assets/connect.js?v=5045e883" defer></script>
 <script src="../../assets/palette.js?v=9ceef2d7" defer></script>
 </body>
 </html>

@@ -36,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="../../assets/app.css?v=4f5a7389">
+<link rel="stylesheet" href="../../assets/app.css?v=5ba3508a">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "Calculateur de taux horaire pour freelances (avec impôts et congés)", "url": "https://ratelark.app/fr/freelance-hourly-rate-calculator/", "inLanguage": "fr", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "description": "Calculez le taux horaire minimum dont vous avez besoin à partir de votre revenu net, des impôts, des dépenses et des congés. Gratuit, privé, sans inscription.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Combien d'heures puis-je facturer ?", "acceptedAnswer": {"@type": "Answer", "text": "Moins que celles que vous travaillez. L'administratif, les e-mails, la prospection et les creux entre deux projets ne sont pas payés : beaucoup d'indépendants tablent donc sur 20 à 30 heures facturables par semaine plutôt que 40. Baissez les heures ci-dessus et voyez le taux grimper."}}, {"@type": "Question", "name": "Est-ce le taux que je dois annoncer ?", "acceptedAnswer": {"@type": "Answer", "text": "Considérez-le comme un plancher : le taux en dessous duquel vous perdez de l'argent. Annoncez plus haut pour garder de la marge face aux remises, aux mauvais payeurs et aux mois creux."}}]}]</script>
 </head>
 <body data-tool="hourly-rate">
@@ -90,13 +90,13 @@
 <span class="hint">Uniquement les heures que vous pouvez facturer. L'administratif, les e-mails et la prospection ne comptent pas.</span></label>
 </div>
 </div>
-<div class="about sheet">
+<div class="cta-row"><a class="btn" href="../project-quote-calculator/" id="connect-to-quote">Utiliser ce taux dans un devis →</a></div><div class="about sheet">
 <h2>Comment ce taux est calculé</h2>
 <p>Votre revenu net est majoré pour couvrir les impôts, les charges professionnelles sont ajoutées, puis le total est divisé par les heures que vous pouvez facturer : (revenu net ÷ (1 − taux d'imposition) + charges) ÷ heures facturables.</p>
 <details><summary>Combien d'heures puis-je facturer ?</summary><p>Moins que celles que vous travaillez. L'administratif, les e-mails, la prospection et les creux entre deux projets ne sont pas payés : beaucoup d'indépendants tablent donc sur 20 à 30 heures facturables par semaine plutôt que 40. Baissez les heures ci-dessus et voyez le taux grimper.</p></details>
 <details><summary>Est-ce le taux que je dois annoncer ?</summary><p>Considérez-le comme un plancher : le taux en dessous duquel vous perdez de l'argent. Annoncez plus haut pour garder de la marge face aux remises, aux mauvais payeurs et aux mois creux.</p></details>
 </div>
-</section>
+<div class="about sheet"><h2>Outils associés</h2><div class="hub-grid"><a class="hub-card" href="/fr/project-quote-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><rect height="18" rx="2" width="14" x="5" y="3"></rect><path d="M9 8h6M9 12h6M9 16h3"></path></svg></span><span class="hc-cat">Fixer vos prix</span></span><h3>Devis</h3><p>Chiffrez un projet avec une marge de sécurité, des coûts et un acompte, et voyez ce que le devis vous rapporte vraiment par heure. Gratuit, sans inscription.</p></a><a class="hub-card" href="/fr/markup-margin-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M19 5L5 19"></path><circle cx="7.5" cy="7.5" r="2"></circle><circle cx="16.5" cy="16.5" r="2"></circle></svg></span><span class="hc-cat">Fixer vos prix</span></span><h3>Marge et marque</h3><p>Saisissez un coût et une autre donnée pour voir la majoration, la marge et le prix côte à côte, avec la différence expliquée.</p></a><a class="hub-card" href="/fr/retainer-vs-hourly-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg></span><span class="hc-cat">Fixer vos prix</span></span><h3>Forfait mensuel</h3><p>Comparez un forfait mensuel avec une facturation à l'heure et découvrez le seuil de rentabilité et ce qui change si l'utilisation varie.</p></a></div></div></section>
 <div class="share">
 <button class="btn alt" id="share" type="button">Partager cet outil</button>
 <span id="toast" role="status"></span>
@@ -106,8 +106,9 @@
 <footer><nav aria-label="Languages" class="langs"><a href="../../en/freelance-hourly-rate-calculator/" hreflang="en" lang="en">English</a><a href="../../es/freelance-hourly-rate-calculator/" hreflang="es" lang="es">Español</a><a href="../../pt/freelance-hourly-rate-calculator/" hreflang="pt-BR" lang="pt">Português</a><a aria-current="true" href="../../fr/freelance-hourly-rate-calculator/" hreflang="fr" lang="fr">Français</a><a href="../../de/freelance-hourly-rate-calculator/" hreflang="de" lang="de">Deutsch</a><a href="../../hi/freelance-hourly-rate-calculator/" hreflang="hi" lang="hi">हिन्दी</a><a href="../../ar/freelance-hourly-rate-calculator/" hreflang="ar" lang="ar">العربية</a><a href="../../zh/freelance-hourly-rate-calculator/" hreflang="zh-Hans" lang="zh">中文</a><a href="../../id/freelance-hourly-rate-calculator/" hreflang="id" lang="id">Bahasa Indonesia</a></nav>
 <p>RateLark fonctionne entièrement dans votre navigateur et rien de ce que vous saisissez n'est envoyé. Les résultats sont des estimations, pas des conseils fiscaux, financiers ou juridiques.</p>
 <p><a href="/privacy/">Confidentialité</a> · <a href="mailto:hello@ratelark.com">Contact</a></p></footer>
-<script src="../../assets/i18n.js?v=1a102765"></script>
+<script src="../../assets/i18n.js?v=9ed1d5cc"></script>
 <script src="../../assets/app.js?v=25de5a97"></script>
+<script src="../../assets/connect.js?v=5045e883" defer></script>
 <script src="../../assets/palette.js?v=9ceef2d7" defer></script>
 </body>
 </html>

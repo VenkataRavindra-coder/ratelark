@@ -36,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="../../assets/app.css?v=4f5a7389">
+<link rel="stylesheet" href="../../assets/app.css?v=5ba3508a">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "Kalkulator Tarif per Jam untuk Freelancer (dengan Pajak dan Cuti)", "url": "https://ratelark.app/id/freelance-hourly-rate-calculator/", "inLanguage": "id", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "description": "Hitung tarif per jam minimum yang kamu butuhkan berdasarkan penghasilan bersih, pajak, biaya, dan cuti. Gratis, privat, tanpa daftar.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Berapa jam yang bisa saya tagih?", "acceptedAnswer": {"@type": "Answer", "text": "Lebih sedikit dari jam kerja Anda. Administrasi, email, pencarian klien, dan jeda antarproyek tidak dibayar, sehingga banyak freelancer merencanakan 20 sampai 30 jam yang dapat ditagih per minggu, bukan 40. Kurangi jam di atas dan lihat tarifnya naik."}}, {"@type": "Question", "name": "Apakah ini tarif yang harus saya tawarkan?", "acceptedAnswer": {"@type": "Answer", "text": "Anggap ini batas bawah: tarif di bawahnya membuat Anda rugi. Tawarkan di atasnya agar ada ruang untuk diskon, klien yang telat bayar, dan bulan yang sepi."}}]}]</script>
 </head>
 <body data-tool="hourly-rate">
@@ -90,13 +90,13 @@
 <span class="hint">Hanya jam yang bisa Anda tagihkan. Administrasi, email, dan mencari klien tidak dihitung.</span></label>
 </div>
 </div>
-<div class="about sheet">
+<div class="cta-row"><a class="btn" href="../project-quote-calculator/" id="connect-to-quote">Gunakan tarif ini dalam penawaran →</a></div><div class="about sheet">
 <h2>Cara tarif ini dihitung</h2>
 <p>Pendapatan bersih Anda dinaikkan untuk menutup pajak, biaya usaha ditambahkan, lalu totalnya dibagi jam yang dapat Anda tagih: (pendapatan bersih ÷ (1 − tarif pajak) + biaya) ÷ jam yang dapat ditagih.</p>
 <details><summary>Berapa jam yang bisa saya tagih?</summary><p>Lebih sedikit dari jam kerja Anda. Administrasi, email, pencarian klien, dan jeda antarproyek tidak dibayar, sehingga banyak freelancer merencanakan 20 sampai 30 jam yang dapat ditagih per minggu, bukan 40. Kurangi jam di atas dan lihat tarifnya naik.</p></details>
 <details><summary>Apakah ini tarif yang harus saya tawarkan?</summary><p>Anggap ini batas bawah: tarif di bawahnya membuat Anda rugi. Tawarkan di atasnya agar ada ruang untuk diskon, klien yang telat bayar, dan bulan yang sepi.</p></details>
 </div>
-</section>
+<div class="about sheet"><h2>Alat terkait</h2><div class="hub-grid"><a class="hub-card" href="/id/project-quote-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><rect height="18" rx="2" width="14" x="5" y="3"></rect><path d="M9 8h6M9 12h6M9 16h3"></path></svg></span><span class="hc-cat">Tentukan harga kerja</span></span><h3>Penawaran</h3><p>Tentukan harga proyek dengan buffer, biaya, dan uang muka, lalu lihat berapa sebenarnya penawaran ini membayarmu per jam. Gratis, tanpa daftar.</p></a><a class="hub-card" href="/id/markup-margin-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M19 5L5 19"></path><circle cx="7.5" cy="7.5" r="2"></circle><circle cx="16.5" cy="16.5" r="2"></circle></svg></span><span class="hc-cat">Tentukan harga kerja</span></span><h3>Markup &amp; margin</h3><p>Masukkan biaya dan satu angka lain untuk melihat markup, margin, dan harga berdampingan, lengkap dengan penjelasan selisihnya.</p></a><a class="hub-card" href="/id/retainer-vs-hourly-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg></span><span class="hc-cat">Tentukan harga kerja</span></span><h3>Retainer</h3><p>Bandingkan retainer bulanan dengan tarif per jam dan lihat titik impas serta apa yang berubah jika penggunaan berbeda.</p></a></div></div></section>
 <div class="share">
 <button class="btn alt" id="share" type="button">Bagikan alat ini</button>
 <span id="toast" role="status"></span>
@@ -106,8 +106,9 @@
 <footer><nav aria-label="Languages" class="langs"><a href="../../en/freelance-hourly-rate-calculator/" hreflang="en" lang="en">English</a><a href="../../es/freelance-hourly-rate-calculator/" hreflang="es" lang="es">Español</a><a href="../../pt/freelance-hourly-rate-calculator/" hreflang="pt-BR" lang="pt">Português</a><a href="../../fr/freelance-hourly-rate-calculator/" hreflang="fr" lang="fr">Français</a><a href="../../de/freelance-hourly-rate-calculator/" hreflang="de" lang="de">Deutsch</a><a href="../../hi/freelance-hourly-rate-calculator/" hreflang="hi" lang="hi">हिन्दी</a><a href="../../ar/freelance-hourly-rate-calculator/" hreflang="ar" lang="ar">العربية</a><a href="../../zh/freelance-hourly-rate-calculator/" hreflang="zh-Hans" lang="zh">中文</a><a aria-current="true" href="../../id/freelance-hourly-rate-calculator/" hreflang="id" lang="id">Bahasa Indonesia</a></nav>
 <p>RateLark berjalan sepenuhnya di browser Anda dan tidak ada yang Anda ketik yang diunggah. Hasilnya berupa perkiraan, bukan nasihat pajak, keuangan, atau hukum.</p>
 <p><a href="/privacy/">Privasi</a> · <a href="mailto:hello@ratelark.com">Kontak</a></p></footer>
-<script src="../../assets/i18n.js?v=1a102765"></script>
+<script src="../../assets/i18n.js?v=9ed1d5cc"></script>
 <script src="../../assets/app.js?v=25de5a97"></script>
+<script src="../../assets/connect.js?v=5045e883" defer></script>
 <script src="../../assets/palette.js?v=9ceef2d7" defer></script>
 </body>
 </html>
