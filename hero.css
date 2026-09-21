@@ -55,6 +55,16 @@ h1 em{font-style:normal;color:var(--y)}
  .hud{display:none}
  .arc{width:90vw}.arc.l{left:-72vw}.arc.r{right:-72vw}
 }
+/* wide-but-short desktop windows (windowed browser, laptop with chrome, ultrawide monitors):
+   the hud stats and hero copy are positioned with vh offsets that assume a tall viewport, so on
+   a short one they collide with each other and with the ghost wordmark. Fall back to the same
+   compact treatment already used below 820px wide. */
+@media (max-height:820px) and (min-width:821px){
+ .hero-mark{top:0;width:min(220px,32vw)}
+ .ghost{top:15vh}
+ .copy{padding-top:36vh}
+ .hud{display:none}
+}
 
 .navr{justify-self:end;display:flex;align-items:center;gap:.7rem}
 .dir{position:relative;z-index:3;max-width:1240px;margin:3.6rem auto 0;padding:0 1.25rem}
