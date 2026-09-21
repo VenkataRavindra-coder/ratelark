@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>حاسبة رسوم التأخير في الدفع | RateLark</title>
+<meta name="description" content="أضف الفائدة ورسمًا ثابتًا إلى فاتورة متأخرة السداد وشاهد المبلغ الإجمالي الذي يمكنك المطالبة به.">
+<link rel="canonical" href="https://ratelark.app/ar/late-payment-fee-calculator/">
+<link rel="alternate" hreflang="en" href="https://ratelark.app/en/late-payment-fee-calculator/">
+<link rel="alternate" hreflang="es" href="https://ratelark.app/es/late-payment-fee-calculator/">
+<link rel="alternate" hreflang="pt-BR" href="https://ratelark.app/pt/late-payment-fee-calculator/">
+<link rel="alternate" hreflang="fr" href="https://ratelark.app/fr/late-payment-fee-calculator/">
+<link rel="alternate" hreflang="de" href="https://ratelark.app/de/late-payment-fee-calculator/">
+<link rel="alternate" hreflang="hi" href="https://ratelark.app/hi/late-payment-fee-calculator/">
+<link rel="alternate" hreflang="ar" href="https://ratelark.app/ar/late-payment-fee-calculator/">
+<link rel="alternate" hreflang="zh-Hans" href="https://ratelark.app/zh/late-payment-fee-calculator/">
+<link rel="alternate" hreflang="id" href="https://ratelark.app/id/late-payment-fee-calculator/">
+<link rel="alternate" hreflang="x-default" href="https://ratelark.app/en/late-payment-fee-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RateLark">
+<meta property="og:title" content="حاسبة رسوم التأخير في الدفع | RateLark">
+<meta property="og:description" content="أضف الفائدة ورسمًا ثابتًا إلى فاتورة متأخرة السداد وشاهد المبلغ الإجمالي الذي يمكنك المطالبة به.">
+<meta property="og:url" content="https://ratelark.app/ar/late-payment-fee-calculator/">
+<meta property="og:locale" content="ar_AE">
+<meta property="og:image" content="https://ratelark.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ratelark.app/og.png">
+<meta name="theme-color" content="#EDF1F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1622" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="../../assets/app.css?v=4f5a7389">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "حاسبة رسوم التأخير في الدفع", "url": "https://ratelark.app/ar/late-payment-fee-calculator/", "inLanguage": "ar", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "description": "أضف الفائدة ورسمًا ثابتًا إلى فاتورة متأخرة السداد وشاهد المبلغ الإجمالي الذي يمكنك المطالبة به.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "هل يمكنني فرض أي نسبة أريدها؟", "acceptedAnswer": {"@type": "Answer", "text": "ليس بالضرورة. كثير من الأماكن تضع حدًّا لرسوم التأخير أو الفوائد، وعادةً يجب أن يرد الرسم في عقدك أو شروط فاتورتك قبل بدء العمل. راجع القواعد المحلية أو اسأل محاميًا. هذه الأداة تجري العمليات الحسابية فقط."}}]}]</script>
+</head>
+<body data-tool="late-fee">
+<div class="tfx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
+<header class="top">
+<a class="brand" href="/"><span aria-hidden="true" class="mark"></span><span class="wm">Rate<span class="lk">Lark</span></span></a>
+<div class="pick"><button aria-label="بحث" class="kbtn" data-palette="" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle><path d="M20 20l-4-4" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg><span class="kt">بحث</span><kbd>Ctrl K</kbd></button>
+<label class="cur"><span>اللغة</span><select class="ctl" id="lang" style="width:auto;min-height:0;padding:.4rem .5rem;font-size:.9rem"><option value="en">English</option><option value="es">Español</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="hi">हिन्दी</option><option selected="selected" value="ar">العربية</option><option value="zh">中文</option><option value="id">Bahasa Indonesia</option></select></label>
+<label class="cur"><span>العملة</span><select class="ctl" id="cur" style="width:auto;min-height:0;padding:.4rem .5rem;font-size:.9rem">
+<option>USD</option><option>EUR</option><option>GBP</option><option>CAD</option><option>AUD</option><option>NZD</option><option>SGD</option><option>CHF</option><option>INR</option><option>PKR</option><option>BDT</option><option>PHP</option><option>BRL</option><option>MXN</option><option>ZAR</option><option>NGN</option><option>KES</option><option>AED</option><option>SAR</option>
+</select></label>
+</div>
+</header>
+<nav aria-label="Freelancer tools" class="tabs"><a class="tab tab-home" href="/#tools"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"><rect height="7" rx="1.5" width="7" x="3" y="3"></rect><rect height="7" rx="1.5" width="7" x="14" y="3"></rect><rect height="7" rx="1.5" width="7" x="3" y="14"></rect><rect height="7" rx="1.5" width="7" x="14" y="14"></rect></svg><span>كل الأدوات</span></a><a class="tab" href="../freelance-hourly-rate-calculator/" id="tab-hourly-rate">سعر الساعة</a><a class="tab" href="../project-quote-calculator/" id="tab-quote">عرض سعر</a><a class="tab" href="../invoice-generator/" id="tab-invoice">فاتورة</a><a class="tab" href="../markup-margin-calculator/" id="tab-markup-margin">الإضافة والهامش</a><a class="tab" href="../retainer-vs-hourly-calculator/" id="tab-retainer">دفعة شهرية ثابتة</a><a aria-current="page" class="tab" href="../late-payment-fee-calculator/" id="tab-late-fee">غرامة التأخير</a><a class="tab" href="../tax/" id="tab-tax">ضريبة</a><a class="tab" href="../ppp-pricing-calculator/" id="tab-ppp-pricing-calculator">تسعير القوة الشرائية</a></nav>
+<main id="main">
+<div class="kicker"><span class="ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3L2 6M22 6l-3-3"/></svg></span><span class="cat">احصل على أجرك</span></div>
+<section id="tool-late-fee">
+<div class="head">
+<h1>حاسبة رسوم التأخير في الدفع</h1>
+<p>أضف الفائدة ورسمًا ثابتًا إلى فاتورة متأخرة السداد وشاهد المبلغ الإجمالي الذي يمكنك المطالبة به.</p>
+</div>
+<div class="layout">
+<div class="side">
+<div aria-live="polite" class="result">
+<div class="lbl">الإجمالي المستحق الآن</div>
+<div class="big"><span id="l-total">—</span></div>
+</div>
+<dl class="stats">
+<div><dt>أيام التأخير</dt><dd id="l-days">—</dd></div>
+<div><dt>الفاتورة الأصلية</dt><dd id="l-orig">—</dd></div>
+<div><dt>الفائدة حتى الآن</dt><dd id="l-int">—</dd></div>
+<div><dt>رسم التأخير الثابت</dt><dd id="l-flat-out">—</dd></div>
+<div><dt>الفائدة في اليوم</dt><dd id="l-daily">—</dd></div>
+</dl>
+</div>
+<div class="inputs sheet">
+<label class="field"><span class="l">مبلغ الفاتورة</span>
+<div class="inp"><span class="pre sym"></span><input data-p="" id="l-amt" inputmode="decimal" min="0" step="any" type="number" value="2500"/></div></label>
+<div class="two">
+<label class="field"><span class="l">تاريخ الاستحقاق</span><input class="ctl" id="l-due" type="date"/></label>
+<label class="field"><span class="l">احسب حتى تاريخ</span><input class="ctl" id="l-asof" type="date"/></label>
+</div>
+<div class="two">
+<label class="field"><span class="l">الفائدة سنويًا</span>
+<div class="inp"><input data-p="" id="l-rate" inputmode="decimal" min="0" step="any" type="number" value="18"/><span class="suf">%</span></div>
+<span class="hint">18% سنويًا تعادل 1.5% شهريًا.</span></label>
+<label class="field"><span class="l">رسم التأخير الثابت</span>
+<div class="inp"><span class="pre sym"></span><input data-p="" id="l-flat" inputmode="decimal" min="0" step="any" type="number" value="0"/></div></label>
+</div>
+<p class="note" data-dyn="" id="l-note" role="status"></p>
+</div>
+</div>
+<div class="about sheet">
+<h2>كيف يُحسب الإجمالي</h2>
+<p>فائدة بسيطة: المبلغ × النسبة السنوية ÷ 365 × أيام التأخير، بالإضافة إلى أي رسم ثابت بعد استحقاق الفاتورة.</p>
+<details><summary>هل يمكنني فرض أي نسبة أريدها؟</summary><p>ليس بالضرورة. كثير من الأماكن تضع حدًّا لرسوم التأخير أو الفوائد، وعادةً يجب أن يرد الرسم في عقدك أو شروط فاتورتك قبل بدء العمل. راجع القواعد المحلية أو اسأل محاميًا. هذه الأداة تجري العمليات الحسابية فقط.</p></details>
+</div>
+</section>
+<div class="share">
+<button class="btn alt" id="share" type="button">شارك هذه الأداة</button>
+<span id="toast" role="status"></span>
+</div>
+<textarea aria-label="Text to copy" class="ctl" hidden="" id="fallback" readonly="" rows="3"></textarea>
+</main>
+<footer><nav aria-label="Languages" class="langs"><a href="../../en/late-payment-fee-calculator/" hreflang="en" lang="en">English</a><a href="../../es/late-payment-fee-calculator/" hreflang="es" lang="es">Español</a><a href="../../pt/late-payment-fee-calculator/" hreflang="pt-BR" lang="pt">Português</a><a href="../../fr/late-payment-fee-calculator/" hreflang="fr" lang="fr">Français</a><a href="../../de/late-payment-fee-calculator/" hreflang="de" lang="de">Deutsch</a><a href="../../hi/late-payment-fee-calculator/" hreflang="hi" lang="hi">हिन्दी</a><a aria-current="true" href="../../ar/late-payment-fee-calculator/" hreflang="ar" lang="ar">العربية</a><a href="../../zh/late-payment-fee-calculator/" hreflang="zh-Hans" lang="zh">中文</a><a href="../../id/late-payment-fee-calculator/" hreflang="id" lang="id">Bahasa Indonesia</a></nav>
+<p>يعمل RateLark بالكامل داخل متصفحك ولا يُرفع أي شيء تكتبه. النتائج تقديرات وليست استشارة ضريبية أو مالية أو قانونية.</p>
+<p><a href="/privacy/">الخصوصية</a> · <a href="mailto:hello@ratelark.com">اتصل بنا</a></p></footer>
+<script src="../../assets/i18n.js?v=1a102765"></script>
+<script src="../../assets/app.js?v=25de5a97"></script>
+<script src="../../assets/palette.js?v=9ceef2d7" defer></script>
+</body>
+</html>

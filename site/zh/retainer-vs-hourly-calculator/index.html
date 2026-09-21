@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>包月费 vs 按小时计费计算器 | RateLark</title>
+<meta name="description" content="比较每月固定费用与按小时计费,查看盈亏平衡点以及使用量变化时会发生什么。">
+<link rel="canonical" href="https://ratelark.app/zh/retainer-vs-hourly-calculator/">
+<link rel="alternate" hreflang="en" href="https://ratelark.app/en/retainer-vs-hourly-calculator/">
+<link rel="alternate" hreflang="es" href="https://ratelark.app/es/retainer-vs-hourly-calculator/">
+<link rel="alternate" hreflang="pt-BR" href="https://ratelark.app/pt/retainer-vs-hourly-calculator/">
+<link rel="alternate" hreflang="fr" href="https://ratelark.app/fr/retainer-vs-hourly-calculator/">
+<link rel="alternate" hreflang="de" href="https://ratelark.app/de/retainer-vs-hourly-calculator/">
+<link rel="alternate" hreflang="hi" href="https://ratelark.app/hi/retainer-vs-hourly-calculator/">
+<link rel="alternate" hreflang="ar" href="https://ratelark.app/ar/retainer-vs-hourly-calculator/">
+<link rel="alternate" hreflang="zh-Hans" href="https://ratelark.app/zh/retainer-vs-hourly-calculator/">
+<link rel="alternate" hreflang="id" href="https://ratelark.app/id/retainer-vs-hourly-calculator/">
+<link rel="alternate" hreflang="x-default" href="https://ratelark.app/en/retainer-vs-hourly-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RateLark">
+<meta property="og:title" content="包月费 vs 按小时计费计算器 | RateLark">
+<meta property="og:description" content="比较每月固定费用与按小时计费,查看盈亏平衡点以及使用量变化时会发生什么。">
+<meta property="og:url" content="https://ratelark.app/zh/retainer-vs-hourly-calculator/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ratelark.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ratelark.app/og.png">
+<meta name="theme-color" content="#EDF1F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1622" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="../../assets/app.css?v=4f5a7389">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "包月费 vs 按小时计费计算器", "url": "https://ratelark.app/zh/retainer-vs-hourly-calculator/", "inLanguage": "zh-Hans", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "description": "比较每月固定费用与按小时计费,查看盈亏平衡点以及使用量变化时会发生什么。", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "什么时候月度服务费更划算？", "acceptedAnswer": {"@type": "Answer", "text": "当工作稳定、可预测，而你更想要可靠的收入和更省事的开票流程时。这也能避免客户对每条消息都计时。"}}, {"@type": "Question", "name": "签月度服务费时如何保护自己？", "acceptedAnswer": {"@type": "Answer", "text": "写明包含的工时或交付成果、额外工作如何处理，以及未用完的工时是否可以结转。没有限制的话，月度服务费可能悄悄变成一种折扣。"}}]}]</script>
+</head>
+<body data-tool="retainer">
+<div class="tfx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
+<header class="top">
+<a class="brand" href="/"><span aria-hidden="true" class="mark"></span><span class="wm">Rate<span class="lk">Lark</span></span></a>
+<div class="pick"><button aria-label="搜索" class="kbtn" data-palette="" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle><path d="M20 20l-4-4" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg><span class="kt">搜索</span><kbd>Ctrl K</kbd></button>
+<label class="cur"><span>语言</span><select class="ctl" id="lang" style="width:auto;min-height:0;padding:.4rem .5rem;font-size:.9rem"><option value="en">English</option><option value="es">Español</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="hi">हिन्दी</option><option value="ar">العربية</option><option selected="selected" value="zh">中文</option><option value="id">Bahasa Indonesia</option></select></label>
+<label class="cur"><span>货币</span><select class="ctl" id="cur" style="width:auto;min-height:0;padding:.4rem .5rem;font-size:.9rem">
+<option>USD</option><option>EUR</option><option>GBP</option><option>CAD</option><option>AUD</option><option>NZD</option><option>SGD</option><option>CHF</option><option>INR</option><option>PKR</option><option>BDT</option><option>PHP</option><option>BRL</option><option>MXN</option><option>ZAR</option><option>NGN</option><option>KES</option><option>AED</option><option>SAR</option>
+</select></label>
+</div>
+</header>
+<nav aria-label="Freelancer tools" class="tabs"><a class="tab tab-home" href="/#tools"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"><rect height="7" rx="1.5" width="7" x="3" y="3"></rect><rect height="7" rx="1.5" width="7" x="14" y="3"></rect><rect height="7" rx="1.5" width="7" x="3" y="14"></rect><rect height="7" rx="1.5" width="7" x="14" y="14"></rect></svg><span>全部工具</span></a><a class="tab" href="../freelance-hourly-rate-calculator/" id="tab-hourly-rate">时薪</a><a class="tab" href="../project-quote-calculator/" id="tab-quote">项目报价</a><a class="tab" href="../invoice-generator/" id="tab-invoice">发票</a><a class="tab" href="../markup-margin-calculator/" id="tab-markup-margin">加价与利润率</a><a aria-current="page" class="tab" href="../retainer-vs-hourly-calculator/" id="tab-retainer">月度服务费</a><a class="tab" href="../late-payment-fee-calculator/" id="tab-late-fee">逾期费</a><a class="tab" href="../tax/" id="tab-tax">税</a><a class="tab" href="../ppp-pricing-calculator/" id="tab-ppp-pricing-calculator">PPP 定价</a></nav>
+<main id="main">
+<div class="kicker"><span class="ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg></span><span class="cat">为工作定价</span></div>
+<section id="tool-retainer">
+<div class="head">
+<h1>包月费 vs 按小时计费计算器</h1>
+<p>比较每月固定费用与按小时计费,查看盈亏平衡点以及使用量变化时会发生什么。</p>
+</div>
+<div class="layout">
+<div class="side">
+<div aria-live="polite" class="result">
+<div class="lbl" data-dyn="" id="r-lbl">—</div>
+<div class="big"><span id="r-diff">—</span></div>
+</div>
+<dl class="stats">
+<div><dt>月度服务费折合每工作小时</dt><dd id="r-eff">—</dd></div>
+<div><dt>按小时计费可赚</dt><dd id="r-hourly">—</dd></div>
+<div><dt>每月盈亏平衡工时</dt><dd id="r-be">—</dd></div>
+<div><dt>月度服务费 vs 按小时计费（工时减少 30%）</dt><dd id="r-under">—</dd></div>
+<div><dt>月度服务费 vs 按小时计费（工时增加 50%）</dt><dd id="r-over">—</dd></div>
+</dl>
+</div>
+<div class="inputs sheet">
+<label class="field"><span class="l">月度服务费</span>
+<div class="inp"><span class="pre sym"></span><input data-p="" id="r-fee" inputmode="decimal" min="0" step="any" type="number" value="3000"/></div></label>
+<label class="field"><span class="l">你预计每月工作的小时数</span>
+<div class="inp"><input data-p="" id="r-hours" inputmode="decimal" min="0" step="any" type="number" value="30"/><span class="suf">小时</span></div></label>
+<label class="field"><span class="l">你的时薪</span>
+<div class="inp"><span class="pre sym"></span><input data-p="" id="r-rate" inputmode="decimal" min="0" step="any" type="number" value="75"/></div></label>
+</div>
+</div>
+<div class="about sheet">
+<h2>如何解读对比结果</h2>
+<p>工时低于盈亏平衡点时，月度服务费比按小时计费赚得多；高于该点则按小时计费更划算。两行情景显示这笔交易对客户实际使用量有多敏感。</p>
+<details><summary>什么时候月度服务费更划算？</summary><p>当工作稳定、可预测，而你更想要可靠的收入和更省事的开票流程时。这也能避免客户对每条消息都计时。</p></details>
+<details><summary>签月度服务费时如何保护自己？</summary><p>写明包含的工时或交付成果、额外工作如何处理，以及未用完的工时是否可以结转。没有限制的话，月度服务费可能悄悄变成一种折扣。</p></details>
+</div>
+</section>
+<div class="share">
+<button class="btn alt" id="share" type="button">分享此工具</button>
+<span id="toast" role="status"></span>
+</div>
+<textarea aria-label="Text to copy" class="ctl" hidden="" id="fallback" readonly="" rows="3"></textarea>
+</main>
+<footer><nav aria-label="Languages" class="langs"><a href="../../en/retainer-vs-hourly-calculator/" hreflang="en" lang="en">English</a><a href="../../es/retainer-vs-hourly-calculator/" hreflang="es" lang="es">Español</a><a href="../../pt/retainer-vs-hourly-calculator/" hreflang="pt-BR" lang="pt">Português</a><a href="../../fr/retainer-vs-hourly-calculator/" hreflang="fr" lang="fr">Français</a><a href="../../de/retainer-vs-hourly-calculator/" hreflang="de" lang="de">Deutsch</a><a href="../../hi/retainer-vs-hourly-calculator/" hreflang="hi" lang="hi">हिन्दी</a><a href="../../ar/retainer-vs-hourly-calculator/" hreflang="ar" lang="ar">العربية</a><a aria-current="true" href="../../zh/retainer-vs-hourly-calculator/" hreflang="zh-Hans" lang="zh">中文</a><a href="../../id/retainer-vs-hourly-calculator/" hreflang="id" lang="id">Bahasa Indonesia</a></nav>
+<p>RateLark 完全在你的浏览器中运行，你输入的任何内容都不会被上传。结果仅为估算，不构成税务、财务或法律建议。</p>
+<p><a href="/privacy/">隐私</a> · <a href="mailto:hello@ratelark.com">联系我们</a></p></footer>
+<script src="../../assets/i18n.js?v=1a102765"></script>
+<script src="../../assets/app.js?v=25de5a97"></script>
+<script src="../../assets/palette.js?v=9ceef2d7" defer></script>
+</body>
+</html>

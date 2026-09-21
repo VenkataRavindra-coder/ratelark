@@ -52,6 +52,21 @@ ICONS = {
  'globe': '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"/>',
  'landmark': '<path d="M3 21h18"/><path d="M5 21V10M9 21V10M15 21V10M19 21V10"/><path d="M2 10l10-7 10 7"/>',
 }
+# Stage 2: keyword URL slugs. Internal tool ids (used for sections, TITLES, nav ids, i18n
+# lookups) stay unchanged; only the public URL path changes. 'tax' and 'ppp-pricing-calculator'
+# are intentionally absent (tax is replaced by four country pages in Stage 3; ppp keeps its slug).
+URL_SLUG = {
+ 'hourly-rate': 'freelance-hourly-rate-calculator',
+ 'quote': 'project-quote-calculator',
+ 'invoice': 'invoice-generator',
+ 'markup-margin': 'markup-margin-calculator',
+ 'retainer': 'retainer-vs-hourly-calculator',
+ 'late-fee': 'late-payment-fee-calculator',
+}
+def url_slug(t):
+    return URL_SLUG.get(t, t)
+
+
 CONTACT_EMAIL = 'hello@ratelark.com'
 CONTACT_LABEL = {'en': 'Contact', 'es': 'Contacto', 'pt': 'Contato', 'fr': 'Contact', 'de': 'Kontakt', 'hi': '\u0938\u0902\u092a\u0930\u094d\u0915',
                  'ar': '\u0627\u062a\u0635\u0644 \u0628\u0646\u0627', 'zh': '\u8054\u7cfb\u6211\u4eec', 'id': 'Kontak'}
@@ -146,8 +161,8 @@ def tr(text, lang):
 def alternates(tool):
     out = []
     for code, _, hl, _ in LANGS:
-        out.append('<link rel="alternate" hreflang="%s" href="%s/%s/%s/">' % (hl, BASE, code, tool))
-    out.append('<link rel="alternate" hreflang="x-default" href="%s/en/%s/">' % (BASE, tool))
+        out.append('<link rel="alternate" hreflang="%s" href="%s/%s/%s/">' % (hl, BASE, code, url_slug(tool)))
+    out.append('<link rel="alternate" hreflang="x-default" href="%s/en/%s/">' % (BASE, url_slug(tool)))
     return '\n'.join(out)
 
 
@@ -271,7 +286,7 @@ def build_page(lang, tool):
     for t in TOOLS:
         a = BeautifulSoup('<a class="tab"></a>', 'html.parser').a
         a['id'] = 'tab-' + t
-        a['href'] = '../%s/' % t
+        a['href'] = '../%s/' % url_slug(t)
         if t == tool:
             a['aria-current'] = 'page'
         a.string = tool_name(lang, t)
@@ -297,7 +312,7 @@ def build_page(lang, tool):
     langs_nav = BeautifulSoup('<nav class="langs" aria-label="Languages"></nav>', 'html.parser').nav
     for code, nm, h, _ in LANGS:
         a = BeautifulSoup('<a></a>', 'html.parser').a
-        a['href'] = '../../%s/%s/' % (code, tool)
+        a['href'] = '../../%s/%s/' % (code, url_slug(tool))
         a['hreflang'] = h
         a['lang'] = code
         if code == lang:
@@ -315,7 +330,7 @@ def build_page(lang, tool):
             if q and a:
                 faq.append({'@type': 'Question', 'name': q.get_text().strip(),
                             'acceptedAnswer': {'@type': 'Answer', 'text': a.get_text().strip()}})
-    url = '%s/%s/%s/' % (BASE, lang, tool)
+    url = '%s/%s/%s/' % (BASE, lang, url_slug(tool))
     ld = [{'@context': 'https://schema.org', '@type': 'WebApplication', 'name': title.split(' | ')[0],
            'url': url, 'inLanguage': hl, 'applicationCategory': 'BusinessApplication',
            'operatingSystem': 'Any', 'description': description,
@@ -393,7 +408,7 @@ def hub_card(lang, t):
     return ('<a class="hub-card" href="/%s/%s/">'
             '<span class="hc-top"><span class="hc-ico">%s</span><span class="hc-cat">%s</span></span>'
             '<h3>%s</h3><p>%s</p></a>'
-            % (lang, slug, icon_svg(t['icon'], 20), e(CATS[t['cat']][lang]),
+            % (lang, url_slug(slug), icon_svg(t['icon'], 20), e(CATS[t['cat']][lang]),
                e(tool_name(lang, slug)), e(tool_desc(lang, slug))))
 
 
@@ -544,14 +559,14 @@ for code, nm, _, _ in LANGS:
     tl = []
     for t in REG:
         tl.append({'slug': t['slug'], 'name': tool_name(code, t['slug']), 'desc': tool_desc(code, t['slug']),
-                   'cat': CATS[t['cat']][code], 'url': '/%s/%s/' % (code, t['slug'])})
+                   'cat': CATS[t['cat']][code], 'url': '/%s/%s/' % (code, url_slug(t['slug']))})
     write('assets/tools-%s.json' % code, json.dumps({'ui': UI[code], 'tools': tl,
           'langs': [{'code': c, 'name': n} for c, n, _, _ in LANGS]}, ensure_ascii=False))
 
 count = 0
 for code, *_ in LANGS:
     for tool in TOOLS:
-        write('%s/%s/index.html' % (code, tool), build_page(code, tool))
+        write('%s/%s/index.html' % (code, url_slug(tool)), build_page(code, tool))
         count += 1
     write('%s/index.html' % code, build_hub(code))
     count += 1
@@ -563,14 +578,25 @@ for code, *_ in LANGS:
     hub_alts += '<xhtml:link rel="alternate" hreflang="x-default" href="%s/en/"/>' % BASE
     urls.append('<url><loc>%s/%s/</loc><lastmod>%s</lastmod>%s</url>' % (BASE, code, TODAY, hub_alts))
     for tool in TOOLS:
-        alts = ''.join('<xhtml:link rel="alternate" hreflang="%s" href="%s/%s/%s/"/>' % (h, BASE, c, tool)
+        slug = url_slug(tool)
+        alts = ''.join('<xhtml:link rel="alternate" hreflang="%s" href="%s/%s/%s/"/>' % (h, BASE, c, slug)
                        for c, _, h, _ in LANGS)
-        alts += '<xhtml:link rel="alternate" hreflang="x-default" href="%s/en/%s/"/>' % (BASE, tool)
-        urls.append('<url><loc>%s/%s/%s/</loc><lastmod>%s</lastmod>%s</url>' % (BASE, code, tool, TODAY, alts))
+        alts += '<xhtml:link rel="alternate" hreflang="x-default" href="%s/en/%s/"/>' % (BASE, slug)
+        urls.append('<url><loc>%s/%s/%s/</loc><lastmod>%s</lastmod>%s</url>' % (BASE, code, slug, TODAY, alts))
 write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n'
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
       + '\n'.join(urls) + '\n</urlset>\n')
 write('robots.txt', 'User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n' % BASE)
+
+# Stage 2: permanent redirects from every old tool URL to its new keyword slug, for every
+# language. Written expanded (one line per language) rather than with Cloudflare Pages'
+# :placeholder syntax, since that can't be verified against a live Cloudflare deploy from here;
+# expanded rules have no such dependency and match exactly what Data 1 in the brief asks for.
+redirect_lines = []
+for old_slug, new_slug in URL_SLUG.items():
+    for code, *_ in LANGS:
+        redirect_lines.append('/%s/%s/ /%s/%s/ 301' % (code, old_slug, code, new_slug))
+write('_redirects', '\n'.join(redirect_lines) + '\n')
 write('.nojekyll', '')
 
 HEAD_COMMON = f"""<meta charset="utf-8">
@@ -589,7 +615,7 @@ e = lambda x: html.escape(x, quote=True)
 TOOL_LABELS = [('hourly-rate', 'Hourly rate'), ('quote', 'Project quote'), ('invoice', 'Invoice'),
                ('markup-margin', 'Markup & margin'), ('retainer', 'Retainer vs hourly'),
                ('late-fee', 'Late fee'), ('tax', 'Tax set-aside')]
-chips = ''.join('<li><a data-tool="%s" href="/en/%s/">%s</a></li>' % (t, t, n) for t, n in TOOL_LABELS)
+chips = ''.join('<li><a data-tool="%s" href="/en/%s/">%s</a></li>' % (url_slug(t), url_slug(t), n) for t, n in TOOL_LABELS)
 DESC_EN = {t['slug']: tool_desc('en', t['slug']) for t in REG}
 def tile(t):
     slug = t['slug']
@@ -598,7 +624,7 @@ def tile(t):
             '<span class="tile-top"><span class="ico">%s</span><span class="cat">%s</span></span>'
             '<span class="tile-body"><h3>%s</h3><p>%s</p></span>'
             '<span class="ex"><i>Example</i>%s</span></a>'
-            % (t['size'], t['cat'], slug, slug, icon_svg(t['icon']), CATS[t['cat']]['en'], label, e(DESC_EN[slug]), e(t['sample'])))
+            % (t['size'], t['cat'], url_slug(slug), url_slug(slug), icon_svg(t['icon']), CATS[t['cat']]['en'], label, e(DESC_EN[slug]), e(t['sample'])))
 bento = ''.join(tile(t) for t in REG)
 CHEV = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>'
 def _cats():
@@ -610,7 +636,7 @@ def mega_html():
     cols = ''
     for c in _cats():
         items = ''.join('<li><a data-tool="%s" href="/en/%s/"><span class="ico">%s</span><span class="mi"><b>%s</b><small>%s</small></span></a></li>'
-                        % (t['slug'], t['slug'], icon_svg(t['icon'], 20), e(tool_name('en', t['slug'])), e(tool_desc('en', t['slug'])))
+                        % (url_slug(t['slug']), url_slug(t['slug']), icon_svg(t['icon'], 20), e(tool_name('en', t['slug'])), e(tool_desc('en', t['slug'])))
                         for t in REG if t['cat'] == c)
         cols += '<div class="mc"><h3>%s</h3><ul>%s</ul></div>' % (e(CATS[c]['en']), items)
     return cols
@@ -618,20 +644,20 @@ def footer_tools():
     out = ''
     for c in _cats():
         out += '<div class="fc"><h3>%s</h3><ul>%s</ul></div>' % (e(CATS[c]['en']), ''.join(
-            '<li><a data-tool="%s" href="/en/%s/">%s</a></li>' % (t['slug'], t['slug'], e(tool_name('en', t['slug']))) for t in REG if t['cat'] == c))
+            '<li><a data-tool="%s" href="/en/%s/">%s</a></li>' % (url_slug(t['slug']), url_slug(t['slug']), e(tool_name('en', t['slug']))) for t in REG if t['cat'] == c))
     return out
 cat_order = []
 for t in REG:
     if t['cat'] not in cat_order: cat_order.append(t['cat'])
 filters = '<button type="button" data-cat="all" aria-pressed="true">All</button>' + ''.join(
     '<button type="button" data-cat="%s" aria-pressed="false">%s</button>' % (c, CATS[c]['en']) for c in cat_order)
-langs = ''.join('<a href="/%s/hourly-rate/" hreflang="%s" lang="%s">%s</a>' % (c, h, c, n) for c, n, h, _ in LANGS)
+langs = ''.join('<a href="/%s/" hreflang="%s" lang="%s">%s</a>' % (c, h, c, n) for c, n, h, _ in LANGS)
 shutil.copy(os.path.join(HERE, 'hero.js'), os.path.join(OUT, 'assets', 'hero.js'))
 shutil.copy(os.path.join(HERE, 'hero.css'), os.path.join(OUT, 'assets', 'hero.css'))
 LAYERS = logo.hero_art()
 MEGA = mega_html()
 FOOTER_TOOLS = footer_tools()
-LANGLIS = ''.join('<li><a href="/%s/hourly-rate/" hreflang="%s" lang="%s">%s</a></li>' % (c, h, c, n) for c, n, h, _ in LANGS)
+LANGLIS = ''.join('<li><a href="/%s/" hreflang="%s" lang="%s">%s</a></li>' % (c, h, c, n) for c, n, h, _ in LANGS)
 write('index.html', f"""<!doctype html>
 <html lang="en">
 <head>
@@ -661,8 +687,8 @@ write('index.html', f"""<!doctype html>
 <div class="fx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
 <header class="nav">
   <a class="brand" href="/"><span class="mark" aria-hidden="true"></span><span class="wm">Rate<span class="lk">Lark</span></span></a>
-  <ul class="links"><li class="has-menu"><button type="button" class="menu-btn" id="tools-btn" aria-expanded="false" aria-controls="tools-menu">Tools {CHEV}</button><div class="mega" id="tools-menu" role="region" aria-label="All tools" hidden><div class="mega-in">{MEGA}</div><a class="mega-all" data-tool="hourly-rate" href="/en/hourly-rate/">Open the tool pages &rarr;</a></div></li><li><a href="#why">Why RateLark</a></li><li><a href="#langs">Languages</a></li><li><a href="/privacy/">Privacy</a></li></ul>
-  <div class="navr"><button type="button" class="kbtn" data-palette aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><span class="kt">Search</span><kbd>Ctrl K</kbd></button><a class="pill" data-tool="hourly-rate" href="/en/hourly-rate/">Try it</a></div>
+  <ul class="links"><li class="has-menu"><button type="button" class="menu-btn" id="tools-btn" aria-expanded="false" aria-controls="tools-menu">Tools {CHEV}</button><div class="mega" id="tools-menu" role="region" aria-label="All tools" hidden><div class="mega-in">{MEGA}</div><a class="mega-all" data-tool="{url_slug('hourly-rate')}" href="/en/{url_slug('hourly-rate')}/">Open the tool pages &rarr;</a></div></li><li><a href="#why">Why RateLark</a></li><li><a href="#langs">Languages</a></li><li><a href="/privacy/">Privacy</a></li></ul>
+  <div class="navr"><button type="button" class="kbtn" data-palette aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><span class="kt">Search</span><kbd>Ctrl K</kbd></button><a class="pill" data-tool="{url_slug('hourly-rate')}" href="/en/{url_slug('hourly-rate')}/">Try it</a></div>
 </header>
 <main class="stage">
   <div class="ghost" aria-hidden="true">Rate<span class="lk">Lark</span></div>
@@ -674,7 +700,7 @@ write('index.html', f"""<!doctype html>
     <span class="tag">Freelance pricing, quote, invoice and tax tools in one place.</span>
     <h1>Freelancing <em>without</em> borders</h1>
     <p class="lead">Work out your rate, price the project, send the invoice and set aside the tax. Free tools in 9 languages. Nothing you type leaves your browser.</p>
-    <div class="cta"><a class="pill light" data-tool="hourly-rate" href="/en/hourly-rate/">Get started</a><a class="pill solid" data-tool="invoice" href="/en/invoice/">Make an invoice</a></div>
+    <div class="cta"><a class="pill light" data-tool="{url_slug('hourly-rate')}" href="/en/{url_slug('hourly-rate')}/">Get started</a><a class="pill solid" data-tool="{url_slug('invoice')}" href="/en/{url_slug('invoice')}/">Make an invoice</a></div>
   </section>
 </main>
 <section class="why" id="why" aria-labelledby="why-h">
@@ -684,7 +710,7 @@ write('index.html', f"""<!doctype html>
     <li><span class="wi">{icon_svg('receipt', 22)}</span><b>Private by design</b><p>Every calculation runs in your browser. What you type is never uploaded.</p></li>
     <li><span class="wi">{icon_svg('globe', 22)}</span><b>Made for the world</b><p>Nine languages, 19 currencies and tax rules for the US, UK, Canada and Australia.</p></li>
   </ul>
-  <div class="why-cta"><a class="pill light" data-tool="hourly-rate" href="/en/hourly-rate/">Get started</a><button type="button" class="pill" data-palette>Search every tool <kbd>Ctrl K</kbd></button></div>
+  <div class="why-cta"><a class="pill light" data-tool="{url_slug('hourly-rate')}" href="/en/{url_slug('hourly-rate')}/">Get started</a><button type="button" class="pill" data-palette>Search every tool <kbd>Ctrl K</kbd></button></div>
 </section>
 <footer class="foot2" id="langs">
   <div class="fgrid">
