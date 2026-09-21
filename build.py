@@ -476,6 +476,7 @@ def build_page(lang, tool):
               % (icon_svg(_r['icon']), html.escape(CATS[_r['cat']][lang])))
     e = lambda x: html.escape(x, quote=True)
     quote_label_attr = ' data-quote-label="%s"' % e(tool_name(lang, 'quote')) if tool == 'quote' else ''
+    ld_json = json.dumps(ld, ensure_ascii=False).replace('</', '<\\/')
     page = f'''<!doctype html>
 <html lang="{lang}" dir="{dirn}">
 <head>
@@ -506,7 +507,7 @@ def build_page(lang, tool):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="{e(fonts)}">
 <link rel="stylesheet" href="../../assets/app.css?v={VER['app.css']}">
-<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False).replace('</', '<\\/')}</script>
+<script type="application/ld+json">{ld_json}</script>
 </head>
 <body data-tool="{tool}"{quote_label_attr}>
 <div class="tfx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
@@ -657,6 +658,7 @@ def build_tax_page(lang, country):
               % (icon_svg('landmark'), html.escape(CATS['tax'][lang])))
     alts = ''.join('<link rel="alternate" hreflang="%s" href="%s/%s/%s/">' % (h, BASE, c, slug) for c, _, h, _ in LANGS)
     alts += '<link rel="alternate" hreflang="x-default" href="%s/en/%s/">' % (BASE, slug)
+    ld_json = json.dumps(ld, ensure_ascii=False).replace('</', '<\\/')
     page = f'''<!doctype html>
 <html lang="{lang}" dir="{dirn}">
 <head>
@@ -687,7 +689,7 @@ def build_tax_page(lang, country):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="{e(fonts)}">
 <link rel="stylesheet" href="../../assets/app.css?v={VER['app.css']}">
-<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False).replace('</', '<\\/')}</script>
+<script type="application/ld+json">{ld_json}</script>
 </head>
 <body data-tool="tax">
 <div class="tfx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
@@ -885,6 +887,7 @@ def build_article(slug):
     ld = [{'@context': 'https://schema.org', '@type': 'Article', 'headline': A['title'],
            'url': url, 'inLanguage': hl, 'description': description}]
 
+    ld_json = json.dumps(ld, ensure_ascii=False).replace('</', '<\\/')
     page = f'''<!doctype html>
 <html lang="en" dir="ltr">
 <head>
@@ -913,7 +916,7 @@ def build_article(slug):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="{e(fonts)}">
 <link rel="stylesheet" href="../../assets/app.css?v={VER['app.css']}">
-<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False).replace('</', '<\\/')}</script>
+<script type="application/ld+json">{ld_json}</script>
 </head>
 <body data-tool="">
 <div class="tfx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
@@ -980,6 +983,7 @@ def build_hub(lang):
     alts += '<link rel="alternate" hreflang="x-default" href="%s/en/">' % BASE
     ld = {'@context': 'https://schema.org', '@type': 'CollectionPage', 'name': title.split(' | ')[0],
           'url': url, 'inLanguage': hl, 'description': description}
+    ld_json = json.dumps(ld, ensure_ascii=False).replace('</', '<\\/')
     page = f'''<!doctype html>
 <html lang="{lang}" dir="{dirn}">
 <head>
@@ -1010,7 +1014,7 @@ def build_hub(lang):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="{e(fonts)}">
 <link rel="stylesheet" href="/assets/app.css?v={VER['app.css']}">
-<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False).replace('</', '<\\/')}</script>
+<script type="application/ld+json">{ld_json}</script>
 </head>
 <body data-tool="">
 <div class="tfx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
