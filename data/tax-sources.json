@@ -1,0 +1,46 @@
+{
+  "us": {
+    "country": "United States",
+    "tax_year": "2026",
+    "last_checked": "2026-09",
+    "next_review": "2027-09",
+    "sources": [
+      { "name": "IRS – Topic no. 554, Self-employment tax", "url": "https://www.irs.gov/taxtopics/tc554" },
+      { "name": "Social Security Administration – Contribution and Benefit Base", "url": "https://www.ssa.gov/oact/cola/cbb.html" },
+      { "name": "IRS – Estimated taxes (Form 1040-ES)", "url": "https://www.irs.gov/faqs/estimated-tax" }
+    ]
+  },
+  "uk": {
+    "country": "United Kingdom",
+    "tax_year": "2026/27",
+    "last_checked": "2026-09",
+    "next_review": "2027-09",
+    "sources": [
+      { "name": "GOV.UK – Income Tax rates and Personal Allowances", "url": "https://www.gov.uk/income-tax-rates" },
+      { "name": "GOV.UK – Self-employed National Insurance rates", "url": "https://www.gov.uk/self-employed-national-insurance-rates" },
+      { "name": "GOV.UK – Understand your Self Assessment tax bill: Payments on account", "url": "https://www.gov.uk/understand-self-assessment-bill/payments-on-account" }
+    ]
+  },
+  "ca": {
+    "country": "Canada",
+    "tax_year": "2026",
+    "last_checked": "2026-09",
+    "next_review": "2027-09",
+    "sources": [
+      { "name": "Canada Revenue Agency – Current year tax rates and income brackets", "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html" },
+      { "name": "Canada Revenue Agency – CPP contribution rates, maximums and exemptions", "url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html" },
+      { "name": "Canada Revenue Agency – Due dates and payment dates", "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/important-dates-individuals.html" }
+    ]
+  },
+  "au": {
+    "country": "Australia",
+    "tax_year": "2026–27",
+    "last_checked": "2026-09",
+    "next_review": "2027-09",
+    "sources": [
+      { "name": "Australian Taxation Office – Tax rates – Australian resident", "url": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents" },
+      { "name": "Australian Taxation Office – Medicare levy", "url": "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy" },
+      { "name": "Australian Taxation Office – When are PAYG instalments due?", "url": "https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/payg-instalments/when-are-payg-instalments-due" }
+    ]
+  }
+}

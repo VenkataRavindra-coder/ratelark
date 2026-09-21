@@ -67,6 +67,77 @@ def url_slug(t):
     return URL_SLUG.get(t, t)
 
 
+# Stage 3: the single tax tool (country picker) becomes four fixed-country pages sharing the
+# same #tool-tax markup/JS, filtered per country at build time. The internal id 'tax' still
+# exists (hourkit.html section, TOOLS/REG entry, nav tab) and its URL now points at the US page,
+# the largest audience and first-listed country in the brief.
+TAX_SLUG = {
+ 'us': 'us-freelance-tax-calculator',
+ 'uk': 'uk-self-employed-tax-calculator',
+ 'ca': 'canada-self-employed-tax-calculator',
+ 'au': 'australia-sole-trader-tax-calculator',
+}
+URL_SLUG['tax'] = TAX_SLUG['us']
+TAX_SOURCES = json.load(open(os.path.join(HERE, 'data', 'tax-sources.json'), encoding='utf-8'))
+# English-only for this pass (see brief: "English first"); FAQ facts are verified against the
+# official sources in tax-sources.json, not guessed (see the commit message / session notes for
+# what was checked and when).
+TAX_PAGE = {
+ 'us': dict(
+   title='US Freelance Tax Calculator (Self-Employment Tax, 2026)',
+   faq_h2='How self-employment tax works',
+   desc='Estimate self-employment tax and income tax on your freelance profit and how much to set aside each quarter.',
+   intro='Work out federal self-employment tax on your freelance profit, plus a rough income-tax set-aside, and see what to put away each quarter.',
+   faqs=[
+     ('How much is self-employment tax in 2026?',
+      'Self-employment tax is 15.3% of 92.35% of your net profit from self-employment: 12.4% Social Security up to the $184,500 wage base, plus 2.9% Medicare with no cap. You owe no self-employment tax if your net earnings are under $400.'),
+     ('When are 2026 estimated tax payments due?',
+      'For the 2026 calendar year: April 15, June 15 and September 15, 2026, then January 15, 2027. A payment is on time if it is made by the next business day when the date falls on a weekend or holiday.'),
+     ('Is this tax advice?',
+      'No. It is an estimate for planning. It ignores the standard deduction, credits and state rules, so use it as a set-aside guide, not a return — an accountant can tell you what you really owe.'),
+   ]),
+ 'uk': dict(
+   title='UK Self-Employed Tax Calculator (2026/27)',
+   faq_h2='How this estimate works',
+   desc='Estimate income tax and Class 4 National Insurance on your self-employed profit for 2026/27.',
+   intro='Work out income tax and Class 4 National Insurance on your self-employed profit for the 2026/27 tax year, and see what to set aside.',
+   faqs=[
+     ('What are the Class 4 National Insurance rates for 2026/27?',
+      '6% on profits between £12,570 and £50,270, and 2% above that. This is on top of income tax; Class 2 National Insurance is not included in this calculator.'),
+     ('When do I pay my Self Assessment bill?',
+      'The balance for the tax year is due by 31 January. If HMRC asks for payments on account, they are due by 31 January and 31 July, each usually half of the previous year’s bill.'),
+     ('Is this tax advice?',
+      'No. It is an estimate for planning purposes only. An accountant can tell you exactly what you owe and confirm your payment dates.'),
+   ]),
+ 'ca': dict(
+   title='Canada Self-Employed Tax Calculator (2026)',
+   faq_h2='How this estimate works',
+   desc='Estimate federal tax, CPP and provincial tax on your self-employed income for 2026.',
+   intro='Work out federal income tax and self-employed CPP contributions on your 2026 self-employed income, plus the provincial rate you enter.',
+   faqs=[
+     ('How much CPP do self-employed people pay in 2026?',
+      '11.9% on earnings between $3,500 and $74,600 (the base plus the first CPP enhancement), plus 8% on earnings between $74,600 and $85,000 (CPP2). Self-employed people pay both the employee and employer portions, and half of what you pay is deducted from your income for tax purposes.'),
+     ('When are my taxes due?',
+      'Self-employed individuals have until June 15, 2026 to file, but any balance owing for 2025 is still due by April 30, 2026. If you must pay by instalments, the usual due dates are March 15, June 15, September 15 and December 15.'),
+     ('Is this tax advice?',
+      'No. It is a planning estimate that excludes EI, GST/HST, Quebec’s separate system and most credits beyond the basic personal amount. An accountant or the CRA can confirm exactly what you owe.'),
+   ]),
+ 'au': dict(
+   title='Australia Sole Trader Tax Calculator (2026-27)',
+   faq_h2='How this estimate works',
+   desc='Estimate income tax and the Medicare levy on your sole trader income for 2026-27.',
+   intro='Work out income tax and the Medicare levy on your sole trader income for the 2026-27 income year, and see what to set aside.',
+   faqs=[
+     ('What are the 2026-27 resident tax rates?',
+      'Nothing on the first $18,200, 15% up to $45,000, 30% up to $135,000, 37% up to $190,000, and 45% above that, plus the 2% Medicare levy on taxable income. The low-income Medicare levy reduction is not included here.'),
+     ('When are PAYG instalments due?',
+      'For quarterly sole traders: 28 October, 28 February, 28 April and 28 July, each covering the quarter just ended.'),
+     ('Is this tax advice?',
+      'No. It is a planning estimate that excludes offsets like LITO, HELP repayments, the Medicare levy surcharge and GST. Check with the ATO or an accountant for your exact obligations.'),
+   ]),
+}
+
+
 CONTACT_EMAIL = 'hello@ratelark.com'
 CONTACT_LABEL = {'en': 'Contact', 'es': 'Contacto', 'pt': 'Contato', 'fr': 'Contact', 'de': 'Kontakt', 'hi': '\u0938\u0902\u092a\u0930\u094d\u0915',
                  'ar': '\u0627\u062a\u0635\u0644 \u0628\u0646\u0627', 'zh': '\u8054\u7cfb\u6211\u4eec', 'id': 'Kontak'}
@@ -412,6 +483,173 @@ def hub_card(lang, t):
                e(tool_name(lang, slug)), e(tool_desc(lang, slug))))
 
 
+def build_tax_page(lang, country):
+    """One of the four fixed-country tax pages, sharing #tool-tax's markup/JS with the other
+    three countries filtered out via data-c, plus its own H1, intro, FAQs and Sources box."""
+    e = lambda x: html.escape(x, quote=True)
+    mp = MAPS[lang]
+    name, hl, locale = next((n, h, l) for c, n, h, l in LANGS if c == lang)
+    dirn = 'rtl' if lang == 'ar' else 'ltr'
+    slug = TAX_SLUG[country]
+    TP = TAX_PAGE[country]
+    src = TAX_SOURCES[country]
+
+    hdr = copy.copy(header)
+    hdr.find('a', class_='brand')['href'] = '/'
+    _brand = hdr.find('a', class_='brand')
+    for _n in list(_brand.contents):
+        if isinstance(_n, str):
+            _n.extract()
+    _brand.append(BeautifulSoup('<span class="wm">Rate<span class="lk">Lark</span></span>', 'html.parser'))
+    opt = hdr.find('select', id='lang').find('option', value=lang)
+    opt['selected'] = 'selected'
+    translate(hdr, mp)
+    ui = UI[lang]
+    kb = BeautifulSoup('<button type="button" class="kbtn" data-palette aria-label="%s"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><span class="kt">%s</span><kbd>Ctrl K</kbd></button>' % (ui['search'], ui['search']), 'html.parser')
+    hdr.find('div', class_='pick').insert(0, kb)
+
+    nav = BeautifulSoup('<nav class="tabs" aria-label="Freelancer tools"></nav>', 'html.parser').nav
+    home_tab = BeautifulSoup('<a class="tab tab-home" href="/#tools"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>%s</span></a>' % ui['all'], 'html.parser')
+    nav.append(home_tab)
+    for t in TOOLS:
+        a = BeautifulSoup('<a class="tab"></a>', 'html.parser').a
+        a['id'] = 'tab-' + t
+        a['href'] = '../%s/' % url_slug(t)
+        if t == 'tax':
+            a['aria-current'] = 'page'
+        a.string = tool_name(lang, t)
+        nav.append(a)
+
+    sec = copy.copy(sections['tax'])
+    for attr in ('hidden', 'role', 'aria-labelledby'):
+        if sec.has_attr(attr):
+            del sec[attr]
+    translate(sec, mp)
+
+    # fix the country: drop every data-c block that isn't global or this country's, and hide
+    # the country picker itself (kept in the DOM, with one option, so setax() still works)
+    for el in sec.select('[data-c]'):
+        if country not in el['data-c'].split(' '):
+            el.decompose()
+    country_field = sec.find('select', id='s-country')
+    if country_field is not None:
+        for opt_el in list(country_field.find_all('option')):
+            opt_el.decompose()
+        keep = BeautifulSoup('<option value="%s" selected>%s</option>' % (country, e(src['country'])), 'html.parser')
+        country_field.append(keep)
+        wrap = country_field.find_parent('label', class_='field')
+        (wrap or country_field)['hidden'] = ''
+
+    head = sec.find(class_='head')
+    head.find('h1').string = TP['title']
+    head.find('p').string = TP['intro']
+
+    about = sec.find(class_='about')
+    if about is not None:
+        about.clear()
+        about.append(BeautifulSoup('<h2>%s</h2>' % e(TP['faq_h2']), 'html.parser'))
+        faq_ld = []
+        for q, a_txt in TP['faqs']:
+            d = BeautifulSoup('<details><summary>%s</summary><p>%s</p></details>' % (e(q), e(a_txt)), 'html.parser')
+            about.append(d)
+            faq_ld.append({'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a_txt}})
+        src_links = ''.join('<li><a href="%s" rel="noopener">%s</a></li>' % (e(s['url']), e(s['name'])) for s in src['sources'])
+        checked = src['last_checked']
+        sources_box = BeautifulSoup(
+            '<div class="sheet" id="tax-sources"><h2>Sources</h2><ul>%s</ul>'
+            '<p class="note">Rates for %s, last checked %s.</p></div>'
+            % (src_links, e(src['tax_year']), checked), 'html.parser').div
+        other = [c for c in ('us', 'uk', 'ca', 'au') if c != country]
+        related = ''.join('<li><a href="../%s/">%s</a></li>' % (TAX_SLUG[c], e(TAX_PAGE[c]['title'].split(' (')[0])) for c in other)
+        related_box = BeautifulSoup('<nav class="sheet" aria-label="Other tax pages"><h2>Other countries</h2><ul>%s</ul></nav>' % related, 'html.parser').nav
+        sec.append(sources_box)
+        sec.append(related_box)
+    else:
+        faq_ld = []
+
+    sh = copy.copy(share); translate(sh, mp)
+    fb = copy.copy(fallback)
+    ft = copy.copy(footer); translate(ft, mp)
+    langs_nav = BeautifulSoup('<nav class="langs" aria-label="Languages"></nav>', 'html.parser').nav
+    for code, nm, h, _ in LANGS:
+        a = BeautifulSoup('<a></a>', 'html.parser').a
+        a['href'] = '../../%s/%s/' % (code, slug)
+        a['hreflang'] = h
+        a['lang'] = code
+        if code == lang:
+            a['aria-current'] = 'true'
+        a.string = nm
+        langs_nav.append(a)
+    ft.insert(0, langs_nav)
+    ft.append(BeautifulSoup('<p><a href="/privacy/">%s</a> &middot; <a href="mailto:%s">%s</a></p>' % (UI[lang]['privacy'], CONTACT_EMAIL, CONTACT_LABEL[lang]), 'html.parser'))
+
+    title = TP['title'] + ' | RateLark'
+    description = TP['desc']
+    url = '%s/%s/%s/' % (BASE, lang, slug)
+    ld = [{'@context': 'https://schema.org', '@type': 'WebApplication', 'name': TP['title'],
+           'url': url, 'inLanguage': hl, 'applicationCategory': 'BusinessApplication',
+           'operatingSystem': 'Any', 'description': description,
+           'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'USD'}}]
+    if faq_ld:
+        ld.append({'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': faq_ld})
+
+    scripts = ('<script src="../../assets/i18n.js?v={0}"></script>\n'
+               '<script src="../../assets/app.js?v={1}"></script>').format(VER['i18n.js'], VER['app.js'])
+    kicker = ('<div class="kicker"><span class="ico">%s</span><span class="cat">%s</span></div>'
+              % (icon_svg('landmark'), html.escape(CATS['tax'][lang])))
+    alts = ''.join('<link rel="alternate" hreflang="%s" href="%s/%s/%s/">' % (h, BASE, c, slug) for c, _, h, _ in LANGS)
+    alts += '<link rel="alternate" hreflang="x-default" href="%s/en/%s/">' % (BASE, slug)
+    page = f'''<!doctype html>
+<html lang="{lang}" dir="{dirn}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{e(title)}</title>
+<meta name="description" content="{e(description)}">
+<link rel="canonical" href="{url}">
+{alts}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RateLark">
+<meta property="og:title" content="{e(title)}">
+<meta property="og:description" content="{e(description)}">
+<meta property="og:url" content="{url}">
+<meta property="og:locale" content="{locale}">
+<meta property="og:image" content="{BASE}/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{BASE}/og.png">
+<meta name="theme-color" content="#EDF1F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1622" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{e(fonts)}">
+<link rel="stylesheet" href="../../assets/app.css?v={VER['app.css']}">
+<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False).replace('</', '<\\/')}</script>
+</head>
+<body data-tool="tax">
+<div class="tfx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
+{hdr}
+{nav}
+<main id="main">
+{kicker}
+{sec}
+{sh}
+{fb}
+</main>
+{ft}
+{scripts}
+<script src="../../assets/palette.js?v={VER['palette.js']}" defer></script>
+</body>
+</html>
+'''
+    return page
+
+
 def build_hub(lang):
     """Per-language hub page at /{lang}/: an H1, the tagline, and a card for every tool."""
     mp = MAPS[lang]
@@ -566,7 +804,12 @@ for code, nm, _, _ in LANGS:
 count = 0
 for code, *_ in LANGS:
     for tool in TOOLS:
+        if tool == 'tax':
+            continue   # Stage 3: replaced by four fixed-country pages, below
         write('%s/%s/index.html' % (code, url_slug(tool)), build_page(code, tool))
+        count += 1
+    for country in TAX_SLUG:
+        write('%s/%s/index.html' % (code, TAX_SLUG[country]), build_tax_page(code, country))
         count += 1
     write('%s/index.html' % code, build_hub(code))
     count += 1
@@ -578,7 +821,14 @@ for code, *_ in LANGS:
     hub_alts += '<xhtml:link rel="alternate" hreflang="x-default" href="%s/en/"/>' % BASE
     urls.append('<url><loc>%s/%s/</loc><lastmod>%s</lastmod>%s</url>' % (BASE, code, TODAY, hub_alts))
     for tool in TOOLS:
+        if tool == 'tax':
+            continue
         slug = url_slug(tool)
+        alts = ''.join('<xhtml:link rel="alternate" hreflang="%s" href="%s/%s/%s/"/>' % (h, BASE, c, slug)
+                       for c, _, h, _ in LANGS)
+        alts += '<xhtml:link rel="alternate" hreflang="x-default" href="%s/en/%s/"/>' % (BASE, slug)
+        urls.append('<url><loc>%s/%s/%s/</loc><lastmod>%s</lastmod>%s</url>' % (BASE, code, slug, TODAY, alts))
+    for country, slug in TAX_SLUG.items():
         alts = ''.join('<xhtml:link rel="alternate" hreflang="%s" href="%s/%s/%s/"/>' % (h, BASE, c, slug)
                        for c, _, h, _ in LANGS)
         alts += '<xhtml:link rel="alternate" hreflang="x-default" href="%s/en/%s/"/>' % (BASE, slug)
