@@ -1003,6 +1003,7 @@ def build_hub(lang):
 <h1>{e(HUB_H1[lang])}</h1>
 <p>{e(tr('Freelance pricing, quote, invoice and tax tools in one place.', lang))}</p>
 </div>
+<h2 class="sr-only">{e(UI[lang]['all'])}</h2>
 <div class="hub-grid">{cards}</div>
 </main>
 {ft}
@@ -1036,6 +1037,7 @@ a.tab{text-decoration:none}
 .hub-card p{margin:.35rem 0 0;color:var(--muted);font-size:.88rem;line-height:1.4}
 a.btn{text-decoration:none;display:inline-block}
 .cta-row{margin:0 0 1.25rem}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 '''
 PAL_CSS = open(os.path.join(HERE, 'palette.css'), encoding='utf-8').read()
 PAL_JS = open(os.path.join(HERE, 'palette.js'), encoding='utf-8').read()
@@ -1091,7 +1093,7 @@ for slug in ARTICLES:
     count += 1
 
 # sitemap with hreflang alternates
-urls = []
+urls = ['<url><loc>%s/</loc><lastmod>%s</lastmod></url>' % (BASE, TODAY)]
 for code, *_ in LANGS:
     hub_alts = ''.join('<xhtml:link rel="alternate" hreflang="%s" href="%s/%s/"/>' % (h, BASE, c) for c, _, h, _ in LANGS)
     hub_alts += '<xhtml:link rel="alternate" hreflang="x-default" href="%s/en/"/>' % BASE
