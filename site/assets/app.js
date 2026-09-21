@@ -35,12 +35,12 @@ const fmtD=d=>d?d.toLocaleDateString(LOC,{year:'numeric',month:'short',day:'nume
 /* ---------- tabs ---------- */
 const TOOLS=['hourly-rate','quote','invoice','markup-margin','retainer','late-fee','tax'];
 const TITLES={
-  'hourly-rate':'Hourly rate calculator for freelancers | RateLark',
-  'quote':'Project quote calculator for freelancers | RateLark',
-  'invoice':'Free invoice generator | RateLark',
-  'markup-margin':'Markup and margin calculator | RateLark',
-  'retainer':'Retainer vs hourly billing calculator | RateLark',
-  'late-fee':'Late payment fee calculator | RateLark',
+  'hourly-rate':'Freelance Hourly Rate Calculator (with Tax and Time Off) | RateLark',
+  'quote':'Freelance Project Quote Calculator | RateLark',
+  'invoice':'Free Invoice Generator (PDF, No Sign-Up) | RateLark',
+  'markup-margin':'Markup and Margin Calculator | RateLark',
+  'retainer':'Retainer vs Hourly Billing Calculator | RateLark',
+  'late-fee':'Late Payment Fee and Interest Calculator | RateLark',
   'tax':'Freelance tax set-aside estimate | RateLark'
 };
 const PAGE=(document.body&&document.body.dataset.tool)||'';

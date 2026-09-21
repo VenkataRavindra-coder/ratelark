@@ -529,7 +529,7 @@ write('index.html', f"""<!doctype html>
   <div class="hud h2" aria-hidden="true">Languages<b>9</b></div>
   <div class="hud h3" aria-hidden="true">Sign-ups needed<b>0</b></div>
   <section class="copy">
-    <span class="tag">Your numbers. Higher potential.</span>
+    <span class="tag">Freelance pricing, quote, invoice and tax tools in one place.</span>
     <h1>Freelancing <em>without</em> borders</h1>
     <p class="lead">Work out your rate, price the project, send the invoice and set aside the tax. Free tools in 9 languages. Nothing you type leaves your browser.</p>
     <div class="cta"><a class="pill light" data-tool="hourly-rate" href="/en/hourly-rate/">Get started</a><a class="pill solid" data-tool="invoice" href="/en/invoice/">Make an invoice</a></div>
@@ -546,7 +546,7 @@ write('index.html', f"""<!doctype html>
 </section>
 <footer class="foot2" id="langs">
   <div class="fgrid">
-    <div class="fc fbrand"><a class="brand" href="/"><span class="mark" aria-hidden="true"></span><span class="wm">Rate<span class="lk">Lark</span></span></a><p>Your numbers. Higher potential.</p></div>
+    <div class="fc fbrand"><a class="brand" href="/"><span class="mark" aria-hidden="true"></span><span class="wm">Rate<span class="lk">Lark</span></span></a><p>Freelance pricing, quote, invoice and tax tools in one place.</p></div>
     {FOOTER_TOOLS}
     <div class="fc"><h3>Languages</h3><ul>{LANGLIS}</ul></div>
     <div class="fc"><h3>Company</h3><ul><li><a href="/privacy/">Privacy</a></li><li><a href="mailto:{CONTACT_EMAIL}">Contact</a></li></ul></div>
