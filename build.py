@@ -691,6 +691,232 @@ def build_tax_page(lang, country):
     return page
 
 
+# Stage 5: three how-to articles, English only for now (per the brief: "Translate later only
+# if the English versions get traffic"). Worked examples use the exact same formulas as the
+# live calculators (hourly(), quote() and invData() in hourkit.html) -- see the commit message
+# for the Python that produced these numbers, so they can be checked against the tool directly.
+ARTICLES = {
+ 'how-to-calculate-freelance-hourly-rate': dict(
+   title='How to Calculate Your Freelance Hourly Rate',
+   desc='A step-by-step method for working out the hourly rate you need as a freelancer, with a worked example and a free calculator.',
+   related='hourly-rate',
+   body='''
+<div class="about sheet">
+<h2>Start from what you want to take home, not what sounds competitive</h2>
+<p>Picking a rate by asking what other freelancers charge, or what sounds "reasonable," skips the one number that actually matters: what you need to earn to cover your life, your tax bill and your business costs. Working backwards from that number gives you a rate that is a floor, not a guess &mdash; the point below which you are losing money, even if the job looks busy.</p>
+</div>
+<div class="about sheet">
+<h2>The four numbers you need</h2>
+<p><b>Take-home pay.</b> What you want left over per year after tax, for yourself &mdash; not your revenue target.</p>
+<p><b>Tax rate.</b> Your effective rate, not your top bracket: total tax paid divided by total income. If you are not sure, 25&ndash;30% is a common starting estimate in many countries, but check your own numbers with the <a href="../us-freelance-tax-calculator/">tax calculator</a> or an accountant.</p>
+<p><b>Business expenses.</b> Software, equipment, insurance, coworking space, professional fees &mdash; the costs of running the business, separate from your own pay.</p>
+<p><b>Billable hours per year.</b> Not the hours you work. The hours you can actually invoice.</p>
+</div>
+<div class="about sheet">
+<h2>Why billable hours are lower than hours worked</h2>
+<p>A 40-hour week does not mean 40 billable hours. Admin, invoicing, replying to email, pitching for the next job, and gaps between contracts all take time you cannot bill for. Most freelancers plan around 20 to 30 billable hours a week rather than 40 &mdash; the exact number depends on how much of your own admin and sales work you do, and how steady your pipeline is.</p>
+<p>This is the lever that moves your rate the most. Lower your billable hours in the calculation and the rate climbs fast, because the same annual costs are being spread across fewer hours.</p>
+</div>
+<div class="about sheet">
+<h2>The formula</h2>
+<p>Gross your take-home pay up for tax, add your business expenses, then divide by the hours you can actually bill in a year:</p>
+<p><code>rate = (take-home &divide; (1 &minus; tax rate) + expenses) &divide; billable hours per year</code></p>
+<p>Billable hours per year is <code>(52 &minus; weeks off) &times; billable hours per week</code>.</p>
+</div>
+<div class="sheet">
+<h2>Worked example</h2>
+<p>A freelancer wants $70,000 take-home pay, has $8,000 a year in business expenses, expects a 25% effective tax rate, takes 4 weeks off, and can bill 25 hours a week.</p>
+<dl class="stats">
+<div><dt>Billable hours per year</dt><dd>(52 &minus; 4) &times; 25 = 1,200 hrs</dd></div>
+<div><dt>Grossed-up for tax</dt><dd>$70,000 &divide; (1 &minus; 0.25) = $93,333.33</dd></div>
+<div><dt>Plus expenses</dt><dd>$93,333.33 + $8,000 = $101,333.33</dd></div>
+<div><dt>Minimum hourly rate</dt><dd>$101,333.33 &divide; 1,200 = <b>$84.44/hr</b></dd></div>
+<div><dt>Day rate (8 billable hours)</dt><dd>$675.56</dd></div>
+</dl>
+<p class="note">Run your own numbers in the <a href="../freelance-hourly-rate-calculator/">hourly rate calculator</a> &mdash; it does this same calculation instantly and includes an estimated tax breakdown.</p>
+</div>
+<div class="about sheet">
+<h2>Common mistakes</h2>
+<p><b>Using 40 hours a week.</b> Almost nobody bills 40 hours a week consistently; the rate comes out too low and you fall short of your take-home target.</p>
+<p><b>Forgetting to gross up for tax.</b> Dividing your take-home target straight by hours, with no tax adjustment, understates the rate you actually need.</p>
+<p><b>Leaving out expenses.</b> Software, insurance and equipment are real costs of doing business and belong in the calculation, not absorbed silently out of your take-home pay.</p>
+<p><b>Treating it as the rate to quote.</b> This is a floor. Quote above it to leave room for discounts, slow months and clients who pay late &mdash; see <a href="../how-to-price-freelance-projects/">how to price a project</a> for the next step.</p>
+</div>
+'''),
+ 'how-to-price-freelance-projects': dict(
+   title='How to Price a Freelance Project (With a Buffer and Deposit)',
+   desc='How to turn an hourly rate into a fixed-price project quote, with a buffer for surprises and a worked example.',
+   related='quote',
+   body='''
+<div class="about sheet">
+<h2>An hourly rate is not a project quote</h2>
+<p>Once you know your <a href="../how-to-calculate-freelance-hourly-rate/">minimum hourly rate</a>, pricing a fixed-scope project takes a few more steps: estimating the hours honestly, protecting yourself against the work running long, and deciding how much to ask for upfront.</p>
+</div>
+<div class="about sheet">
+<h2>Estimate the hours honestly</h2>
+<p>Break the project into the actual tasks &mdash; discovery calls, drafts, revisions, testing, handoff &mdash; and add up realistic hours for each, rather than guessing a round total. Include the calls and the revision rounds; they are easy to forget and rarely small.</p>
+</div>
+<div class="about sheet">
+<h2>Add a buffer for surprises</h2>
+<p>Projects rarely run exactly to estimate. A buffer of 10 to 20% of the labour cost is a common starting point &mdash; set it higher when the scope is vague, the client is new, or the project depends on things outside your control (their content, their feedback turnaround, third-party approvals).</p>
+</div>
+<div class="about sheet">
+<h2>Pass through hard costs separately</h2>
+<p>Stock assets, subcontractors, licences, travel &mdash; costs that are not your labour should be listed separately from the buffer, so the client can see exactly what they are paying for.</p>
+</div>
+<div class="about sheet">
+<h2>Decide on a deposit</h2>
+<p>A deposit of 30 to 50% before work starts reduces your exposure if the client disappears or the project stalls, and it filters out people who were never serious. It is standard practice, not an imposition.</p>
+</div>
+<div class="about sheet">
+<h2>The formula</h2>
+<p><code>labour = hours &times; hourly rate</code></p>
+<p><code>total = labour + (labour &times; buffer%) + pass-through costs &minus; discount</code></p>
+</div>
+<div class="sheet">
+<h2>Worked example</h2>
+<p>30 estimated hours at $85/hr, $200 in pass-through costs, a 15% buffer, no discount, and a 30% deposit.</p>
+<dl class="stats">
+<div><dt>Labour</dt><dd>30 &times; $85 = $2,550.00</dd></div>
+<div><dt>Buffer (15% of labour)</dt><dd>$382.50</dd></div>
+<div><dt>Plus pass-through costs</dt><dd>$2,550 + $382.50 + $200 = <b>$3,132.50 quote</b></dd></div>
+<div><dt>Deposit to ask upfront (30%)</dt><dd>$939.75</dd></div>
+<div><dt>You earn per hour, on plan</dt><dd>($3,132.50 &minus; $200) &divide; 30 = $97.75/hr</dd></div>
+<div><dt>You earn per hour, if it runs 25% over</dt><dd>($3,132.50 &minus; $200) &divide; 37.5 = $78.20/hr</dd></div>
+</dl>
+<p class="note">Try your own numbers in the <a href="../project-quote-calculator/">project quote calculator</a> &mdash; it shows both of those per-hour figures live as you adjust the buffer and discount.</p>
+</div>
+<div class="about sheet">
+<h2>Watch what a discount really costs you</h2>
+<p>A discount comes straight out of your labour and buffer, not out of the pass-through costs. Watch the "on plan" hourly figure as you raise a discount &mdash; it drops faster than the headline percentage suggests, because it is being taken off a total that already includes your buffer.</p>
+<p>Once the invoice is out, the next step is getting paid on time &mdash; see the <a href="../freelance-invoice-guide/">invoice guide</a>.</p>
+</div>
+'''),
+ 'freelance-invoice-guide': dict(
+   title='Freelance Invoice Guide: What to Include and How to Get Paid Faster',
+   desc='What a freelance invoice needs, how to number and word it, and a worked example with tax added.',
+   related='invoice',
+   body='''
+<div class="about sheet">
+<h2>What every invoice needs</h2>
+<p>A unique invoice number, your details and the client's, the issue date and the due date, an itemised list of charges, the total owed, and how to pay you. Clear terms stated up front make it easier to chase a late payment later &mdash; there is no ambiguity to argue about.</p>
+</div>
+<div class="about sheet">
+<h2>Invoice numbering</h2>
+<p>A simple sequential number (0001, 0002&hellip;) is enough for most freelancers. Whatever system you pick, keep it consistent and never reuse a number &mdash; it matters for your own records and, in most countries, for tax purposes.</p>
+</div>
+<div class="about sheet">
+<h2>Payment terms</h2>
+<p>"Due on receipt" gets paid fastest but can feel aggressive with a new client. Net 7 or Net 14 balances speed with normal business practice; Net 30 is the most common default but ties up your cash the longest. Net 60 mostly benefits the client, not you &mdash; avoid it unless you have no leverage to negotiate.</p>
+</div>
+<div class="about sheet">
+<h2>Tax on invoices</h2>
+<p>If you are required to charge tax, VAT or GST, add it as its own line, name it correctly for your jurisdiction, and include your tax registration number if you have one. Rules vary by country and by what you sell &mdash; check your own obligations rather than assuming a rate.</p>
+</div>
+<div class="sheet">
+<h2>Worked example</h2>
+<p>Two line items &mdash; a $1,200 flat-fee design project, and 5 hours of consulting at $90/hr &mdash; with 8% tax added.</p>
+<dl class="stats">
+<div><dt>Website design</dt><dd>1 &times; $1,200.00 = $1,200.00</dd></div>
+<div><dt>Consulting (5 hrs &times; $90)</dt><dd>$450.00</dd></div>
+<div><dt>Subtotal</dt><dd>$1,650.00</dd></div>
+<div><dt>Tax (8%)</dt><dd>$132.00</dd></div>
+<div><dt>Total due</dt><dd><b>$1,782.00</b></dd></div>
+</dl>
+<p class="note">Build this exact invoice in the <a href="../invoice-generator/">invoice generator</a> and print or save it as a PDF &mdash; nothing you type leaves your browser.</p>
+</div>
+<div class="about sheet">
+<h2>Getting paid on time</h2>
+<p>State your terms on the invoice itself, send it the same day the work is delivered, and follow up promptly once it is overdue rather than waiting. If a payment does go late, the <a href="../late-payment-fee-calculator/">late payment fee calculator</a> works out interest and a flat fee you can add to the balance &mdash; check your own contract and local rules before charging one.</p>
+</div>
+'''),
+}
+
+
+def build_article(slug):
+    e = lambda x: html.escape(x, quote=True)
+    A = ARTICLES[slug]
+    lang, hl, locale = 'en', 'en', 'en_US'
+    mp = MAPS['en']
+
+    hdr = copy.copy(header)
+    hdr.find('a', class_='brand')['href'] = '/'
+    _brand = hdr.find('a', class_='brand')
+    for _n in list(_brand.contents):
+        if isinstance(_n, str):
+            _n.extract()
+    _brand.append(BeautifulSoup('<span class="wm">Rate<span class="lk">Lark</span></span>', 'html.parser'))
+    opt = hdr.find('select', id='lang').find('option', value=lang)
+    opt['selected'] = 'selected'
+    ui = UI[lang]
+    kb = BeautifulSoup('<button type="button" class="kbtn" data-palette aria-label="%s"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><span class="kt">%s</span><kbd>Ctrl K</kbd></button>' % (ui['search'], ui['search']), 'html.parser')
+    hdr.find('div', class_='pick').insert(0, kb)
+    cur = hdr.find('select', id='cur')
+    if cur is not None and cur.find_parent('label') is not None:
+        cur.find_parent('label').decompose()
+
+    ft = copy.copy(footer); translate(ft, mp)
+    ft.append(BeautifulSoup('<p><a href="/privacy/">%s</a> &middot; <a href="mailto:%s">%s</a></p>' % (UI[lang]['privacy'], CONTACT_EMAIL, CONTACT_LABEL[lang]), 'html.parser'))
+
+    body_sec = BeautifulSoup(A['body'], 'html.parser')
+    related = BeautifulSoup(related_tools_html(lang, A['related']), 'html.parser').div
+
+    title = A['title'] + ' | RateLark'
+    description = A['desc']
+    url = '%s/en/%s/' % (BASE, slug)
+    faq_ld = []
+    ld = [{'@context': 'https://schema.org', '@type': 'Article', 'headline': A['title'],
+           'url': url, 'inLanguage': hl, 'description': description}]
+
+    page = f'''<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{e(title)}</title>
+<meta name="description" content="{e(description)}">
+<link rel="canonical" href="{url}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RateLark">
+<meta property="og:title" content="{e(title)}">
+<meta property="og:description" content="{e(description)}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{BASE}/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{BASE}/og.png">
+<meta name="theme-color" content="#EDF1F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1622" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{e(fonts)}">
+<link rel="stylesheet" href="../../assets/app.css?v={VER['app.css']}">
+<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False).replace('</', '<\\/')}</script>
+</head>
+<body data-tool="">
+<div class="tfx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
+{hdr}
+<main id="main">
+<div class="head">
+<h1>{e(A['title'])}</h1>
+<p>{e(A['desc'])}</p>
+</div>
+{body_sec}
+{related}
+</main>
+{ft}
+<script src="../../assets/palette.js?v={VER['palette.js']}" defer></script>
+</body>
+</html>
+'''
+    return page
+
+
 def build_hub(lang):
     """Per-language hub page at /{lang}/: an H1, the tagline, and a card for every tool."""
     mp = MAPS[lang]
@@ -859,6 +1085,11 @@ for code, *_ in LANGS:
     write('%s/index.html' % code, build_hub(code))
     count += 1
 
+# Stage 5: the three how-to articles, English only (see ARTICLES above)
+for slug in ARTICLES:
+    write('en/%s/index.html' % slug, build_article(slug))
+    count += 1
+
 # sitemap with hreflang alternates
 urls = []
 for code, *_ in LANGS:
@@ -878,6 +1109,8 @@ for code, *_ in LANGS:
                        for c, _, h, _ in LANGS)
         alts += '<xhtml:link rel="alternate" hreflang="x-default" href="%s/en/%s/"/>' % (BASE, slug)
         urls.append('<url><loc>%s/%s/%s/</loc><lastmod>%s</lastmod>%s</url>' % (BASE, code, slug, TODAY, alts))
+for slug in ARTICLES:
+    urls.append('<url><loc>%s/en/%s/</loc><lastmod>%s</lastmod></url>' % (BASE, slug, TODAY))
 write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n'
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
       + '\n'.join(urls) + '\n</urlset>\n')
