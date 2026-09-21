@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>购买力平价定价计算器 | RateLark</title>
+<meta name="description" content="输入你在美国的价格，按各国的购买力得到每个国家的合理价格。">
+<link rel="canonical" href="https://ratelark.com/zh/ppp-pricing-calculator/">
+<link rel="alternate" hreflang="en" href="https://ratelark.com/en/ppp-pricing-calculator/">
+<link rel="alternate" hreflang="es" href="https://ratelark.com/es/ppp-pricing-calculator/">
+<link rel="alternate" hreflang="pt-BR" href="https://ratelark.com/pt/ppp-pricing-calculator/">
+<link rel="alternate" hreflang="fr" href="https://ratelark.com/fr/ppp-pricing-calculator/">
+<link rel="alternate" hreflang="de" href="https://ratelark.com/de/ppp-pricing-calculator/">
+<link rel="alternate" hreflang="hi" href="https://ratelark.com/hi/ppp-pricing-calculator/">
+<link rel="alternate" hreflang="ar" href="https://ratelark.com/ar/ppp-pricing-calculator/">
+<link rel="alternate" hreflang="zh-Hans" href="https://ratelark.com/zh/ppp-pricing-calculator/">
+<link rel="alternate" hreflang="id" href="https://ratelark.com/id/ppp-pricing-calculator/">
+<link rel="alternate" hreflang="x-default" href="https://ratelark.com/en/ppp-pricing-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RateLark">
+<meta property="og:title" content="购买力平价定价计算器 | RateLark">
+<meta property="og:description" content="输入你在美国的价格，按各国的购买力得到每个国家的合理价格。">
+<meta property="og:url" content="https://ratelark.com/zh/ppp-pricing-calculator/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ratelark.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ratelark.com/og.png">
+<meta name="theme-color" content="#EDF1F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1622" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="../../assets/app.css?v=f8546bd4">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "购买力平价定价计算器", "url": "https://ratelark.com/zh/ppp-pricing-calculator/", "inLanguage": "zh-Hans", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "description": "输入你在美国的价格，按各国的购买力得到每个国家的合理价格。", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "什么是 PPP 定价？", "acceptedAnswer": {"@type": "Answer", "text": "购买力平价（PPP）定价会在货币购买力更强的地方定更低的价格，让更多人买得起你的产品，你也能触达更多客户。"}}, {"@type": "Question", "name": "按国家给折扣安全吗？", "acceptedAnswer": {"@type": "Answer", "text": "如果你的支付平台支持区域定价，优先使用它。折扣码可能被转发，请只用于限时活动并留意滥用。切勿低于你的成本。"}}]}]</script>
+</head>
+<body data-tool="ppp-pricing-calculator">
+<div class="tfx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
+<header class="top">
+<a class="brand" href="/"><span aria-hidden="true" class="mark"></span><span class="wm">Rate<span class="lk">Lark</span></span></a>
+<div class="pick"><button aria-label="搜索" class="kbtn" data-palette="" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="11" cy="11" fill="none" r="7" stroke="currentColor" stroke-width="2"></circle><path d="M20 20l-4-4" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg><span class="kt">搜索</span><kbd>Ctrl K</kbd></button>
+<label class="cur"><span>语言</span><select class="ctl" id="lang" style="width:auto;min-height:0;padding:.4rem .5rem;font-size:.9rem"><option value="en">English</option><option value="es">Español</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="hi">हिन्दी</option><option value="ar">العربية</option><option selected="selected" value="zh">中文</option><option value="id">Bahasa Indonesia</option></select></label>
+
+</div>
+</header>
+<nav aria-label="Freelancer tools" class="tabs"><a class="tab tab-home" href="/#tools"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"><rect height="7" rx="1.5" width="7" x="3" y="3"></rect><rect height="7" rx="1.5" width="7" x="14" y="3"></rect><rect height="7" rx="1.5" width="7" x="3" y="14"></rect><rect height="7" rx="1.5" width="7" x="14" y="14"></rect></svg><span>全部工具</span></a><a class="tab" href="../hourly-rate/" id="tab-hourly-rate">时薪</a><a class="tab" href="../quote/" id="tab-quote">项目报价</a><a class="tab" href="../invoice/" id="tab-invoice">发票</a><a class="tab" href="../markup-margin/" id="tab-markup-margin">加价与利润率</a><a class="tab" href="../retainer/" id="tab-retainer">月度服务费</a><a class="tab" href="../late-fee/" id="tab-late-fee">逾期费</a><a class="tab" href="../tax/" id="tab-tax">税</a><a aria-current="page" class="tab" href="../ppp-pricing-calculator/" id="tab-ppp-pricing-calculator">PPP 定价</a></nav>
+<main id="main">
+<div class="kicker"><span class="ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"/></svg></span><span class="cat">全球销售</span></div>
+<section data-i18n='{"res_l": "{country}的合理价格", "st_avg": "平均折扣", "st_top": "最大折扣", "st_n": "市场数", "st_floor": "触及底线", "none_txt": "无", "sum": "美国定价 {price} 时，{country}的合理价格是 {local}（约 {usd}，低 {pct}）。这与当地货币的购买力相当。", "sum_same": "在{country}，合理价格为 {local}，与美国价格大致相同。", "sum_more": "在你选择的 {n} 个市场中，平均价格比美国价格低 {avg}。", "sum_empty": "请至少选择一个国家以查看价格。", "tag_floor": "已到底线", "t_copied": "已复制", "t_csv": "CSV 已下载", "t_reset": "已重置", "t_fail": "无法复制。请选中文本后手动复制。", "assume": "价格水平：世界银行 {plYear}。汇率：{fxDate}。已传导 {pass}% 的价格差距。", "assume_link": "修改假设"}' id="tool-ppp-pricing-calculator">
+<div class="head">
+<h1>在其他国家应该定什么价？</h1>
+<p>输入你在美国的价格并选择目标市场。你会得到每个国家的合理本地价格，以及可复制或下载的表格。</p>
+</div>
+<div class="layout">
+<div class="side">
+<div aria-live="polite" class="result">
+<div class="lbl" id="ppp-res-l"> </div>
+<div class="big"><span id="ppp-res-big">—</span></div>
+</div>
+<dl class="stats" id="ppp-stats"></dl>
+</div>
+<div class="inputs sheet">
+<label class="field"><span class="l">你在美国的价格（美元）</span>
+<div class="inp"><span class="pre">$</span><input data-p="" id="ppp-price" inputmode="decimal" min="0" step="any" type="number" value="29"/></div>
+<span class="hint">美国客户目前支付的价格。</span></label>
+<label class="field"><span class="l">你在卖什么？</span><select class="ctl" data-p="" id="ppp-cat"><option value="saas">软件或应用订阅</option><option value="course">在线课程</option><option value="download">电子书、模板或下载</option><option value="service">服务或咨询</option></select></label>
+<label class="field"><span class="l">你想在哪里销售？</span><select class="ctl" data-p="" id="ppp-region"><option value="emerging">主要新兴市场（印度、巴西、印度尼西亚、尼日利亚）</option><option value="south_asia">南亚</option><option value="sea">东南亚</option><option value="latam">拉丁美洲</option><option value="africa">非洲</option><option value="europe">欧洲</option><option value="all">全部 60 个国家</option><option value="custom">自选国家</option></select></label>
+<div class="field" hidden="" id="ppp-custom-wrap"><span class="l">选择国家</span><div class="pp-custom" data-p="" id="ppp-custom"></div></div>
+</div>
+</div>
+<div class="sheet" id="ppp-results">
+<p aria-live="polite" class="pp-sum" id="ppp-sum"></p>
+<p class="pp-sum2" id="ppp-sum2"></p>
+<h2>各国价格</h2>
+<div class="pp-wrap"><table class="pp-table" id="ppp-table"><thead><tr><th scope="col">国家</th><th scope="col">合理价格</th><th scope="col">约合美元</th><th scope="col">折扣</th><th scope="col">折扣码</th></tr></thead><tbody id="ppp-tbody"></tbody></table></div>
+<div class="pp-actions">
+<button class="btn" id="ppp-share" type="button">复制分享链接</button>
+<button class="btn alt" id="ppp-csv" type="button">下载 CSV</button>
+<button class="btn alt" id="ppp-codes" type="button">复制折扣码</button>
+<button class="btn alt" id="ppp-reset" type="button">恢复示例</button>
+<span id="ppp-toast" role="status"></span>
+</div>
+<p class="pp-note" hidden="" id="ppp-assume"></p>
+<p class="pp-note">折扣码可能被转发，因此如果你的支付平台支持区域定价，区域定价更稳妥。</p>
+<textarea aria-label="Text to copy" class="ctl" hidden="" id="ppp-fallback" readonly="" rows="3"></textarea>
+</div>
+<details class="sheet" id="ppp-adv">
+<summary>假设与自定义</summary>
+<div class="inputs">
+<label class="field"><span class="l">传导多少价格差距</span>
+<div class="pp-inline"><input class="pp-range" data-p="" id="ppp-pass" max="100" min="0" step="5" type="range" value="80"/><output for="ppp-pass" id="ppp-pass-out">80%</output></div>
+<span class="hint">100% 完全匹配当地购买力。软件和数字产品通常在 60% 到 85% 之间。</span></label>
+<label class="field"><span class="l">不低于美国价格的这一比例</span>
+<div class="inp"><input data-p="" id="ppp-floor" inputmode="decimal" max="100" min="0" step="5" type="number" value="30"/><span class="suf">%</span></div>
+<span class="hint">保护你的利润空间。30% 表示最低价为美国价格的 30%。</span></label>
+<label class="field"><span class="l">价格尾数</span><select class="ctl" data-p="" id="ppp-mode"><option value="charm">吸引人（…99 或 …9）</option><option value="round">整数</option><option value="exact">精确</option></select></label>
+<label class="pp-check"><input checked="" data-p="" id="ppp-cap" type="checkbox"/><span>不高于美国价格</span></label>
+<p class="pp-note">数据：世界银行国际比较项目的价格水平（CC BY 4.0）；汇率来自 Exchange Rate API。汇率会变动，发布价格前请核对当前汇率。</p>
+</div>
+</details>
+<div class="about sheet">
+<h2>这些价格是如何计算的</h2>
+<p>各国的价格水平比较同一篮子商品在当地与美国的成本。你的价格按你选择传导的差距比例下调，但不会低于你的底线，然后取整为当地货币中更吸引人的数字。</p>
+<details><summary>什么是 PPP 定价？</summary><p>购买力平价（PPP）定价会在货币购买力更强的地方定更低的价格，让更多人买得起你的产品，你也能触达更多客户。</p></details>
+<details><summary>按国家给折扣安全吗？</summary><p>如果你的支付平台支持区域定价，优先使用它。折扣码可能被转发，请只用于限时活动并留意滥用。切勿低于你的成本。</p></details>
+</div>
+</section>
+
+
+</main>
+<footer><nav aria-label="Languages" class="langs"><a href="../../en/ppp-pricing-calculator/" hreflang="en" lang="en">English</a><a href="../../es/ppp-pricing-calculator/" hreflang="es" lang="es">Español</a><a href="../../pt/ppp-pricing-calculator/" hreflang="pt-BR" lang="pt">Português</a><a href="../../fr/ppp-pricing-calculator/" hreflang="fr" lang="fr">Français</a><a href="../../de/ppp-pricing-calculator/" hreflang="de" lang="de">Deutsch</a><a href="../../hi/ppp-pricing-calculator/" hreflang="hi" lang="hi">हिन्दी</a><a href="../../ar/ppp-pricing-calculator/" hreflang="ar" lang="ar">العربية</a><a aria-current="true" href="../../zh/ppp-pricing-calculator/" hreflang="zh-Hans" lang="zh">中文</a><a href="../../id/ppp-pricing-calculator/" hreflang="id" lang="id">Bahasa Indonesia</a></nav>
+<p>RateLark 完全在你的浏览器中运行，你输入的任何内容都不会被上传。结果仅为估算，不构成税务、财务或法律建议。</p>
+<p><a href="/privacy/">Privacy</a> · <a href="mailto:hello@ratelark.com">联系我们</a></p></footer>
+<script src="../../assets/lz-string.min.js?v=2414f3d8" defer></script>
+<script src="../../assets/tools/ppp-pricing-calculator/engine.js?v=df836e0d" defer></script>
+<script src="../../assets/tools/ppp-pricing-calculator/ui.js?v=5f39cdd6" defer></script>
+<script src="../../assets/shell.js?v=8b286b85" defer></script>
+<script src="../../assets/palette.js?v=9ceef2d7" defer></script>
+</body>
+</html>

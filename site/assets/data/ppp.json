@@ -1,0 +1,562 @@
+{
+ "countries": {
+  "AE": {
+   "cur": "AED",
+   "fx": 3.6725,
+   "plr": 0.6336,
+   "regions": [
+    "mena"
+   ],
+   "year": 2024
+  },
+  "AR": {
+   "cur": "ARS",
+   "fx": 1512.3332,
+   "plr": 0.4572,
+   "regions": [
+    "latam"
+   ],
+   "year": 2025
+  },
+  "AT": {
+   "cur": "EUR",
+   "fx": 0.871291,
+   "plr": 0.8196,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "AU": {
+   "cur": "AUD",
+   "fx": 1.404923,
+   "plr": 0.9014,
+   "regions": [
+    "asia_pacific"
+   ],
+   "year": 2025
+  },
+  "BD": {
+   "cur": "BDT",
+   "fx": 123.324304,
+   "plr": 0.2536,
+   "regions": [
+    "south_asia"
+   ],
+   "year": 2025
+  },
+  "BE": {
+   "cur": "EUR",
+   "fx": 0.871291,
+   "plr": 0.8135,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "BR": {
+   "cur": "BRL",
+   "fx": 5.134105,
+   "plr": 0.4572,
+   "regions": [
+    "emerging",
+    "latam"
+   ],
+   "year": 2025
+  },
+  "CA": {
+   "cur": "CAD",
+   "fx": 1.399127,
+   "plr": 0.8345,
+   "regions": [
+    "north_america"
+   ],
+   "year": 2025
+  },
+  "CH": {
+   "cur": "CHF",
+   "fx": 0.823432,
+   "plr": 1.1196,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "CL": {
+   "cur": "CLP",
+   "fx": 960.836786,
+   "plr": 0.4764,
+   "regions": [
+    "latam"
+   ],
+   "year": 2025
+  },
+  "CN": {
+   "cur": "CNY",
+   "fx": 6.718405,
+   "plr": 0.4726,
+   "regions": [
+    "asia_pacific"
+   ],
+   "year": 2025
+  },
+  "CO": {
+   "cur": "COP",
+   "fx": 3140.322314,
+   "plr": 0.3782,
+   "regions": [
+    "latam"
+   ],
+   "year": 2025
+  },
+  "CR": {
+   "cur": "CRC",
+   "fx": 451.508017,
+   "plr": 0.5906,
+   "regions": [
+    "latam"
+   ],
+   "year": 2025
+  },
+  "CZ": {
+   "cur": "CZK",
+   "fx": 21.205377,
+   "plr": 0.5938,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "DE": {
+   "cur": "EUR",
+   "fx": 0.871291,
+   "plr": 0.8023,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "DK": {
+   "cur": "DKK",
+   "fx": 6.518522,
+   "plr": 0.9249,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "DO": {
+   "cur": "DOP",
+   "fx": 59.538816,
+   "plr": 0.3851,
+   "regions": [
+    "latam"
+   ],
+   "year": 2025
+  },
+  "EG": {
+   "cur": "EGP",
+   "fx": 52.137035,
+   "plr": 0.1541,
+   "regions": [
+    "africa",
+    "mena"
+   ],
+   "year": 2025
+  },
+  "ES": {
+   "cur": "EUR",
+   "fx": 0.871291,
+   "plr": 0.6452,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "FI": {
+   "cur": "EUR",
+   "fx": 0.871291,
+   "plr": 0.8522,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "FR": {
+   "cur": "EUR",
+   "fx": 0.871291,
+   "plr": 0.7657,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "GB": {
+   "cur": "GBP",
+   "fx": 0.747943,
+   "plr": 0.8916,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "GH": {
+   "cur": "GHS",
+   "fx": 11.578138,
+   "plr": 0.3783,
+   "regions": [
+    "africa"
+   ],
+   "year": 2025
+  },
+  "GR": {
+   "cur": "EUR",
+   "fx": 0.871291,
+   "plr": 0.5954,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "HK": {
+   "cur": "HKD",
+   "fx": 7.845294,
+   "plr": 0.7085,
+   "regions": [
+    "asia_pacific"
+   ],
+   "year": 2025
+  },
+  "HU": {
+   "cur": "HUF",
+   "fx": 317.164426,
+   "plr": 0.5198,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "ID": {
+   "cur": "IDR",
+   "fx": 17767.843756,
+   "plr": 0.2865,
+   "regions": [
+    "emerging",
+    "sea"
+   ],
+   "year": 2025
+  },
+  "IE": {
+   "cur": "EUR",
+   "fx": 0.871291,
+   "plr": 0.8485,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "IL": {
+   "cur": "ILS",
+   "fx": 3.03391,
+   "plr": 1.0104,
+   "regions": [
+    "mena"
+   ],
+   "year": 2025
+  },
+  "IN": {
+   "cur": "INR",
+   "fx": 95.940282,
+   "plr": 0.2305,
+   "regions": [
+    "emerging",
+    "south_asia"
+   ],
+   "year": 2025
+  },
+  "IT": {
+   "cur": "EUR",
+   "fx": 0.871291,
+   "plr": 0.6896,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "JP": {
+   "cur": "JPY",
+   "fx": 157.140885,
+   "plr": 0.6487,
+   "regions": [
+    "asia_pacific"
+   ],
+   "year": 2025
+  },
+  "KE": {
+   "cur": "KES",
+   "fx": 129.51513,
+   "plr": 0.3368,
+   "regions": [
+    "africa"
+   ],
+   "year": 2025
+  },
+  "KR": {
+   "cur": "KRW",
+   "fx": 1386.744186,
+   "plr": 0.5739,
+   "regions": [
+    "asia_pacific"
+   ],
+   "year": 2025
+  },
+  "LK": {
+   "cur": "LKR",
+   "fx": 331.272976,
+   "plr": 0.2629,
+   "regions": [
+    "south_asia"
+   ],
+   "year": 2023
+  },
+  "MA": {
+   "cur": "MAD",
+   "fx": 9.496609,
+   "plr": 0.4205,
+   "regions": [
+    "africa",
+    "mena"
+   ],
+   "year": 2025
+  },
+  "MX": {
+   "cur": "MXN",
+   "fx": 17.212297,
+   "plr": 0.5369,
+   "regions": [
+    "latam"
+   ],
+   "year": 2025
+  },
+  "MY": {
+   "cur": "MYR",
+   "fx": 4.0815,
+   "plr": 0.3163,
+   "regions": [
+    "sea"
+   ],
+   "year": 2025
+  },
+  "NG": {
+   "cur": "NGN",
+   "fx": 1335.694724,
+   "plr": 0.1284,
+   "regions": [
+    "emerging",
+    "africa"
+   ],
+   "year": 2025
+  },
+  "NL": {
+   "cur": "EUR",
+   "fx": 0.871291,
+   "plr": 0.8438,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "NO": {
+   "cur": "NOK",
+   "fx": 9.420484,
+   "plr": 0.9092,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "NP": {
+   "cur": "NPR",
+   "fx": 153.518606,
+   "plr": 0.2437,
+   "regions": [
+    "south_asia"
+   ],
+   "year": 2025
+  },
+  "NZ": {
+   "cur": "NZD",
+   "fx": 1.749184,
+   "plr": 0.8563,
+   "regions": [
+    "asia_pacific"
+   ],
+   "year": 2025
+  },
+  "PE": {
+   "cur": "PEN",
+   "fx": 3.380373,
+   "plr": 0.5147,
+   "regions": [
+    "latam"
+   ],
+   "year": 2025
+  },
+  "PH": {
+   "cur": "PHP",
+   "fx": 62.839511,
+   "plr": 0.3316,
+   "regions": [
+    "sea"
+   ],
+   "year": 2025
+  },
+  "PK": {
+   "cur": "PKR",
+   "fx": 278.631272,
+   "plr": 0.2413,
+   "regions": [
+    "south_asia"
+   ],
+   "year": 2025
+  },
+  "PL": {
+   "cur": "PLN",
+   "fx": 3.802076,
+   "plr": 0.5237,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "PT": {
+   "cur": "EUR",
+   "fx": 0.871291,
+   "plr": 0.6037,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "RO": {
+   "cur": "RON",
+   "fx": 4.587526,
+   "plr": 0.4428,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "SA": {
+   "cur": "SAR",
+   "fx": 3.75,
+   "plr": 0.4681,
+   "regions": [
+    "mena"
+   ],
+   "year": 2025
+  },
+  "SE": {
+   "cur": "SEK",
+   "fx": 9.835574,
+   "plr": 0.8705,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "SG": {
+   "cur": "SGD",
+   "fx": 1.276628,
+   "plr": 0.6049,
+   "regions": [
+    "sea"
+   ],
+   "year": 2025
+  },
+  "TH": {
+   "cur": "THB",
+   "fx": 33.356156,
+   "plr": 0.3069,
+   "regions": [
+    "sea"
+   ],
+   "year": 2025
+  },
+  "TR": {
+   "cur": "TRY",
+   "fx": 48.803762,
+   "plr": 0.4107,
+   "regions": [
+    "europe",
+    "mena"
+   ],
+   "year": 2025
+  },
+  "TZ": {
+   "cur": "TZS",
+   "fx": 2659.314943,
+   "plr": 0.2821,
+   "regions": [
+    "africa"
+   ],
+   "year": 2024
+  },
+  "UA": {
+   "cur": "UAH",
+   "fx": 44.696159,
+   "plr": 0.3103,
+   "regions": [
+    "europe"
+   ],
+   "year": 2025
+  },
+  "UG": {
+   "cur": "UGX",
+   "fx": 3899.068895,
+   "plr": 0.3529,
+   "regions": [
+    "africa"
+   ],
+   "year": 2025
+  },
+  "UY": {
+   "cur": "UYU",
+   "fx": 40.604152,
+   "plr": 0.6581,
+   "regions": [
+    "latam"
+   ],
+   "year": 2025
+  },
+  "VN": {
+   "cur": "VND",
+   "fx": 26127.618517,
+   "plr": 0.2878,
+   "regions": [
+    "sea"
+   ],
+   "year": 2024
+  },
+  "ZA": {
+   "cur": "ZAR",
+   "fx": 16.267228,
+   "plr": 0.4148,
+   "regions": [
+    "africa"
+   ],
+   "year": 2025
+  }
+ },
+ "fx": {
+  "date": "Sun, 20 Sep 2026",
+  "source": "Exchange Rate API (open.er-api.com)"
+ },
+ "generated": "2026-09-20",
+ "priceLevel": {
+  "lastUpdated": "2026-07-13",
+  "license": "CC BY 4.0",
+  "source": "World Bank, PA.NUS.PPP / PA.NUS.FCRF (International Comparison Program)"
+ },
+ "version": 1
+}

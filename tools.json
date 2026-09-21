@@ -1,0 +1,59 @@
+[
+ {
+  "slug": "hourly-rate",
+  "cat": "price",
+  "icon": "clock",
+  "size": "xl",
+  "sample": "$73.19 / hr"
+ },
+ {
+  "slug": "quote",
+  "cat": "price",
+  "icon": "file",
+  "size": "m",
+  "sample": "$3,450 total"
+ },
+ {
+  "slug": "invoice",
+  "cat": "getpaid",
+  "icon": "receipt",
+  "size": "m",
+  "sample": "$1,728 due"
+ },
+ {
+  "slug": "markup-margin",
+  "cat": "price",
+  "icon": "percent",
+  "size": "m",
+  "sample": "33.3% margin"
+ },
+ {
+  "slug": "retainer",
+  "cat": "price",
+  "icon": "repeat",
+  "size": "m",
+  "sample": "+$750 / month"
+ },
+ {
+  "slug": "late-fee",
+  "cat": "getpaid",
+  "icon": "alarm",
+  "size": "s",
+  "sample": "$2,524.66 owed"
+ },
+ {
+  "slug": "tax",
+  "cat": "tax",
+  "icon": "landmark",
+  "size": "s",
+  "sample": "$22,289 to set aside"
+ },
+ {
+  "slug": "ppp-pricing-calculator",
+  "cat": "global",
+  "icon": "globe",
+  "size": "s",
+  "sample": "$29 → ₹1,099 in India",
+  "plugin": true
+ }
+]
