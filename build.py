@@ -55,6 +55,29 @@ ICONS = {
 CONTACT_EMAIL = 'hello@ratelark.com'
 CONTACT_LABEL = {'en': 'Contact', 'es': 'Contacto', 'pt': 'Contato', 'fr': 'Contact', 'de': 'Kontakt', 'hi': '\u0938\u0902\u092a\u0930\u094d\u0915',
                  'ar': '\u0627\u062a\u0635\u0644 \u0628\u0646\u0627', 'zh': '\u8054\u7cfb\u6211\u4eec', 'id': 'Kontak'}
+# per-language hub page (/{lang}/) chrome: H1 and meta description. Card copy reuses tool_name()/tool_desc().
+HUB_H1 = {
+ 'en': 'Freelance Pricing, Quote, Invoice and Tax Tools',
+ 'es': 'Herramientas de precios, presupuestos, facturas e impuestos para freelancers',
+ 'pt': 'Ferramentas de pre\u00e7o, or\u00e7amento, fatura e imposto para freelancers',
+ 'fr': 'Outils de tarification, devis, facturation et imp\u00f4ts pour freelances',
+ 'de': 'Preis-, Angebots-, Rechnungs- und Steuertools f\u00fcr Freelancer',
+ 'hi': '\u092b\u094d\u0930\u0940\u0932\u093e\u0902\u0938\u0930\u094b\u0902 \u0915\u0947 \u0932\u093f\u090f \u092a\u094d\u0930\u093e\u0907\u0938\u093f\u0902\u0917, \u0915\u094b\u091f\u0947\u0936\u0928, \u0907\u0928\u0935\u0949\u0907\u0938 \u0914\u0930 \u091f\u0948\u0915\u094d\u0938 \u091f\u0942\u0932\u094d\u0938',
+ 'ar': '\u0623\u062f\u0648\u0627\u062a \u062a\u0633\u0639\u064a\u0631 \u0648\u0639\u0631\u0648\u0636 \u0623\u0633\u0639\u0627\u0631 \u0648\u0641\u0648\u0627\u062a\u064a\u0631 \u0648\u0636\u0631\u0627\u0626\u0628 \u0644\u0644\u0645\u0633\u062a\u0642\u0644\u064a\u0646',
+ 'zh': '\u4e3a\u81ea\u7531\u804c\u4e1a\u8005\u63d0\u4f9b\u7684\u5b9a\u4ef7\u3001\u62a5\u4ef7\u3001\u53d1\u7968\u548c\u7a0e\u52a1\u5de5\u5177',
+ 'id': 'Alat penetapan harga, penawaran, invoice, dan pajak untuk freelancer',
+}
+HUB_DESC = {
+ 'en': 'Free, private calculators for freelancers: hourly rate, project quotes, invoices, markup, retainers, late fees and tax set-aside. No sign-up.',
+ 'es': 'Calculadoras gratuitas y privadas para freelancers: tarifa por hora, presupuestos de proyectos, facturas, markup, tarifas fijas y ahorro de impuestos. Sin registro.',
+ 'pt': 'Calculadoras gratuitas e privadas para freelancers: valor da hora, or\u00e7amentos de projetos, faturas, markup, retainers e imposto a reservar. Sem cadastro.',
+ 'fr': "Calculateurs gratuits et priv\u00e9s pour freelances\u00a0: taux horaire, devis de projets, factures, majoration, forfaits et imp\u00f4ts \u00e0 provisionner. Sans inscription.",
+ 'de': 'Kostenlose, private Rechner f\u00fcr Freelancer: Stundensatz, Projektangebote, Rechnungen, Aufschlag, Pauschalen und Steuerr\u00fccklage. Ohne Anmeldung.',
+ 'hi': '\u092b\u094d\u0930\u0940\u0932\u093e\u0902\u0938\u0930\u094b\u0902 \u0915\u0947 \u0932\u093f\u090f \u092e\u0941\u092b\u094d\u0924, \u0928\u093f\u091c\u0940 \u0915\u0948\u0932\u094d\u0915\u0941\u0932\u0947\u091f\u0930: \u0918\u0902\u091f\u0947 \u0915\u0940 \u0926\u0930, \u092a\u094d\u0930\u094b\u091c\u0947\u0915\u094d\u091f \u0915\u094b\u091f\u0947\u0936\u0928, \u0907\u0928\u0935\u0949\u0907\u0938, \u092e\u093e\u0930\u094d\u0915\u0905\u092a, \u0930\u093f\u091f\u0947\u0928\u0930 \u0914\u0930 \u091f\u0948\u0915\u094d\u0938 \u0938\u0947\u091f-\u0905\u0938\u093e\u0907\u0928\u0964 \u092c\u093f\u0928\u093e \u0938\u093e\u0907\u0928-\u0905\u092a\u0964',
+ 'ar': '\u062d\u0627\u0633\u0628\u0627\u062a \u0645\u062c\u0627\u0646\u064a\u0629 \u0648\u062e\u0627\u0635\u0629 \u0644\u0644\u0645\u0633\u062a\u0642\u0644\u064a\u0646: \u0633\u0639\u0631 \u0627\u0644\u0633\u0627\u0639\u0629\u060c \u0639\u0631\u0648\u0636 \u0623\u0633\u0639\u0627\u0631 \u0627\u0644\u0645\u0634\u0627\u0631\u064a\u0639\u060c \u0627\u0644\u0641\u0648\u0627\u062a\u064a\u0631\u060c \u0647\u0627\u0645\u0634 \u0627\u0644\u0631\u0628\u062d\u060c \u0627\u0644\u0627\u0634\u062a\u0631\u0627\u0643\u0627\u062a \u0627\u0644\u0634\u0647\u0631\u064a\u0629\u060c \u0648\u062a\u062c\u0646\u064a\u0628 \u0627\u0644\u0636\u0631\u0627\u0626\u0628. \u0628\u062f\u0648\u0646 \u062a\u0633\u062c\u064a\u0644.',
+ 'zh': '\u4e3a\u81ea\u7531\u804c\u4e1a\u8005\u63d0\u4f9b\u7684\u514d\u8d39\u3001\u79c1\u5bc6\u8ba1\u7b97\u5668\uff1a\u65f6\u85aa\u3001\u9879\u76ee\u62a5\u4ef7\u3001\u53d1\u7968\u3001\u52a0\u4ef7\u7387\u3001\u5305\u6708\u8d39\u548c\u7a0e\u52a1\u9884\u7559\u3002\u65e0\u9700\u6ce8\u518c\u3002',
+ 'id': 'Kalkulator gratis dan privat untuk freelancer: tarif per jam, penawaran proyek, invoice, markup, retainer, dan alokasi pajak. Tanpa daftar.',
+}
 def icon_svg(name, size=22):
     return ('<svg viewBox="0 0 24 24" width="%d" height="%d" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">%s</svg>'
             % (size, size, ICONS.get(name, ICONS['file'])))
@@ -282,7 +305,7 @@ def build_page(lang, tool):
         a.string = nm
         langs_nav.append(a)
     ft.insert(0, langs_nav)
-    ft.append(BeautifulSoup('<p><a href="/privacy/">Privacy</a> &middot; <a href="mailto:%s">%s</a></p>' % (CONTACT_EMAIL, CONTACT_LABEL[lang]), 'html.parser'))
+    ft.append(BeautifulSoup('<p><a href="/privacy/">%s</a> &middot; <a href="mailto:%s">%s</a></p>' % (UI[lang]['privacy'], CONTACT_EMAIL, CONTACT_LABEL[lang]), 'html.parser'))
 
     if tool not in PLUGINS:
         title = tr(TITLES[tool], lang)
@@ -364,6 +387,112 @@ def build_page(lang, tool):
     return page
 
 
+def hub_card(lang, t):
+    e = lambda x: html.escape(x, quote=True)
+    slug = t['slug']
+    return ('<a class="hub-card" href="/%s/%s/">'
+            '<span class="hc-top"><span class="hc-ico">%s</span><span class="hc-cat">%s</span></span>'
+            '<h3>%s</h3><p>%s</p></a>'
+            % (lang, slug, icon_svg(t['icon'], 20), e(CATS[t['cat']][lang]),
+               e(tool_name(lang, slug)), e(tool_desc(lang, slug))))
+
+
+def build_hub(lang):
+    """Per-language hub page at /{lang}/: an H1, the tagline, and a card for every tool."""
+    mp = MAPS[lang]
+    name, hl, locale = next((n, h, l) for c, n, h, l in LANGS if c == lang)
+    dirn = 'rtl' if lang == 'ar' else 'ltr'
+
+    hdr = copy.copy(header)
+    hdr.find('a', class_='brand')['href'] = '/'
+    _brand = hdr.find('a', class_='brand')
+    for _n in list(_brand.contents):
+        if isinstance(_n, str):
+            _n.extract()
+    _brand.append(BeautifulSoup('<span class="wm">Rate<span class="lk">Lark</span></span>', 'html.parser'))
+    opt = hdr.find('select', id='lang').find('option', value=lang)
+    opt['selected'] = 'selected'
+    translate(hdr, mp)
+    cur = hdr.find('select', id='cur')
+    if cur is not None and cur.find_parent('label') is not None:
+        cur.find_parent('label').decompose()   # no currency picker on the hub
+    ui = UI[lang]
+    kb = BeautifulSoup('<button type="button" class="kbtn" data-palette aria-label="%s"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><span class="kt">%s</span><kbd>Ctrl K</kbd></button>' % (ui['search'], ui['search']), 'html.parser')
+    hdr.find('div', class_='pick').insert(0, kb)
+
+    ft = copy.copy(footer); translate(ft, mp)
+    langs_nav = BeautifulSoup('<nav class="langs" aria-label="Languages"></nav>', 'html.parser').nav
+    for code, nm, h, _ in LANGS:
+        a = BeautifulSoup('<a></a>', 'html.parser').a
+        a['href'] = '/%s/' % code
+        a['hreflang'] = h
+        a['lang'] = code
+        if code == lang:
+            a['aria-current'] = 'true'
+        a.string = nm
+        langs_nav.append(a)
+    ft.insert(0, langs_nav)
+    ft.append(BeautifulSoup('<p><a href="/privacy/">%s</a> &middot; <a href="mailto:%s">%s</a></p>' % (UI[lang]['privacy'], CONTACT_EMAIL, CONTACT_LABEL[lang]), 'html.parser'))
+
+    e = lambda x: html.escape(x, quote=True)
+    title = 'RateLark: %s' % HUB_H1[lang]
+    description = HUB_DESC[lang]
+    url = '%s/%s/' % (BASE, lang)
+    cards = ''.join(hub_card(lang, t) for t in REG)
+    alts = ''.join('<link rel="alternate" hreflang="%s" href="%s/%s/">' % (h, BASE, c) for c, _, h, _ in LANGS)
+    alts += '<link rel="alternate" hreflang="x-default" href="%s/en/">' % BASE
+    ld = {'@context': 'https://schema.org', '@type': 'CollectionPage', 'name': title.split(' | ')[0],
+          'url': url, 'inLanguage': hl, 'description': description}
+    page = f'''<!doctype html>
+<html lang="{lang}" dir="{dirn}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{e(title)}</title>
+<meta name="description" content="{e(description)}">
+<link rel="canonical" href="{url}">
+{alts}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RateLark">
+<meta property="og:title" content="{e(title)}">
+<meta property="og:description" content="{e(description)}">
+<meta property="og:url" content="{url}">
+<meta property="og:locale" content="{locale}">
+<meta property="og:image" content="{BASE}/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{BASE}/og.png">
+<meta name="theme-color" content="#EDF1F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1622" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{e(fonts)}">
+<link rel="stylesheet" href="/assets/app.css?v={VER['app.css']}">
+<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False).replace('</', '<\\/')}</script>
+</head>
+<body data-tool="">
+<div class="tfx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
+{hdr}
+<main id="main">
+<div class="head">
+<h1>{e(HUB_H1[lang])}</h1>
+<p>{e(tr('Freelance pricing, quote, invoice and tax tools in one place.', lang))}</p>
+</div>
+<div class="hub-grid">{cards}</div>
+</main>
+{ft}
+<script src="/assets/palette.js?v={VER['palette.js']}" defer></script>
+</body>
+</html>
+'''
+    return page
+
+
 def write(path, text):
     full = os.path.join(OUT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
@@ -377,6 +506,14 @@ a.tab{text-decoration:none}
 .langs{display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin:0 0 .9rem}
 .langs a{color:var(--muted)}
 .langs a[aria-current="true"]{color:var(--ink);font-weight:600;text-decoration:none}
+.hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:1.4rem}
+.hub-card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1rem;text-decoration:none;color:inherit}
+.hub-card:hover,.hub-card:focus-visible{border-color:var(--edge)}
+.hub-card .hc-top{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem}
+.hub-card .hc-ico{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:var(--bg);color:var(--ink)}
+.hub-card .hc-cat{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hub-card h3{margin:0;font:700 1.05rem var(--display);color:var(--ink)}
+.hub-card p{margin:.35rem 0 0;color:var(--muted);font-size:.88rem;line-height:1.4}
 '''
 PAL_CSS = open(os.path.join(HERE, 'palette.css'), encoding='utf-8').read()
 PAL_JS = open(os.path.join(HERE, 'palette.js'), encoding='utf-8').read()
@@ -416,10 +553,15 @@ for code, *_ in LANGS:
     for tool in TOOLS:
         write('%s/%s/index.html' % (code, tool), build_page(code, tool))
         count += 1
+    write('%s/index.html' % code, build_hub(code))
+    count += 1
 
 # sitemap with hreflang alternates
 urls = []
 for code, *_ in LANGS:
+    hub_alts = ''.join('<xhtml:link rel="alternate" hreflang="%s" href="%s/%s/"/>' % (h, BASE, c) for c, _, h, _ in LANGS)
+    hub_alts += '<xhtml:link rel="alternate" hreflang="x-default" href="%s/en/"/>' % BASE
+    urls.append('<url><loc>%s/%s/</loc><lastmod>%s</lastmod>%s</url>' % (BASE, code, TODAY, hub_alts))
     for tool in TOOLS:
         alts = ''.join('<xhtml:link rel="alternate" hreflang="%s" href="%s/%s/%s/"/>' % (h, BASE, c, tool)
                        for c, _, h, _ in LANGS)
