@@ -62,9 +62,12 @@ h1 em{font-style:normal;color:var(--y)}
 @media (max-height:960px) and (min-width:821px){
  .hero-mark{top:0;width:min(220px,32vw)}
  /* fixed px, not vh: the logo above is a fixed ~220px wide (so a fixed ~180px tall) in this
-    range regardless of viewport height, so its clearance below must be fixed too */
- .ghost{top:200px}
- .copy{padding-top:320px}
+    range regardless of viewport height, so its clearance below must be fixed too. The ghost
+    wordmark's font-size is capped at 19rem (304px) once viewport width exceeds ~885px, giving
+    a line box of ~258px (304 * .85 line-height) -- so it always runs from .ghost's top down to
+    roughly top + 258px, whatever the viewport height. .copy must clear that. */
+ .ghost{top:190px}
+ .copy{padding-top:480px}
  .hud{display:none}
 }
 
