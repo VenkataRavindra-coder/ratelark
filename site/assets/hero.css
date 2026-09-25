@@ -155,6 +155,12 @@ h1 em{font-style:normal;color:var(--y)}
 .mi{display:flex;flex-direction:column;min-width:0}.mi b{font-weight:600;color:#fff}.mi small{color:var(--muted);font-size:.78rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .mega-all{display:inline-block;margin:.9rem .5rem 0;color:var(--y);text-decoration:none;font-weight:600}
 /* trust row */
+/* defers layout/paint cost for below-the-fold sections until they're about to scroll into
+   view, cutting main-thread work before first paint on a DOM this size. "auto" remembers
+   the real height after first layout, so the estimate below only matters for the very first
+   paint (kept close to the real height, separately for mobile below, to avoid a CLS blip). */
+.why{content-visibility:auto;contain-intrinsic-size:auto 350px}
+.foot2{content-visibility:auto;contain-intrinsic-size:auto 650px}
 .why{position:relative;z-index:3;max-width:1100px;margin:2.5rem auto 0;padding:0 1.25rem;text-align:center}
 .why h2{margin:0 0 1.4rem;font:700 clamp(1.6rem,3.2vw,2.3rem)/1.1 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.03em}
 .why ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;text-align:left}
@@ -179,5 +185,8 @@ h1 em{font-style:normal;color:var(--y)}
  .mega{position:fixed;left:.6rem;right:.6rem;top:4.2rem;transform:none;width:auto;max-height:78vh;overflow-y:auto}
  .mega-in{grid-template-columns:1fr}
  .why ul{grid-template-columns:1fr}
+ /* .why ul stacks to 1 column here, so the section is much taller than the desktop estimate */
+ .why{contain-intrinsic-size:auto 800px}
+ .foot2{contain-intrinsic-size:auto 900px}
 }
 @media (max-width:560px){.fgrid{grid-template-columns:1fr 1fr}}
