@@ -66,8 +66,8 @@ h1 em{font-style:normal;color:var(--y)}
     wordmark's font-size is capped at 19rem (304px) once viewport width exceeds ~885px, giving
     a line box of ~258px (304 * .85 line-height) -- so it always runs from .ghost's top down to
     roughly top + 258px, whatever the viewport height. .copy must clear that. */
- .ghost{top:190px}
- .copy{padding-top:480px}
+ .ghost{top:295px}
+ .copy{padding-top:585px}
  .hud{display:none}
 }
 

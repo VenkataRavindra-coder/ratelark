@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ratelark.app/sitemap.xml
+Sitemap: https://ratelark.com/sitemap.xml
