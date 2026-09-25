@@ -1061,6 +1061,10 @@ a.btn{text-decoration:none;display:inline-block}
 '''
 PAL_CSS = open(os.path.join(HERE, 'palette.css'), encoding='utf-8').read()
 PAL_JS = open(os.path.join(HERE, 'palette.js'), encoding='utf-8').read()
+HERO_CSS = open(os.path.join(HERE, 'hero.css'), encoding='utf-8').read()
+HERO_JS = open(os.path.join(HERE, 'hero.js'), encoding='utf-8').read()
+PLAIN_CSS = ('html{background:#03050a}body{font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;max-width:36rem;margin:3rem auto;padding:0 1rem;color:#F2F5FA;background:radial-gradient(ellipse 90vw 40vh at 50% -12vh,rgba(79,124,255,.45),transparent 70%),#03050a;min-height:100vh}\n'
+             'a{color:#FFD84D}li{margin:.4rem 0}h1{font-size:1.9rem;margin:0 0 .5rem}h2{font-size:1.15rem;margin:1.6rem 0 .3rem}p{color:#C3CCDD}\n')
 PLUGIN_CSS = ''.join(open(os.path.join(HERE, 'tools', t, 'tool.css'), encoding='utf-8').read() for t in PLUGINS)
 SHELL_JS = open(os.path.join(HERE, 'shell.js'), encoding='utf-8').read()
 CONNECT_JS = open(os.path.join(HERE, 'connect.js'), encoding='utf-8').read()
@@ -1083,7 +1087,8 @@ FONT_CSS = """@font-face{font-family:'Bricolage Grotesque';font-style:normal;fon
 @font-face{font-family:'Instrument Sans';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/instrument-sans-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 """
 VER = {n: hashlib.sha1(t.encode()).hexdigest()[:8] for n, t in
-       (('app.css', _css), ('i18n.js', i18n_js), ('app.js', main_js), ('palette.js', PAL_JS), ('shell.js', SHELL_JS), ('connect.js', CONNECT_JS), ('lz-string.min.js', LZ_JS), ('fonts.css', FONT_CSS))}
+       (('app.css', _css), ('i18n.js', i18n_js), ('app.js', main_js), ('palette.js', PAL_JS), ('shell.js', SHELL_JS), ('connect.js', CONNECT_JS), ('lz-string.min.js', LZ_JS), ('fonts.css', FONT_CSS),
+        ('palette.css', PAL_CSS), ('hero.css', HERO_CSS), ('hero.js', HERO_JS), ('plain.css', PLAIN_CSS))}
 for _t in PLUGINS:
     for _f in ('engine', 'ui'):
         VER['%s:%s' % (_f, _t)] = hashlib.sha1(open(os.path.join(HERE, 'tools', _t, _f + '.js'), 'rb').read()).hexdigest()[:8]
@@ -1172,9 +1177,8 @@ HEAD_COMMON = f"""<meta charset="utf-8">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="stylesheet" href="/assets/plain.css">"""
-write('assets/plain.css', 'html{background:#03050a}body{font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;max-width:36rem;margin:3rem auto;padding:0 1rem;color:#F2F5FA;background:radial-gradient(ellipse 90vw 40vh at 50% -12vh,rgba(79,124,255,.45),transparent 70%),#03050a;min-height:100vh}\n'
-      'a{color:#FFD84D}li{margin:.4rem 0}h1{font-size:1.9rem;margin:0 0 .5rem}h2{font-size:1.15rem;margin:1.6rem 0 .3rem}p{color:#C3CCDD}\n')
+<link rel="stylesheet" href="/assets/plain.css?v={VER['plain.css']}">"""
+write('assets/plain.css', PLAIN_CSS)
 
 e = lambda x: html.escape(x, quote=True)
 # root page: cinematic dark landing with a 3D lark (assets/hero.*)
@@ -1218,8 +1222,8 @@ for t in REG:
 filters = '<button type="button" data-cat="all" aria-pressed="true">All</button>' + ''.join(
     '<button type="button" data-cat="%s" aria-pressed="false">%s</button>' % (c, CATS[c]['en']) for c in cat_order)
 langs = ''.join('<a href="/%s/" hreflang="%s" lang="%s">%s</a>' % (c, h, c, n) for c, n, h, _ in LANGS)
-shutil.copy(os.path.join(HERE, 'hero.js'), os.path.join(OUT, 'assets', 'hero.js'))
-shutil.copy(os.path.join(HERE, 'hero.css'), os.path.join(OUT, 'assets', 'hero.css'))
+write('assets/hero.js', HERO_JS)
+write('assets/hero.css', HERO_CSS)
 LAYERS = logo.hero_art()
 MEGA = mega_html()
 FOOTER_TOOLS = footer_tools()
@@ -1246,8 +1250,8 @@ write('index.html', f"""<!doctype html>
 <link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts.css?v={VER['fonts.css']}">
-<link rel="stylesheet" href="/assets/hero.css">
-<link rel="stylesheet" href="/assets/palette.css">
+<link rel="stylesheet" href="/assets/hero.css?v={VER['hero.css']}">
+<link rel="stylesheet" href="/assets/palette.css?v={VER['palette.css']}">
 </head>
 <body>
 <div class="fx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
@@ -1287,8 +1291,8 @@ write('index.html', f"""<!doctype html>
   </div>
   <p class="fine">&copy; RateLark. Results are estimates, not tax, financial or legal advice.</p>
 </footer>
-<script type="module" src="/assets/hero.js"></script>
-<script src="/assets/palette.js" defer></script>
+<script type="module" src="/assets/hero.js?v={VER['hero.js']}"></script>
+<script src="/assets/palette.js?v={VER['palette.js']}" defer></script>
 </body>
 </html>
 """)
@@ -1352,8 +1356,6 @@ write('_headers', """/*
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
 /assets/*
-  Cache-Control: public, max-age=86400
-/assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable
 """)
 print('built %d pages for %s into %s' % (count, BASE, OUT))
