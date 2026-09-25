@@ -145,5 +145,8 @@
     if (b) { e.preventDefault(); open(); }
   });
   document.querySelectorAll('[data-palette] kbd').forEach(function (k) { k.textContent = isMac ? '⌘K' : 'Ctrl K'; });
-  window.addEventListener('pageshow', function () { load(); });
+  // only re-fetch on an actual bfcache restore (e.g. language may have changed via another
+  // tab); a plain first load has no stale data to refresh, and searching is opt-in, so
+  // there's no reason to fetch+parse this on every single page view.
+  window.addEventListener('pageshow', function (e) { if (e.persisted) load(); });
 })();
