@@ -50,8 +50,14 @@ h1 em{font-style:normal;color:var(--y)}
 @media (max-width:820px){
  .nav{grid-template-columns:1fr auto}.links{display:none}
  .hero-mark{top:0;width:min(260px,66vw)}
- .ghost{top:29vh}
- .copy{padding-top:44vh}
+ /* mixed vh+px, not pure vh: on short phones (SE-size and shorter) pure vh collapses this
+    gap to ~0; the fixed px floor guarantees clearance from the logo mark (capped ~211px
+    tall) regardless of viewport height. Same fix as the desktop wide-but-short block above. */
+ .ghost{top:calc(8vh + 235px)}
+ /* the ghost wordmark's font-size grows with vw up to this breakpoint's 820px edge (no cap
+    until ~885px viewport width), so .copy's clearance must grow with vw too, not just vh --
+    otherwise wide-but-short-in-the-mobile-sense windows (e.g. 820x960) overlap. */
+ .copy{padding-top:calc(18vw + 340px)}
  .hud{display:none}
  .arc{width:90vw}.arc.l{left:-72vw}.arc.r{right:-72vw}
 }
