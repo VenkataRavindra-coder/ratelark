@@ -50,8 +50,8 @@ h1 em{font-style:normal;color:var(--y)}
 @media (max-width:820px){
  .nav{grid-template-columns:1fr auto}.links{display:none}
  .hero-mark{top:0;width:min(260px,66vw)}
- .ghost{top:21vh}
- .copy{padding-top:42vh}
+ .ghost{top:29vh}
+ .copy{padding-top:44vh}
  .hud{display:none}
  .arc{width:90vw}.arc.l{left:-72vw}.arc.r{right:-72vw}
 }
