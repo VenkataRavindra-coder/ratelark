@@ -184,7 +184,7 @@ def icon_svg(name, size=22):
 TODAY = datetime.date.today().isoformat()
 TODAY = datetime.date.today().isoformat()
 SEL = ('.tab,.cur>span,h1,h2,.head p,.l,.hint,.mini,dt,.lbl,.note,summary,'
-       '.about p,details p,.btn,.suf,option,footer p')
+       '.about p,details p,.btn,.suf,option,footer p,.howto li')
 
 src = open(os.path.join(HERE, 'hourkit.html'), encoding='utf-8').read()
 soup = BeautifulSoup(src, 'html.parser')
@@ -305,6 +305,7 @@ def render_ppp(lang, T):
 <h1>{q(T['h1'])}</h1>
 <p>{q(T['lead'])}</p>
 </div>
+<div class="howto sheet"><h2>{q(T['howto_h'])}</h2><ol><li>{q(T['howto1'])}</li><li>{q(T['howto2'])}</li><li>{q(T['howto3'])}</li></ol></div>
 <div class="layout">
 <div class="side">
 <div aria-live="polite" class="result">

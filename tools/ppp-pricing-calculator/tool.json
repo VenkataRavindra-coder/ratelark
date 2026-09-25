@@ -75,7 +75,11 @@
    "faq1_q": "What is PPP pricing?",
    "faq1_a": "Purchasing power parity (PPP) pricing sets a lower price where money buys more, so people in lower-income countries can afford your product and you sell to more customers.",
    "faq2_q": "Is it safe to offer discounts by country?",
-   "faq2_a": "Use regional prices if your payment platform supports them. Discount codes can be shared, so use them for a limited launch and watch for abuse. Never go below your costs."
+   "faq2_a": "Use regional prices if your payment platform supports them. Discount codes can be shared, so use them for a limited launch and watch for abuse. Never go below your costs.",
+   "howto_h": "How to use this",
+   "howto1": "Enter your price in US dollars.",
+   "howto2": "Choose what you're selling and which markets to check.",
+   "howto3": "See a fair local price for each country, ready to use as a discount code."
   },
   "es": {
    "name": "Precios PPA",
@@ -144,7 +148,11 @@
    "faq1_q": "¿Qué son los precios por PPA?",
    "faq1_a": "Los precios por paridad de poder adquisitivo (PPA) fijan un precio menor donde el dinero rinde más, para que más gente pueda comprar tu producto y tú vendas a más clientes.",
    "faq2_q": "¿Es seguro ofrecer descuentos por país?",
-   "faq2_a": "Hazlo con precios regionales si tu plataforma de pago los admite. Los códigos de descuento se pueden compartir: úsalos en lanzamientos limitados y vigila los abusos. Nunca bajes de tus costes."
+   "faq2_a": "Hazlo con precios regionales si tu plataforma de pago los admite. Los códigos de descuento se pueden compartir: úsalos en lanzamientos limitados y vigila los abusos. Nunca bajes de tus costes.",
+   "howto_h": "Cómo usar esto",
+   "howto1": "Indica tu precio en dólares estadounidenses.",
+   "howto2": "Elige qué vendes y qué mercados quieres consultar.",
+   "howto3": "Consulta un precio justo para cada país, listo para usar como código de descuento."
   },
   "pt": {
    "name": "Preço PPC",
@@ -213,7 +221,11 @@
    "faq1_q": "O que é preço por PPC?",
    "faq1_a": "O preço por paridade de poder de compra (PPC) define um valor menor onde o dinheiro rende mais, para que mais pessoas possam comprar seu produto e você venda para mais clientes.",
    "faq2_q": "É seguro dar descontos por país?",
-   "faq2_a": "Prefira preços regionais se sua plataforma de pagamento os oferecer. Códigos de desconto podem ser compartilhados: use em lançamentos limitados e observe abusos. Nunca fique abaixo dos seus custos."
+   "faq2_a": "Prefira preços regionais se sua plataforma de pagamento os oferecer. Códigos de desconto podem ser compartilhados: use em lançamentos limitados e observe abusos. Nunca fique abaixo dos seus custos.",
+   "howto_h": "Como usar isso",
+   "howto1": "Informe seu preço em dólares americanos.",
+   "howto2": "Escolha o que você vende e quais mercados quer consultar.",
+   "howto3": "Veja um preço justo para cada país, pronto para usar como código de desconto."
   },
   "fr": {
    "name": "Prix PPA",
@@ -282,7 +294,11 @@
    "faq1_q": "Qu'est-ce que la tarification PPA ?",
    "faq1_a": "La tarification par parité de pouvoir d'achat (PPA) fixe un prix plus bas là où l'argent va plus loin, pour que davantage de personnes puissent acheter votre produit et que vous touchiez plus de clients.",
    "faq2_q": "Est-il prudent d'accorder des remises par pays ?",
-   "faq2_a": "Privilégiez des prix régionaux si votre plateforme de paiement les gère. Les codes promo peuvent être partagés : réservez-les à un lancement limité et surveillez les abus. Ne descendez jamais sous vos coûts."
+   "faq2_a": "Privilégiez des prix régionaux si votre plateforme de paiement les gère. Les codes promo peuvent être partagés : réservez-les à un lancement limité et surveillez les abus. Ne descendez jamais sous vos coûts.",
+   "howto_h": "Comment utiliser cet outil",
+   "howto1": "Indiquez votre prix en dollars américains.",
+   "howto2": "Choisissez ce que vous vendez et les marchés à vérifier.",
+   "howto3": "Consultez un prix local juste pour chaque pays, prêt à utiliser comme code de réduction."
   },
   "de": {
    "name": "KKP-Preise",
@@ -351,7 +367,11 @@
    "faq1_q": "Was ist KKP-Preisgestaltung?",
    "faq1_a": "Bei der Preisgestaltung nach Kaufkraftparität (KKP) liegt der Preis niedriger, wo Geld mehr wert ist. So können mehr Menschen dein Produkt kaufen und du erreichst mehr Kunden.",
    "faq2_q": "Sind Rabatte nach Land sinnvoll?",
-   "faq2_a": "Nutze regionale Preise, wenn deine Zahlungsplattform sie anbietet. Rabattcodes lassen sich weitergeben: Setze sie für begrenzte Aktionen ein und beobachte Missbrauch. Gehe nie unter deine Kosten."
+   "faq2_a": "Nutze regionale Preise, wenn deine Zahlungsplattform sie anbietet. Rabattcodes lassen sich weitergeben: Setze sie für begrenzte Aktionen ein und beobachte Missbrauch. Gehe nie unter deine Kosten.",
+   "howto_h": "So verwendest du dieses Tool",
+   "howto1": "Gib deinen Preis in US-Dollar ein.",
+   "howto2": "Wähle, was du verkaufst und welche Märkte geprüft werden sollen.",
+   "howto3": "Sieh einen fairen Preis für jedes Land, einsatzbereit als Rabattcode."
   },
   "hi": {
    "name": "PPP मूल्य",
@@ -420,7 +440,11 @@
    "faq1_q": "PPP मूल्य निर्धारण क्या है?",
    "faq1_a": "क्रय शक्ति समता (PPP) मूल्य निर्धारण में वहाँ कम कीमत रखी जाती है जहाँ पैसे की खरीद क्षमता ज़्यादा है, ताकि ज़्यादा लोग आपका उत्पाद खरीद सकें और आपके ग्राहक बढ़ें।",
    "faq2_q": "क्या देश के अनुसार छूट देना सुरक्षित है?",
-   "faq2_a": "यदि आपका पेमेंट प्लेटफ़ॉर्म क्षेत्रीय कीमतें देता है तो उन्हें चुनें। डिस्काउंट कोड साझा हो सकते हैं, इसलिए उन्हें सीमित लॉन्च के लिए रखें और दुरुपयोग पर नज़र रखें। अपनी लागत से नीचे कभी न जाएँ।"
+   "faq2_a": "यदि आपका पेमेंट प्लेटफ़ॉर्म क्षेत्रीय कीमतें देता है तो उन्हें चुनें। डिस्काउंट कोड साझा हो सकते हैं, इसलिए उन्हें सीमित लॉन्च के लिए रखें और दुरुपयोग पर नज़र रखें। अपनी लागत से नीचे कभी न जाएँ।",
+   "howto_h": "इसका उपयोग कैसे करें",
+   "howto1": "अपनी कीमत अमेरिकी डॉलर में दर्ज करें।",
+   "howto2": "चुनें कि आप क्या बेच रहे हैं और किन बाज़ारों की जांच करनी है।",
+   "howto3": "हर देश के लिए उचित स्थानीय कीमत देखें, जो डिस्काउंट कोड के रूप में इस्तेमाल के लिए तैयार है।"
   },
   "ar": {
    "name": "تسعير القوة الشرائية",
@@ -489,7 +513,11 @@
    "faq1_q": "ما هو التسعير بتعادل القوة الشرائية؟",
    "faq1_a": "يحدد هذا التسعير سعرًا أقل حيث يشتري المال أكثر، فيتمكن مزيد من الناس من شراء منتجك وتصل إلى عملاء أكثر.",
    "faq2_q": "هل من الآمن تقديم خصومات حسب الدولة؟",
-   "faq2_a": "فضّل الأسعار الإقليمية إن كانت منصة الدفع تدعمها. يمكن مشاركة رموز الخصم، فاستخدمها في إطلاقات محدودة وراقب إساءة الاستخدام. ولا تنزل أبدًا عن تكاليفك."
+   "faq2_a": "فضّل الأسعار الإقليمية إن كانت منصة الدفع تدعمها. يمكن مشاركة رموز الخصم، فاستخدمها في إطلاقات محدودة وراقب إساءة الاستخدام. ولا تنزل أبدًا عن تكاليفك.",
+   "howto_h": "كيفية استخدام هذه الأداة",
+   "howto1": "أدخل سعرك بالدولار الأمريكي.",
+   "howto2": "اختر ما تبيعه والأسواق التي تريد مراجعتها.",
+   "howto3": "شاهد سعرًا محليًا عادلًا لكل بلد، جاهزًا لاستخدامه كرمز خصم."
   },
   "zh": {
    "name": "PPP 定价",
@@ -558,7 +586,11 @@
    "faq1_q": "什么是 PPP 定价？",
    "faq1_a": "购买力平价（PPP）定价会在货币购买力更强的地方定更低的价格，让更多人买得起你的产品，你也能触达更多客户。",
    "faq2_q": "按国家给折扣安全吗？",
-   "faq2_a": "如果你的支付平台支持区域定价，优先使用它。折扣码可能被转发，请只用于限时活动并留意滥用。切勿低于你的成本。"
+   "faq2_a": "如果你的支付平台支持区域定价，优先使用它。折扣码可能被转发，请只用于限时活动并留意滥用。切勿低于你的成本。",
+   "howto_h": "使用方法",
+   "howto1": "输入你的美元价格。",
+   "howto2": "选择你销售的产品以及要查看的市场。",
+   "howto3": "查看每个国家的合理本地价格，可直接用作折扣代码。"
   },
   "id": {
    "name": "Harga PPP",
@@ -627,7 +659,11 @@
    "faq1_q": "Apa itu harga PPP?",
    "faq1_a": "Harga paritas daya beli (PPP) menetapkan harga lebih rendah di tempat uang bernilai lebih besar, sehingga lebih banyak orang mampu membeli produk Anda dan pelanggan Anda bertambah.",
    "faq2_q": "Amankah memberi diskon per negara?",
-   "faq2_a": "Utamakan harga regional jika platform pembayaran Anda mendukungnya. Kode diskon bisa dibagikan, jadi gunakan untuk peluncuran terbatas dan awasi penyalahgunaan. Jangan pernah di bawah biaya Anda."
+   "faq2_a": "Utamakan harga regional jika platform pembayaran Anda mendukungnya. Kode diskon bisa dibagikan, jadi gunakan untuk peluncuran terbatas dan awasi penyalahgunaan. Jangan pernah di bawah biaya Anda.",
+   "howto_h": "Cara menggunakan ini",
+   "howto1": "Masukkan harga kamu dalam dolar AS.",
+   "howto2": "Pilih apa yang kamu jual dan pasar mana yang ingin dicek.",
+   "howto3": "Lihat harga lokal yang adil untuk tiap negara, siap dipakai sebagai kode diskon."
   }
  }
 }

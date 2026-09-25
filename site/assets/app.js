@@ -262,7 +262,7 @@ $('#share').addEventListener('click',async()=>{
 });
 
 /* ---------- language ---------- */
-const SEL='.tab,.cur>span,h1,h2,.head p,.l,.hint,.mini,dt,.lbl,.note,summary,.about p,details p,.btn,.suf,option,footer p';
+const SEL='.tab,.cur>span,h1,h2,.head p,.l,.hint,.mini,dt,.lbl,.note,summary,.about p,details p,.btn,.suf,option,footer p,.howto li';
 const FONTS={hi:'Noto+Sans+Devanagari:wght@400;600;700',ar:'Noto+Sans+Arabic:wght@400;600;700'};
 function loadFont(l){
   if(!FONTS[l]||document.getElementById('f-'+l))return;

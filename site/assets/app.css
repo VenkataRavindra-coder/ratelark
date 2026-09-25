@@ -94,6 +94,13 @@ textarea.ctl{resize:vertical}
   .result{position:static;margin-bottom:.9rem;padding:1rem 1.2rem 1.2rem}
 }
 
+/* how to use (beginner steps, shown above the calculator) */
+.howto{margin:0 0 1.1rem}
+.howto h2{font:700 1.05rem/1.2 var(--display);margin:0 0 .6rem;letter-spacing:-.01em}
+.howto ol{margin:0;padding-left:1.3rem;display:grid;gap:.4rem}
+.howto li{color:var(--muted);font-size:.94rem;line-height:1.45}
+.howto li::marker{color:var(--ink);font-weight:600}
+
 /* about */
 .about{margin-top:1.25rem}
 .about h2{font:700 1.25rem/1.2 var(--display);margin:0 0 .5rem;letter-spacing:-.01em}
