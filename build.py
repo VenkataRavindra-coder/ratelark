@@ -218,7 +218,6 @@ sections = {s['id'][5:]: s for s in main.find_all('section', recursive=False)}
 share = main.find('div', class_='share')
 fallback = main.find('textarea', id='fallback')
 tab_labels = {b['data-tool']: b.get_text().strip() for b in nav_src.find_all('button')}
-fonts = soup.find('link', href=re.compile('fonts.googleapis.com/css2'))['href']
 assert set(sections) == set(t for t in TOOLS if t not in PLUGINS), sections.keys()
 
 
@@ -503,9 +502,9 @@ def build_page(lang, tool):
 <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="{e(fonts)}">
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts.css?v={VER['fonts.css']}">
 <link rel="stylesheet" href="../../assets/app.css?v={VER['app.css']}">
 <script type="application/ld+json">{ld_json}</script>
 </head>
@@ -685,9 +684,9 @@ def build_tax_page(lang, country):
 <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="{e(fonts)}">
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts.css?v={VER['fonts.css']}">
 <link rel="stylesheet" href="../../assets/app.css?v={VER['app.css']}">
 <script type="application/ld+json">{ld_json}</script>
 </head>
@@ -912,9 +911,9 @@ def build_article(slug):
 <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="{e(fonts)}">
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts.css?v={VER['fonts.css']}">
 <link rel="stylesheet" href="../../assets/app.css?v={VER['app.css']}">
 <script type="application/ld+json">{ld_json}</script>
 </head>
@@ -1010,9 +1009,9 @@ def build_hub(lang):
 <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="{e(fonts)}">
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts.css?v={VER['fonts.css']}">
 <link rel="stylesheet" href="/assets/app.css?v={VER['app.css']}">
 <script type="application/ld+json">{ld_json}</script>
 </head>
@@ -1067,8 +1066,24 @@ SHELL_JS = open(os.path.join(HERE, 'shell.js'), encoding='utf-8').read()
 CONNECT_JS = open(os.path.join(HERE, 'connect.js'), encoding='utf-8').read()
 LZ_JS = open(os.path.join(HERE, 'tools', 'ppp-pricing-calculator', 'lz-string.min.js'), encoding='utf-8').read()
 _css = css + extra_css + bgart.css() + PAL_CSS + PLUGIN_CSS
+# self-hosted subset of the two always-loaded families (Bricolage Grotesque 600/700,
+# Instrument Sans 400/500/600), latin + latin-ext only -- matches what the site actually
+# uses. Avoids the external fonts.googleapis.com -> fonts.gstatic.com render-blocking
+# chain on the critical path. hi/ar still lazy-load Noto Sans Devanagari/Arabic from
+# Google Fonts on demand (see FONTS in hourkit.html) -- that's not on the critical path.
+FONT_CSS = """@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/bricolage-grotesque-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/bricolage-grotesque-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:700;font-display:swap;src:url(/assets/fonts/bricolage-grotesque-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:700;font-display:swap;src:url(/assets/fonts/bricolage-grotesque-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/instrument-sans-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/instrument-sans-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/instrument-sans-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/instrument-sans-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/instrument-sans-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/instrument-sans-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+"""
 VER = {n: hashlib.sha1(t.encode()).hexdigest()[:8] for n, t in
-       (('app.css', _css), ('i18n.js', i18n_js), ('app.js', main_js), ('palette.js', PAL_JS), ('shell.js', SHELL_JS), ('connect.js', CONNECT_JS), ('lz-string.min.js', LZ_JS))}
+       (('app.css', _css), ('i18n.js', i18n_js), ('app.js', main_js), ('palette.js', PAL_JS), ('shell.js', SHELL_JS), ('connect.js', CONNECT_JS), ('lz-string.min.js', LZ_JS), ('fonts.css', FONT_CSS))}
 for _t in PLUGINS:
     for _f in ('engine', 'ui'):
         VER['%s:%s' % (_f, _t)] = hashlib.sha1(open(os.path.join(HERE, 'tools', _t, _f + '.js'), 'rb').read()).hexdigest()[:8]
@@ -1228,9 +1243,9 @@ write('index.html', f"""<!doctype html>
 <meta property="og:url" content="{BASE}/">
 <meta property="og:image" content="{BASE}/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="{e(fonts)}">
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts.css?v={VER['fonts.css']}">
 <link rel="stylesheet" href="/assets/hero.css">
 <link rel="stylesheet" href="/assets/palette.css">
 </head>
@@ -1300,7 +1315,7 @@ write('privacy/index.html', f"""<!doctype html><html lang="en"><head>
 <h2>No tracking</h2>
 <p>RateLark has no analytics, advertising or tracking scripts.</p>
 <h2>Third parties</h2>
-<p>Pages load fonts from Google Fonts, so Google receives your IP address and browser details when a page loads. The site is served by a hosting provider, which may keep standard server logs (IP address, page requested, time).</p>
+<p>Most fonts are hosted on RateLark and never touch a third party. If you switch to Hindi or Arabic, the page loads that language's font from Google Fonts, so Google receives your IP address and browser details at that point. The site is served by a hosting provider, which may keep standard server logs (IP address, page requested, time).</p>
 <h2>Contact</h2>
 <p>Questions, corrections or feedback: <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a>. When you email us we receive your message and your email address, and we use them only to reply. Mail to this address is forwarded through Cloudflare's email routing.</p>
 <h2>Not advice</h2>
@@ -1320,7 +1335,13 @@ write('site.webmanifest', json.dumps({
 
 STATIC = os.path.join(HERE, 'static')
 for f in os.listdir(STATIC):
-    shutil.copy(os.path.join(STATIC, f), os.path.join(OUT, f))
+    src = os.path.join(STATIC, f)
+    if os.path.isdir(src):
+        shutil.copytree(src, os.path.join(OUT, 'assets', f), dirs_exist_ok=True)
+    else:
+        shutil.copy(src, os.path.join(OUT, f))
+
+write('assets/fonts.css', FONT_CSS)
 
 # security + caching headers (Cloudflare Pages and Netlify both read _headers)
 write('_headers', """/*
@@ -1329,8 +1350,10 @@ write('_headers', """/*
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
 /assets/*
   Cache-Control: public, max-age=86400
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
 """)
 print('built %d pages for %s into %s' % (count, BASE, OUT))
