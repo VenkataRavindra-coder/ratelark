@@ -37,7 +37,7 @@
 <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts.css?v=9ac150bd">
 <link rel="stylesheet" href="../../assets/app.css?v=15dd7f43">
-<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "自由职业项目报价计算器", "url": "https://ratelark.com/zh/project-quote-calculator/", "inLanguage": "zh-Hans", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "description": "用缓冲金额、成本和定金为项目报价,看看这份报价实际上每小时能赚多少。免费,无需注册。", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "为什么要加缓冲？", "acceptedAnswer": {"@type": "Answer", "text": "项目很少完全按估算进行。人工费用的 10% 到 20% 是常见的缓冲起点。如果需求不明确或客户是新客户，就调得更高。"}}, {"@type": "Question", "name": "折扣实际上会让我损失多少？", "acceptedAnswer": {"@type": "Answer", "text": "提高折扣时，请留意“按计划”的每小时收入。每一个百分点都直接来自你的收入，而不是你的成本。"}}]}]</script>
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "自由职业项目报价计算器", "url": "https://ratelark.com/zh/project-quote-calculator/", "inLanguage": "zh-Hans", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "description": "用缓冲金额、成本和定金为项目报价,看看这份报价实际上每小时能赚多少。免费,无需注册。", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "为什么要加缓冲？", "acceptedAnswer": {"@type": "Answer", "text": "项目很少完全按估算进行。人工费用的 10% 到 20% 是常见的缓冲起点。如果需求不明确或客户是新客户，就调得更高。"}}, {"@type": "Question", "name": "折扣实际上会让我损失多少？", "acceptedAnswer": {"@type": "Answer", "text": "提高折扣时，请留意“按计划”的每小时收入。每一个百分点都直接来自你的收入，而不是你的成本。"}}, {"@type": "Question", "name": "如果客户说太贵了怎么办?", "acceptedAnswer": {"@type": "Answer", "text": "在降低数字之前，先看看是什么在推高它——通常是工时估算或缓冲比例。如果价格仍然超出客户预算，减少工作范围而不是降低时薪：减少修改轮次、缩小交付物，或延长时间线。在范围不变的情况下降价，意味着用更少的钱做同样的工作，而这正是这个计算器想帮你避免的。"}}]}]</script>
 </head>
 <body data-tool="quote" data-quote-label="项目报价">
 <div class="tfx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
@@ -58,7 +58,7 @@
 <h1>自由职业项目报价计算器</h1>
 <p>用缓冲金额、成本和定金为项目报价,看看这份报价实际上每小时能赚多少。免费,无需注册。</p>
 </div>
-<div class="howto sheet"><h2>使用方法</h2><ol><li>估算这个项目需要多少小时。</li><li>输入你的时薪，以及需要转嫁给客户的成本。</li><li>为意外情况添加一个缓冲——看看这份报价实际上每小时能给你带来多少收入。</li></ol></div><div class="layout">
+<div class="note-box sheet"><h2>报价不只是小时数 × 时薪</h2><p>把时薪乘以预估工时看起来很精确，但它忽略了项目中那些占用时间却不算计费工作的部分——范围沟通、修改往返、客户延误，以及项目拖长的风险。这正是缓冲和定金字段的作用：它们把一个简单的估算变成一份即使项目没有完全按计划进行，也仍能让你获得合理报酬的报价。</p></div><div class="howto sheet"><h2>使用方法</h2><ol><li>估算这个项目需要多少小时。</li><li>输入你的时薪，以及需要转嫁给客户的成本。</li><li>为意外情况添加一个缓冲——看看这份报价实际上每小时能给你带来多少收入。</li></ol></div><div class="layout">
 <div class="side">
 <div aria-live="polite" class="result">
 <div class="lbl">待发送的报价</div>
@@ -98,7 +98,7 @@
 <h2>报价是怎么构成的</h2>
 <p>人工是工时 × 时薪。在人工基础上加上缓冲，再加转嫁成本，最后从总额中扣除折扣。最后两行显示项目超时前后你实际每小时能赚多少。</p>
 <details><summary>为什么要加缓冲？</summary><p>项目很少完全按估算进行。人工费用的 10% 到 20% 是常见的缓冲起点。如果需求不明确或客户是新客户，就调得更高。</p></details>
-<details><summary>折扣实际上会让我损失多少？</summary><p>提高折扣时，请留意“按计划”的每小时收入。每一个百分点都直接来自你的收入，而不是你的成本。</p></details>
+<details><summary>折扣实际上会让我损失多少？</summary><p>提高折扣时，请留意“按计划”的每小时收入。每一个百分点都直接来自你的收入，而不是你的成本。</p><details><summary>如果客户说太贵了怎么办?</summary><p>在降低数字之前，先看看是什么在推高它——通常是工时估算或缓冲比例。如果价格仍然超出客户预算，减少工作范围而不是降低时薪：减少修改轮次、缩小交付物，或延长时间线。在范围不变的情况下降价，意味着用更少的钱做同样的工作，而这正是这个计算器想帮你避免的。</p></details></details>
 </div>
 <div class="about sheet"><h2>相关工具</h2><div class="hub-grid"><a class="hub-card" href="/zh/freelance-hourly-rate-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><span class="hc-cat">为工作定价</span></span><h3>时薪</h3><p>根据你的税后收入、税费、支出和休假,算出你需要的最低时薪。免费、私密、无需注册。</p></a><a class="hub-card" href="/zh/markup-margin-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M19 5L5 19"></path><circle cx="7.5" cy="7.5" r="2"></circle><circle cx="16.5" cy="16.5" r="2"></circle></svg></span><span class="hc-cat">为工作定价</span></span><h3>加价与利润率</h3><p>输入成本和另一个数值,即可同时看到加价率、毛利率和价格,并附有差异说明。</p></a><a class="hub-card" href="/zh/retainer-vs-hourly-calculator/"><span class="hc-top"><span class="hc-ico"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg></span><span class="hc-cat">为工作定价</span></span><h3>月度服务费</h3><p>比较每月固定费用与按小时计费,查看盈亏平衡点以及使用量变化时会发生什么。</p></a></div></div></section>
 <div class="share">
@@ -110,7 +110,7 @@
 <footer><nav aria-label="Languages" class="langs"><a href="../../en/project-quote-calculator/" hreflang="en" lang="en">English</a><a href="../../es/project-quote-calculator/" hreflang="es" lang="es">Español</a><a href="../../pt/project-quote-calculator/" hreflang="pt-BR" lang="pt">Português</a><a href="../../fr/project-quote-calculator/" hreflang="fr" lang="fr">Français</a><a href="../../de/project-quote-calculator/" hreflang="de" lang="de">Deutsch</a><a href="../../hi/project-quote-calculator/" hreflang="hi" lang="hi">हिन्दी</a><a href="../../ar/project-quote-calculator/" hreflang="ar" lang="ar">العربية</a><a aria-current="true" href="../../zh/project-quote-calculator/" hreflang="zh-Hans" lang="zh">中文</a><a href="../../id/project-quote-calculator/" hreflang="id" lang="id">Bahasa Indonesia</a></nav>
 <p>RateLark 完全在你的浏览器中运行，你输入的任何内容都不会被上传。结果仅为估算，不构成税务、财务或法律建议。</p>
 <p><a href="/privacy/">隐私</a> · <a href="mailto:hello@ratelark.com">联系我们</a></p></footer>
-<script src="../../assets/i18n.js?v=f0b7c4e6"></script>
+<script src="../../assets/i18n.js?v=6b14da63"></script>
 <script src="../../assets/app.js?v=efae0301"></script>
 <script src="../../assets/connect.js?v=5045e883" defer></script>
 <script src="../../assets/palette.js?v=d1c7612f" defer></script>
