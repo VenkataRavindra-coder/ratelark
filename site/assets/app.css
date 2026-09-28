@@ -101,6 +101,13 @@ textarea.ctl{resize:vertical}
 .howto li{color:var(--muted);font-size:.94rem;line-height:1.45}
 .howto li::marker{color:var(--ink);font-weight:600}
 
+/* short explainer/context box, shown above the calculator (distinct class from .about below
+   so it can't collide with sec.find(class_='about') in build.py, which targets the one FAQ
+   section every tool page has) */
+.note-box{margin:0 0 1.1rem}
+.note-box h2{font:700 1.05rem/1.2 var(--display);margin:0 0 .6rem;letter-spacing:-.01em}
+.note-box p{margin:0;color:var(--muted);font-size:.94rem;line-height:1.45;max-width:64ch}
+
 /* about */
 .about{margin-top:1.25rem}
 .about h2{font:700 1.25rem/1.2 var(--display);margin:0 0 .5rem;letter-spacing:-.01em}

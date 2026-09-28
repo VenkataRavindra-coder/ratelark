@@ -100,7 +100,7 @@ TAX_PAGE = {
  'us': dict(
    title='US Freelance Tax Calculator (Self-Employment Tax, 2026)',
    faq_h2='How self-employment tax works',
-   desc='Estimate self-employment tax and income tax on your freelance profit and how much to set aside each quarter.',
+   desc='Estimate how much to set aside for US freelance taxes. See annual and quarterly amounts using your profit and expected income-tax rate.',
    intro='Work out federal self-employment tax on your freelance profit, plus a rough income-tax set-aside, and see what to put away each quarter.',
    faqs=[
      ('How much is self-employment tax in 2026?',
@@ -108,7 +108,7 @@ TAX_PAGE = {
      ('When are 2026 estimated tax payments due?',
       'For the 2026 calendar year: April 15, June 15 and September 15, 2026, then January 15, 2027. A payment is on time if it is made by the next business day when the date falls on a weekend or holiday.'),
      ('Is this tax advice?',
-      'No. It is an estimate for planning. It ignores the standard deduction, credits and state rules, so use it as a set-aside guide, not a return — an accountant can tell you what you really owe.'),
+      "No. It is an estimate for planning. State tax is only included if you've folded it into the income tax rate you enter — the calculator doesn't work out a state-specific number on its own. It also ignores the standard deduction and credits, so use it as a set-aside guide, not a return — an accountant can tell you what you really owe."),
    ]),
  'uk': dict(
    title='UK Self-Employed Tax Calculator (2026/27)',
@@ -184,7 +184,7 @@ def icon_svg(name, size=22):
 TODAY = datetime.date.today().isoformat()
 TODAY = datetime.date.today().isoformat()
 SEL = ('.tab,.cur>span,h1,h2,.head p,.l,.hint,.mini,dt,.lbl,.note,summary,'
-       '.about p,details p,.btn,.suf,option,footer p,.howto li')
+       '.about p,details p,.btn,.suf,option,footer p,.howto li,.note-box p')
 
 src = open(os.path.join(HERE, 'hourkit.html'), encoding='utf-8').read()
 soup = BeautifulSoup(src, 'html.parser')

@@ -17,7 +17,7 @@ TAX_I18N = {
       ('¿Cuándo vencen los pagos de impuestos estimados de 2026?',
        'Para el año calendario 2026: 15 de abril, 15 de junio y 15 de septiembre de 2026, luego el 15 de enero de 2027. Un pago se considera a tiempo si se realiza el siguiente día hábil cuando la fecha cae en fin de semana o feriado.'),
       ('¿Esto es asesoría fiscal?',
-       'No. Es una estimación para planificar. No considera la deducción estándar, créditos ni normas estatales, así que úsala como guía para reservar dinero, no como una declaración — un contador puede decirte lo que realmente debes.'),
+       'No. Es una estimación para planificar. El impuesto estatal solo se incluye si lo incorporaste en la tasa de impuesto sobre la renta que indicas — la calculadora no calcula una cifra específica por estado por su cuenta. Tampoco considera la deducción estándar ni los créditos, así que úsala como guía para reservar dinero, no como una declaración — un contador puede decirte lo que realmente debes.'),
     ]),
   'pt': dict(
     title='Calculadora de Impostos para Freelancers nos EUA (Imposto de Trabalho Autônomo, 2026)',
@@ -30,7 +30,7 @@ TAX_I18N = {
       ('Quando vencem os pagamentos estimados de impostos de 2026?',
        'Para o ano civil de 2026: 15 de abril, 15 de junho e 15 de setembro de 2026, depois 15 de janeiro de 2027. Um pagamento é considerado no prazo se feito no próximo dia útil quando a data cai em fim de semana ou feriado.'),
       ('Isso é assessoria fiscal?',
-       'Não. É uma estimativa para planejamento. Ignora a dedução padrão, créditos e regras estaduais, então use como guia de reserva, não como uma declaração — um contador pode dizer exatamente quanto você deve.'),
+       'Não. É uma estimativa para planejamento. O imposto estadual só é incluído se você o incorporou na alíquota de imposto de renda que informa — a calculadora não calcula um valor específico por estado por conta própria. Também não considera a dedução padrão nem créditos, então use como guia de reserva, não como uma declaração — um contador pode dizer exatamente quanto você deve.'),
     ]),
   'fr': dict(
     title="Calculateur d'impôt freelance aux États-Unis (impôt de travailleur indépendant, 2026)",
@@ -43,7 +43,7 @@ TAX_I18N = {
       ("Quand les paiements d'impôt estimés de 2026 sont-ils dus ?",
        "Pour l'année civile 2026 : 15 avril, 15 juin et 15 septembre 2026, puis 15 janvier 2027. Un paiement est considéré à temps s'il est effectué le jour ouvrable suivant lorsque la date tombe un week-end ou un jour férié."),
       ("Est-ce un conseil fiscal ?",
-       "Non. C'est une estimation à titre indicatif. Elle ignore la déduction standard, les crédits et les règles des États, donc utilisez-la comme guide d'épargne, pas comme une déclaration — un comptable peut vous dire exactement ce que vous devez."),
+       "Non. C'est une estimation à titre indicatif. La taxe d'État n'est incluse que si vous l'avez intégrée dans le taux d'imposition sur le revenu indiqué — l'outil ne calcule pas de montant spécifique par État de lui-même. Elle ignore aussi la déduction standard et les crédits, donc utilisez-la comme guide d'épargne, pas comme une déclaration — un comptable peut vous dire exactement ce que vous devez."),
     ]),
   'de': dict(
     title='US-Steuerrechner für Freelancer (Selbstständigensteuer, 2026)',
@@ -56,7 +56,7 @@ TAX_I18N = {
       ('Wann sind die geschätzten Steuerzahlungen für 2026 fällig?',
        'Für das Kalenderjahr 2026: 15. April, 15. Juni und 15. September 2026, dann 15. Januar 2027. Eine Zahlung gilt als pünktlich, wenn sie am nächsten Werktag erfolgt, sollte das Datum auf ein Wochenende oder einen Feiertag fallen.'),
       ('Ist das eine Steuerberatung?',
-       'Nein. Es handelt sich um eine Schätzung zur Planung. Sie berücksichtigt nicht den Standardabzug, Steuergutschriften oder bundesstaatliche Regeln, nutzen Sie sie daher als Rücklagen-Richtwert, nicht als Steuererklärung — ein Steuerberater kann Ihnen sagen, was Sie tatsächlich schulden.'),
+       'Nein. Es handelt sich um eine Schätzung zur Planung. Die Staatssteuer ist nur enthalten, wenn du sie in den eingegebenen Einkommensteuersatz eingerechnet hast — der Rechner ermittelt von sich aus keine bundesstaatenspezifische Zahl. Sie berücksichtigt außerdem nicht den Standardabzug und Steuergutschriften, nutze sie daher als Rücklagen-Richtwert, nicht als Steuererklärung — ein Steuerberater kann dir sagen, was du tatsächlich schuldest.'),
     ]),
   'hi': dict(
     title='अमेरिका फ्रीलांस टैक्स कैलकुलेटर (सेल्फ-एम्प्लॉयमेंट टैक्स, 2026)',
@@ -69,7 +69,7 @@ TAX_I18N = {
       ('2026 के अनुमानित टैक्स भुगतान कब देय हैं?',
        '2026 कैलेंडर वर्ष के लिए: 15 अप्रैल, 15 जून और 15 सितंबर 2026, फिर 15 जनवरी 2027। यदि तारीख सप्ताहांत या छुट्टी पर आती है तो अगले कार्य दिवस पर भुगतान करने पर वह समय पर माना जाता है।'),
       ('क्या यह टैक्स सलाह है?',
-       'नहीं। यह योजना बनाने के लिए एक अनुमान है। यह स्टैंडर्ड डिडक्शन, क्रेडिट और राज्य के नियमों को नज़रअंदाज़ करता है, इसलिए इसे रिटर्न नहीं बल्कि सेट-असाइड गाइड के रूप में उपयोग करें — एक अकाउंटेंट आपको बता सकता है कि आप वास्तव में कितना देय हैं।'),
+       'नहीं। यह योजना बनाने के लिए एक अनुमान है। राज्य टैक्स तभी शामिल होता है जब आपने उसे अपनी दर्ज की गई इनकम टैक्स दर में जोड़ा हो — कैलकुलेटर खुद राज्य-विशिष्ट आंकड़ा नहीं निकालता। यह स्टैंडर्ड डिडक्शन और क्रेडिट्स को भी नज़रअंदाज़ करता है, इसलिए इसे रिटर्न नहीं बल्कि सेट-असाइड गाइड के रूप में उपयोग करें — एक अकाउंटेंट आपको बता सकता है कि आप वास्तव में कितना देय हैं।'),
     ]),
   'ar': dict(
     title='حاسبة الضرائب للمستقلين في الولايات المتحدة (ضريبة العمل الحر، 2026)',
@@ -82,7 +82,7 @@ TAX_I18N = {
       ('متى تستحق دفعات الضريبة المقدرة لعام 2026؟',
        'بالنسبة للسنة التقويمية 2026: 15 أبريل و15 يونيو و15 سبتمبر 2026، ثم 15 يناير 2027. تُعتبر الدفعة في الوقت المحدد إذا تمت في يوم العمل التالي عندما يصادف التاريخ عطلة نهاية أسبوع أو عطلة رسمية.'),
       ('هل هذه استشارة ضريبية؟',
-       'لا. إنه تقدير لأغراض التخطيط فقط. يتجاهل الخصم القياسي والإعفاءات وقواعد الولاية، لذا استخدمه كدليل تجنيب وليس كإقرار ضريبي — يمكن للمحاسب أن يخبرك بما تدين به فعليًا.'),
+       'لا. إنه تقدير لأغراض التخطيط فقط. تُدرج ضريبة الولاية فقط إذا أدمجتها ضمن معدل ضريبة الدخل الذي تُدخله — فالأداة لا تحسب رقمًا خاصًا بالولاية من تلقاء نفسها. كما أنها تتجاهل الخصم القياسي والإعفاءات، لذا استخدمه كدليل تجنيب وليس كإقرار ضريبي — يمكن للمحاسب أن يخبرك بما تدين به فعليًا.'),
     ]),
   'zh': dict(
     title='美国自由职业者税务计算器(自雇税,2026)',
@@ -95,7 +95,7 @@ TAX_I18N = {
       ('2026年的预估税款何时到期?',
        '2026日历年:2026年4月15日、6月15日和9月15日,以及2027年1月15日。如果日期恰逢周末或节假日,在下一个工作日缴纳即视为按时。'),
       ('这是税务建议吗?',
-       '不是。这仅是规划用的估算,未考虑标准扣除额、税收抵免和州税规则,请将其作为预留资金的参考,而非报税依据——会计师可以告诉你实际应缴金额。'),
+       '不是。这仅是规划用的估算。只有当你把州税计入所输入的所得税率时，州税才会被包含在内——计算器不会自行算出针对某个州的具体数字。它也没有考虑标准扣除额和税收抵免，请将其作为预留资金的参考，而非报税依据——会计师可以告诉你实际应缴金额。'),
     ]),
   'id': dict(
     title='Kalkulator Pajak Freelancer AS (Pajak Wiraswasta, 2026)',
@@ -108,7 +108,7 @@ TAX_I18N = {
       ('Kapan pembayaran pajak perkiraan tahun 2026 jatuh tempo?',
        'Untuk tahun kalender 2026: 15 April, 15 Juni, dan 15 September 2026, lalu 15 Januari 2027. Pembayaran dianggap tepat waktu jika dilakukan pada hari kerja berikutnya saat tanggal jatuh pada akhir pekan atau hari libur.'),
       ('Apakah ini nasihat pajak?',
-       'Tidak. Ini adalah perkiraan untuk perencanaan. Perhitungan ini tidak memperhitungkan potongan standar, kredit pajak, dan aturan negara bagian, jadi gunakan sebagai panduan penyisihan dana, bukan sebagai laporan pajak — akuntan dapat memberi tahu berapa sebenarnya yang kamu wajib bayar.'),
+       'Tidak. Ini adalah perkiraan untuk perencanaan. Pajak negara bagian hanya ikut terhitung jika kamu sudah memasukkannya ke dalam tarif pajak penghasilan yang kamu isi — kalkulator ini tidak menghitung angka khusus per negara bagian dengan sendirinya. Perhitungan ini juga tidak memperhitungkan potongan standar dan kredit pajak, jadi gunakan sebagai panduan penyisihan dana, bukan sebagai laporan pajak — akuntan dapat memberi tahu berapa sebenarnya yang kamu wajib bayar.'),
     ]),
  },
  'uk': {
