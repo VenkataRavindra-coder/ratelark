@@ -998,8 +998,8 @@ def build_profession_page(prof_key):
         a = BeautifulSoup('<a class="tab"></a>', 'html.parser').a
         a['id'] = 'tab-' + t
         a['href'] = '../%s/' % url_slug(t)
-        if t == 'hourly-rate':
-            a['aria-current'] = 'page'
+        # no aria-current here: this page isn't literally the Hourly rate tool page, it's a
+        # profession-specific variant of it, so marking that tab "current" would be inaccurate
         a.string = tool_name(lang, t)
         nav.append(a)
 
@@ -1011,6 +1011,9 @@ def build_profession_page(prof_key):
     head = sec.find(class_='head')
     head.find('h1').string = PP['title']
     head.find('p').string = PP['intro']
+    head.append(BeautifulSoup(
+        '<p class="note"><a href="../freelance-hourly-rate-calculator/">← General freelance hourly rate calculator</a></p>',
+        'html.parser'))
 
     for k, v in PP['defaults'].items():
         inp = sec.find(id='h-' + k)
