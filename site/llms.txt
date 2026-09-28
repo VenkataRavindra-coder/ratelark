@@ -28,6 +28,10 @@
 - [How to Price a Freelance Project (With a Buffer and Deposit)](https://ratelark.com/en/how-to-price-freelance-projects/): How to turn an hourly rate into a fixed-price project quote, with a buffer for surprises and a worked example.
 - [Freelance Invoice Guide: What to Include and How to Get Paid Faster](https://ratelark.com/en/freelance-invoice-guide/): What a freelance invoice needs, how to number and word it, and a worked example with tax added.
 
+## Profession-specific rate calculators
+
+- [Freelance Rate Calculator for Designers](https://ratelark.com/en/freelance-rate-calculator-for-designers/): Work out your minimum hourly rate as a freelance designer, with a worked example that accounts for revision rounds and client-management time. Free, private, no sign-up.
+
 ## More
 
 - [All tools](https://ratelark.com/en/): full list of calculators

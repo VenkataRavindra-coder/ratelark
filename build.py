@@ -854,6 +854,194 @@ ARTICLES = {
 }
 
 
+# Stage 6: lightweight profession-specific landing pages that reuse the hourly-rate calculator
+# (same #tool-hourly-rate markup/JS/formula) with unique intro, note box, worked example, FAQ
+# and internal links per profession. English only for now -- translate later only if a page
+# earns impressions in Search Console. Worked-example numbers are plugged into the calculator's
+# real inputs (hourly()'s formula in hourkit.html: rate = (take-home/(1-tax)+expenses)/billable
+# hours) so the live result on the page matches the prose exactly; nothing about the calculator
+# itself changes, only which page it's embedded on and what default values that page starts with.
+PROFESSIONS = {
+ 'designers': dict(
+   slug='freelance-rate-calculator-for-designers',
+   title='Freelance Rate Calculator for Designers',
+   desc='Work out your minimum hourly rate as a freelance designer, with a worked example that accounts for revision rounds and client-management time. Free, private, no sign-up.',
+   intro='Built around how design work actually gets billed: revision rounds and client feedback eat more unbillable time than a generic rate calculator assumes.',
+   note_h2='Why designers usually need a lower billable-hours estimate than they think',
+   note_p=('Design work carries more unbillable time than most freelance disciplines: discovery calls, mood boards nobody approves, and feedback rounds that don’t move the project forward. Plan around 30 billable hours a week the way a consultant might, and you’ll come up short — many freelance designers bill closer to 20 to 25 hours out of a 40-hour week once revisions and client communication are accounted for. Set your billable-hours estimate accordingly below, and the rate you get back will actually protect your income.'),
+   example_intro='A mid-career freelance designer wants $65,000 take-home a year, has $5,000 in yearly expenses (software licences, a portfolio site, insurance), plans for 4 weeks off, pays an effective 27% tax rate, and — accounting for revisions and client calls — can realistically bill 22 hours a week.',
+   example_stats=[
+     ('Billable hours per year', '(52 − 4) × 22 = 1,056 hrs'),
+     ('Grossed-up take-home', '$65,000 ÷ (1 − 27%) = $89,041.10'),
+     ('Revenue needed per year', '$89,041.10 + $5,000 = $94,041.10'),
+     ('Minimum hourly rate', '$94,041.10 ÷ 1,056 = <b>about $89/hr</b>'),
+     ('Day rate (8 billable hours)', 'about $712'),
+   ],
+   example_note='These are the exact numbers already entered above — adjust any of them and the result updates live.',
+   defaults=dict(income='65000', exp='5000', tax='27', off='4', hours='22'),
+   faqs=[
+     ('Should I charge extra for revision rounds?',
+      'Only if they’re unlimited. Most freelance designers build two or three rounds of revisions into the price this rate already covers, then charge separately — by the hour, or as a flat fee — for anything beyond that. Put the number of included rounds in writing before the project starts, so it’s clear when the meter restarts.'),
+     ('What if client work is off and on, not steady?',
+      'That’s normal for design work, and it’s exactly what the billable-hours field is for. If bookings vary a lot month to month, use a conservative estimate — closer to what a slow month looks like — rather than your best month. It’s easier to earn more in a busy month than to make up for a rate that was too low to begin with.'),
+     ('Does this rate cover ongoing work like a retainer or maintenance?',
+      'Not directly — this calculator gives you an hourly floor for project-based work. For predictable ongoing work, such as a monthly design retainer, use the retainer tool to compare a flat monthly fee against billing hourly, with the rate from this page as your baseline.'),
+   ],
+   related=['quote', 'invoice'],
+ ),
+}
+PROFESSION_ORDER = list(PROFESSIONS.keys())
+
+
+def build_profession_page(prof_key):
+    """One lightweight profession landing page: the hourly-rate calculator's own markup/JS,
+    re-skinned with a unique H1, note box, worked example and FAQ. See PROFESSIONS above."""
+    e = lambda x: html.escape(x, quote=True)
+    lang, hl, locale = 'en', 'en', 'en_US'
+    mp = MAPS['en']
+    PP = PROFESSIONS[prof_key]
+    slug = PP['slug']
+
+    hdr = copy.copy(header)
+    hdr.find('a', class_='brand')['href'] = '/'
+    _brand = hdr.find('a', class_='brand')
+    for _n in list(_brand.contents):
+        if isinstance(_n, str):
+            _n.extract()
+    _brand.append(BeautifulSoup('<span class="wm">Rate<span class="lk">Lark</span></span>', 'html.parser'))
+    opt = hdr.find('select', id='lang').find('option', value=lang)
+    opt['selected'] = 'selected'
+    ui = UI[lang]
+    kb = BeautifulSoup('<button type="button" class="kbtn" data-palette aria-label="%s"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><span class="kt">%s</span><kbd>Ctrl K</kbd></button>' % (ui['search'], ui['search']), 'html.parser')
+    hdr.find('div', class_='pick').insert(0, kb)
+
+    nav = BeautifulSoup('<nav class="tabs" aria-label="Freelancer tools"></nav>', 'html.parser').nav
+    home_tab = BeautifulSoup('<a class="tab tab-home" href="/#tools"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>%s</span></a>' % ui['all'], 'html.parser')
+    nav.append(home_tab)
+    for t in TOOLS:
+        a = BeautifulSoup('<a class="tab"></a>', 'html.parser').a
+        a['id'] = 'tab-' + t
+        a['href'] = '../%s/' % url_slug(t)
+        if t == 'hourly-rate':
+            a['aria-current'] = 'page'
+        a.string = tool_name(lang, t)
+        nav.append(a)
+
+    sec = copy.copy(sections['hourly-rate'])
+    for attr in ('hidden', 'role', 'aria-labelledby'):
+        if sec.has_attr(attr):
+            del sec[attr]
+
+    head = sec.find(class_='head')
+    head.find('h1').string = PP['title']
+    head.find('p').string = PP['intro']
+
+    for k, v in PP['defaults'].items():
+        inp = sec.find(id='h-' + k)
+        if inp is not None:
+            inp['value'] = v
+
+    note = sec.find(class_='note-box')
+    note.find('h2').string = PP['note_h2']
+    note.find('p').string = PP['note_p']
+
+    stats_html = ''.join('<div><dt>%s</dt><dd>%s</dd></div>' % (e(k), v) for k, v in PP['example_stats'])
+    example_html = ('<div class="sheet"><h2>%s</h2><p>%s</p><dl class="stats">%s</dl>'
+                     '<p class="note">%s</p></div>'
+                     % (e('A worked example'), e(PP['example_intro']), stats_html, e(PP['example_note'])))
+    layout = sec.find(class_='layout')
+    layout.insert_after(BeautifulSoup(example_html, 'html.parser'))
+
+    about = sec.find(class_='about')
+    for d in about.find_all('details'):
+        d.decompose()
+    faq_ld = []
+    for q, a_txt in PP['faqs']:
+        d = BeautifulSoup('<details><summary>%s</summary><p>%s</p></details>' % (e(q), e(a_txt)), 'html.parser')
+        about.append(d)
+        faq_ld.append({'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a_txt}})
+
+    related_cards = ''.join(hub_card(lang, next(t for t in REG if t['slug'] == s)) for s in PP['related'])
+    related_html = '<div class="about sheet"><h2>%s</h2><div class="hub-grid">%s</div></div>' % (e('Related tools'), related_cards)
+    sec.append(BeautifulSoup(related_html, 'html.parser').div)
+
+    others = [k for k in PROFESSION_ORDER if k != prof_key]
+    if others:
+        items = ''.join('<li><a href="../%s/">%s</a></li>' % (e(PROFESSIONS[k]['slug']), e(PROFESSIONS[k]['title'])) for k in others)
+        other_nav = BeautifulSoup('<nav class="sheet" aria-label="Other professions"><h2>%s</h2><ul>%s</ul></nav>' % (e('Other professions'), items), 'html.parser').nav
+        sec.append(other_nav)
+
+    sh = copy.copy(share); translate(sh, mp)
+    fb = copy.copy(fallback)
+    ft = copy.copy(footer); translate(ft, mp)
+    ft.append(BeautifulSoup('<p><a href="/privacy/">%s</a> &middot; <a href="mailto:%s">%s</a></p>' % (UI[lang]['privacy'], CONTACT_EMAIL, CONTACT_LABEL[lang]), 'html.parser'))
+
+    title = PP['title'] + ' | RateLark'
+    description = PP['desc']
+    url = '%s/en/%s/' % (BASE, slug)
+    ld = [{'@context': 'https://schema.org', '@type': 'WebApplication', 'name': PP['title'],
+           'url': url, 'inLanguage': hl, 'applicationCategory': 'BusinessApplication',
+           'operatingSystem': 'Any', 'description': description,
+           'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'USD'}}]
+    if faq_ld:
+        ld.append({'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': faq_ld})
+
+    scripts = ('<script src="../../assets/i18n.js?v={0}"></script>\n'
+               '<script src="../../assets/app.js?v={1}"></script>').format(VER['i18n.js'], VER['app.js'])
+    _r = next(t for t in REG if t['slug'] == 'hourly-rate')
+    kicker = ('<div class="kicker"><span class="ico">%s</span><span class="cat">%s</span></div>'
+              % (icon_svg(_r['icon']), html.escape(CATS[_r['cat']][lang])))
+    ld_json = json.dumps(ld, ensure_ascii=False).replace('</', '<\\/')
+    page = f'''<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{e(title)}</title>
+<meta name="description" content="{e(description)}">
+<link rel="canonical" href="{url}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RateLark">
+<meta property="og:title" content="{e(title)}">
+<meta property="og:description" content="{e(description)}">
+<meta property="og:url" content="{url}">
+<meta property="og:locale" content="{locale}">
+<meta property="og:image" content="{BASE}/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{BASE}/og.png">
+<meta name="theme-color" content="#EDF1F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1622" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts.css?v={VER['fonts.css']}">
+<link rel="stylesheet" href="../../assets/app.css?v={VER['app.css']}">
+<script type="application/ld+json">{ld_json}</script>
+</head>
+<body data-tool="hourly-rate">
+<div class="tfx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
+{hdr}
+{nav}
+<main id="main">
+{kicker}
+{sec}
+{sh}
+{fb}
+</main>
+{ft}
+{scripts}
+<script src="../../assets/palette.js?v={VER['palette.js']}" defer></script>
+</body>
+</html>
+'''
+    return page
+
+
 def build_article(slug):
     e = lambda x: html.escape(x, quote=True)
     A = ARTICLES[slug]
@@ -1136,6 +1324,11 @@ for slug in ARTICLES:
     write('en/%s/index.html' % slug, build_article(slug))
     count += 1
 
+# Stage 6: profession-specific landing pages, English only (see PROFESSIONS above)
+for prof_key in PROFESSIONS:
+    write('en/%s/index.html' % PROFESSIONS[prof_key]['slug'], build_profession_page(prof_key))
+    count += 1
+
 # sitemap with hreflang alternates
 urls = ['<url><loc>%s/</loc><lastmod>%s</lastmod></url>' % (BASE, TODAY)]
 for code, *_ in LANGS:
@@ -1157,6 +1350,8 @@ for code, *_ in LANGS:
         urls.append('<url><loc>%s/%s/%s/</loc><lastmod>%s</lastmod>%s</url>' % (BASE, code, slug, TODAY, alts))
 for slug in ARTICLES:
     urls.append('<url><loc>%s/en/%s/</loc><lastmod>%s</lastmod></url>' % (BASE, slug, TODAY))
+for prof_key in PROFESSIONS:
+    urls.append('<url><loc>%s/en/%s/</loc><lastmod>%s</lastmod></url>' % (BASE, PROFESSIONS[prof_key]['slug'], TODAY))
 write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n'
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
       + '\n'.join(urls) + '\n</urlset>\n')
@@ -1171,6 +1366,9 @@ _llms_tax = '\n'.join(
 _llms_articles = '\n'.join(
     '- [%s](%s/en/%s/): %s' % (ARTICLES[slug]['title'], BASE, slug, ARTICLES[slug]['desc'])
     for slug in ARTICLES)
+_llms_professions = '\n'.join(
+    '- [%s](%s/en/%s/): %s' % (PROFESSIONS[k]['title'], BASE, PROFESSIONS[k]['slug'], PROFESSIONS[k]['desc'])
+    for k in PROFESSIONS)
 write('llms.txt', """# RateLark
 
 > Free, private freelance pricing and invoicing calculators: hourly rate, project quotes,
@@ -1189,11 +1387,15 @@ write('llms.txt', """# RateLark
 
 %s
 
+## Profession-specific rate calculators
+
+%s
+
 ## More
 
 - [All tools](%s/en/): full list of calculators
 - [Privacy](%s/privacy/): how RateLark handles (and doesn't collect) your data
-""" % (_llms_tools, _llms_tax, _llms_articles, BASE, BASE))
+""" % (_llms_tools, _llms_tax, _llms_articles, _llms_professions, BASE, BASE))
 
 # Stage 2: permanent redirects from every old tool URL to its new keyword slug, for every
 # language. Written expanded (one line per language) rather than with Cloudflare Pages'
