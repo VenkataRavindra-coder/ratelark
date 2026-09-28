@@ -861,6 +861,13 @@ ARTICLES = {
 # real inputs (hourly()'s formula in hourkit.html: rate = (take-home/(1-tax)+expenses)/billable
 # hours) so the live result on the page matches the prose exactly; nothing about the calculator
 # itself changes, only which page it's embedded on and what default values that page starts with.
+#
+# MAINTENANCE TRAP: for each profession below, 'defaults' (the pre-filled input values) and
+# 'example_intro'/'example_stats' (the prose walking through those same numbers) are two
+# separate fields kept in sync BY HAND. If you ever change one, recompute and update the other
+# on the same entry, or the page will silently start showing a worked example that doesn't
+# match its own pre-filled calculator. The 'example_stats' numbers use hourly()'s real formula
+# (see above), so recomputing them is just re-running that formula with the new defaults.
 PROFESSIONS = {
  'designers': dict(
    slug='freelance-rate-calculator-for-designers',
@@ -878,6 +885,7 @@ PROFESSIONS = {
      ('Day rate (8 billable hours)', 'about $712'),
    ],
    example_note='These are the exact numbers already entered above — adjust any of them and the result updates live.',
+   # keep in sync with example_intro/example_stats above -- see MAINTENANCE TRAP note on PROFESSIONS
    defaults=dict(income='65000', exp='5000', tax='27', off='4', hours='22'),
    faqs=[
      ('Should I charge extra for revision rounds?',
@@ -888,6 +896,34 @@ PROFESSIONS = {
       'Not directly — this calculator gives you an hourly floor for project-based work. For predictable ongoing work, such as a monthly design retainer, use the retainer tool to compare a flat monthly fee against billing hourly, with the rate from this page as your baseline.'),
    ],
    related=['quote', 'invoice'],
+ ),
+ 'developers': dict(
+   slug='freelance-rate-calculator-for-developers',
+   title='Freelance Rate Calculator for Developers',
+   desc='Work out your minimum hourly rate as a freelance developer, with a worked example that accounts for tooling costs and realistic billable hours. Free, private, no sign-up.',
+   intro='Built around how freelance development work actually gets priced: sales cycles run longer, tooling and infrastructure are real expenses, and ongoing maintenance is usually a different pricing model altogether.',
+   note_h2='Why a developer’s billable hours are steadier than a designer’s — but not by much',
+   note_p=('Freelance development work tends to come in fewer, longer engagements than design work, so billable hours are more predictable week to week. But standups, code review you’re not billing for, and unpaid time between contracts still cut into a 40-hour week. Most freelance developers plan for well under the 30-plus hours a full-time job implies — 25 to 30 billable hours a week is a common realistic range once planning and business development are accounted for. Set the field below to match your own rhythm, not your best week.'),
+   example_intro='A freelance backend developer wants $110,000 take-home a year, has $7,500 in yearly expenses (paid APIs, cloud costs for testing, licences, equipment), plans for 5 weeks off, pays an effective 28% tax rate, and can realistically bill 26 hours a week.',
+   example_stats=[
+     ('Billable hours per year', '(52 − 5) × 26 = 1,222 hrs'),
+     ('Grossed-up take-home', '$110,000 ÷ (1 − 28%) = $152,777.78'),
+     ('Revenue needed per year', '$152,777.78 + $7,500 = $160,277.78'),
+     ('Minimum hourly rate', '$160,277.78 ÷ 1,222 = <b>about $131/hr</b>'),
+     ('Day rate (8 billable hours)', 'about $1,049'),
+   ],
+   example_note='These are the exact numbers already entered above — adjust any of them and the result updates live.',
+   # keep in sync with example_intro/example_stats above -- see MAINTENANCE TRAP note on PROFESSIONS
+   defaults=dict(income='110000', exp='7500', tax='28', off='5', hours='26'),
+   faqs=[
+     ('How do I price ongoing maintenance or on-call support?',
+      'Not with this hourly rate directly — ongoing maintenance and on-call availability are usually priced as a retainer, since you’re being paid partly for availability, not just hours worked. Use this rate as your floor, then compare it against a flat monthly fee in the retainer tool; a retainer that pays less than this rate times your expected monthly hours usually isn’t worth it unless the predictability is worth the discount to you.'),
+     ('Should tooling and subscriptions be in my expenses?',
+      'Yes — IDE and library licences, staging or hosting costs you cover yourself, and any paid APIs or services you use across projects belong in the expenses field. Costs specific to one client’s project belong on that project’s invoice or quote instead, not baked into your general rate.'),
+     ('Why does my rate look higher than a typical salaried engineer’s hourly equivalent?',
+      'Because a salary figure already has employer-paid costs stripped out — benefits, downtime, equipment, taxes. Freelance developers also deal with longer sales cycles and gaps between contracts, which this calculator accounts for through the billable-hours field, not by lowering the rate. If your rate looks high next to a job posting’s salary divided by 2,000 hours, that’s the calculation working correctly, not a sign to lower it.'),
+   ],
+   related=['retainer', 'late-fee'],
  ),
 }
 PROFESSION_ORDER = list(PROFESSIONS.keys())
