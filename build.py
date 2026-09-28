@@ -432,6 +432,18 @@ def build_page(lang, tool):
             about.insert_before(BeautifulSoup(btn_html, 'html.parser').div)
     sec.append(BeautifulSoup(related_tools_html(lang, tool), 'html.parser').div)
 
+    # entry point from the generic hourly-rate page down into the profession-specific landing
+    # pages (Stage 6, PROFESSIONS below) -- without this, those pages have no inbound link
+    # except each other's "Other professions" nav, which is much weaker for discovery/indexing.
+    # English only for now since the profession pages themselves are English only.
+    if tool == 'hourly-rate' and lang == 'en' and PROFESSIONS:
+        e = lambda x: html.escape(x, quote=True)
+        items = ''.join('<li><a href="../%s/">%s</a></li>' % (e(PROFESSIONS[k]['slug']), e(PROFESSIONS[k]['title'].replace('Freelance Rate Calculator for ', '')))
+                         for k in PROFESSIONS)
+        prof_nav = ('<nav class="sheet" aria-label="Profession-specific rate calculators">'
+                    '<h2>Looking for a rate calculator for your field?</h2><ul>%s</ul></nav>' % items)
+        sec.append(BeautifulSoup(prof_nav, 'html.parser').nav)
+
     ft = copy.copy(footer); translate(ft, mp)
     langs_nav = BeautifulSoup('<nav class="langs" aria-label="Languages"></nav>', 'html.parser').nav
     for code, nm, h, _ in LANGS:
