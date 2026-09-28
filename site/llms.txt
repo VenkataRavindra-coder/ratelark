@@ -32,6 +32,7 @@
 
 - [Freelance Rate Calculator for Designers](https://ratelark.com/en/freelance-rate-calculator-for-designers/): Work out your minimum hourly rate as a freelance designer, with a worked example that accounts for revision rounds and client-management time. Free, private, no sign-up.
 - [Freelance Rate Calculator for Developers](https://ratelark.com/en/freelance-rate-calculator-for-developers/): Work out your minimum hourly rate as a freelance developer, with a worked example that separates your own overhead from client-billable project costs. Free, private, no sign-up.
+- [Freelance Rate Calculator for Writers](https://ratelark.com/en/freelance-rate-calculator-for-writers/): Work out the hourly floor your per-word or per-project writing rates need to clear to be sustainable, with a worked example. Free, private, no sign-up.
 
 ## More
 

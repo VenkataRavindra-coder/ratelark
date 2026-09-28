@@ -925,6 +925,34 @@ PROFESSIONS = {
    ],
    related=['retainer', 'late-fee'],
  ),
+ 'writers': dict(
+   slug='freelance-rate-calculator-for-writers',
+   title='Freelance Rate Calculator for Writers',
+   desc='Work out the hourly floor your per-word or per-project writing rates need to clear to be sustainable, with a worked example. Free, private, no sign-up.',
+   intro='Built for freelance writers who price by the word or the project as often as by the hour — use it to see what those rates need to average out to, not just what to charge for hourly work.',
+   note_h2='Most writing isn’t priced by the hour — this is the floor those rates have to clear',
+   note_p=('Per-word and per-project rates are how most freelance writing gets priced, and neither one is wrong. This calculator shows the hourly floor those rates have to clear to be sustainable, once research, revisions and admin time are counted alongside the drafting itself — a floor that per-word rates don’t always reach. Use the number below to check a rate before you accept it, not as a reason to switch to hourly billing.'),
+   example_intro='A freelance writer wants $55,000 take-home a year, has $3,000 in yearly overhead (a website, a grammar or writing-software subscription, pitching or submission tools, and insurance), plans for 4 weeks off, pays an effective 27% tax rate, and can realistically bill 22 hours a week once research and revisions are counted alongside drafting.',
+   example_stats=[
+     ('Billable hours per year', '(52 − 4) × 22 = 1,056 hrs'),
+     ('Grossed-up take-home', '$55,000 ÷ (1 − 27%) = $75,342.47'),
+     ('Revenue needed per year', '$75,342.47 + $3,000 = $78,342.47'),
+     ('Minimum hourly rate', '$78,342.47 ÷ 1,056 = <b>about $74/hr</b>'),
+     ('What $0.10/word pricing has to sustain', 'about 740 billed words every hour to reach this floor'),
+   ],
+   example_note='These are the exact numbers already entered above — adjust any of them and the result updates live.',
+   # keep in sync with example_intro/example_stats above -- see MAINTENANCE TRAP note on PROFESSIONS
+   defaults=dict(income='55000', exp='3000', tax='27', off='4', hours='22'),
+   faqs=[
+     ('Everyone says my rates are normal — why does this calculator say I need more?',
+      'Because “normal” in freelance writing usually describes the market rate for one piece of work, not what that rate adds up to once research, revisions, invoicing and slow months are all included. A per-word or per-article rate that looks competitive can still fall short of a sustainable income if it doesn’t leave room for the unbilled time around the writing itself. Use the number above as a benchmark for your average earnings across everything you do, not a rate you need to hit on every single piece.'),
+     ('Should I actually charge by the hour?',
+      'Not necessarily — most freelance writing is priced per word or per project. This calculator still helps: divide a project’s total fee by the hours it actually took, research included, to see its real hourly equivalent, then compare that to the rate above. If a category of work consistently falls short, that’s a sign to renegotiate the rate for that category, not to switch everyone to hourly billing.'),
+     ('How do I convert a per-word or per-project rate into an hourly one?',
+      'Divide the fee by the realistic hours the piece takes, research and revisions included, not just the drafting time. A $0.15-per-word, 500-word article pays $75; if it takes an hour to draft plus 30 minutes for research and editing, that’s $75 across 1.5 hours, or $50/hr once both are counted. The same math works for a flat per-project fee: divide it by the realistic hours including research and revisions, and compare the result to the floor above.'),
+   ],
+   related=['quote', 'markup-margin'],
+ ),
 }
 PROFESSION_ORDER = list(PROFESSIONS.keys())
 
