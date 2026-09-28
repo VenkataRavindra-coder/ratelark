@@ -98,15 +98,17 @@ TAX_UI = {
 # what was checked and when).
 TAX_PAGE = {
  'us': dict(
-   title='US Freelance Tax Calculator (Self-Employment Tax, 2026)',
+   title='US Freelance & 1099 Tax Calculator (Self-Employment Tax, 2026)',
    faq_h2='How self-employment tax works',
-   desc='Estimate how much to set aside for US freelance taxes. See annual and quarterly amounts using your profit and expected income-tax rate.',
-   intro='Work out federal self-employment tax on your freelance profit, plus a rough income-tax set-aside, and see what to put away each quarter.',
+   desc='Free 1099 tax calculator for US freelancers and independent contractors. Estimate self-employment tax and see annual and quarterly amounts to set aside.',
+   intro='Work out federal self-employment tax on your 1099 freelance profit, plus a rough income-tax set-aside, and see what to put away each quarter.',
    faqs=[
      ('How much is self-employment tax in 2026?',
       'Self-employment tax is 15.3% of 92.35% of your net profit from self-employment: 12.4% Social Security up to the $184,500 wage base, plus 2.9% Medicare with no cap. You owe no self-employment tax if your net earnings are under $400.'),
      ('When are 2026 estimated tax payments due?',
       'For the 2026 calendar year: April 15, June 15 and September 15, 2026, then January 15, 2027. A payment is on time if it is made by the next business day when the date falls on a weekend or holiday.'),
+     ('Is this the same as a 1099 tax calculator?',
+      "Yes. Freelancers and independent contractors who receive 1099 forms pay tax through self-employment tax plus estimated quarterly payments, which is exactly what this calculator works out. It doesn't matter whether your income came from one 1099-NEC or several — just enter your total net profit for the year."),
      ('Is this tax advice?',
       "No. It is an estimate for planning. State tax is only included if you've folded it into the income tax rate you enter — the calculator doesn't work out a state-specific number on its own. It also ignores the standard deduction and credits, so use it as a set-aside guide, not a return — an accountant can tell you what you really owe."),
    ]),
@@ -1159,6 +1161,39 @@ write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n'
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
       + '\n'.join(urls) + '\n</urlset>\n')
 write('robots.txt', 'User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n' % BASE)
+
+_llms_tools = '\n'.join(
+    '- [%s](%s/en/%s/): %s' % (tool_name('en', t), BASE, url_slug(t), tool_desc('en', t))
+    for t in TOOLS)
+_llms_tax = '\n'.join(
+    '- [%s](%s/en/%s/): %s' % (TAX_PAGE[c]['title'], BASE, TAX_SLUG[c], TAX_PAGE[c]['desc'])
+    for c in ('us', 'uk', 'ca', 'au'))
+_llms_articles = '\n'.join(
+    '- [%s](%s/en/%s/): %s' % (ARTICLES[slug]['title'], BASE, slug, ARTICLES[slug]['desc'])
+    for slug in ARTICLES)
+write('llms.txt', """# RateLark
+
+> Free, private freelance pricing and invoicing calculators: hourly rate, project quotes,
+> invoices, markup, retainers, late fees and tax set-aside. No sign-up, nothing typed
+> ever leaves your browser. Available in 9 languages.
+
+## Tools
+
+%s
+
+## Tax calculators (by country)
+
+%s
+
+## Guides
+
+%s
+
+## More
+
+- [All tools](%s/en/): full list of calculators
+- [Privacy](%s/privacy/): how RateLark handles (and doesn't collect) your data
+""" % (_llms_tools, _llms_tax, _llms_articles, BASE, BASE))
 
 # Stage 2: permanent redirects from every old tool URL to its new keyword slug, for every
 # language. Written expanded (one line per language) rather than with Cloudflare Pages'

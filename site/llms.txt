@@ -1,0 +1,34 @@
+# RateLark
+
+> Free, private freelance pricing and invoicing calculators: hourly rate, project quotes,
+> invoices, markup, retainers, late fees and tax set-aside. No sign-up, nothing typed
+> ever leaves your browser. Available in 9 languages.
+
+## Tools
+
+- [Hourly rate](https://ratelark.com/en/freelance-hourly-rate-calculator/): Work out the minimum hourly rate you need from your take-home pay, tax, expenses and time off. Free, private, no sign-up.
+- [Project quote](https://ratelark.com/en/project-quote-calculator/): Price a project with a buffer, costs and a deposit, and see what the quote really pays you per hour. Free, no sign-up.
+- [Invoice](https://ratelark.com/en/invoice-generator/): Create an invoice with line items and tax, then print or save it as a PDF. Nothing you type is uploaded.
+- [Markup & margin](https://ratelark.com/en/markup-margin-calculator/): Enter a cost plus a markup, margin or price to see all three side by side, with the difference explained.
+- [Retainer](https://ratelark.com/en/retainer-vs-hourly-calculator/): Compare a monthly retainer with hourly billing and see the break-even hours and what changes if usage changes.
+- [Late fee](https://ratelark.com/en/late-payment-fee-calculator/): Add interest and a flat fee to an overdue invoice and see the total you can ask for.
+- [Tax](https://ratelark.com/en/us-freelance-tax-calculator/): Estimate the tax and social contributions on your freelance profit, and how much to set aside each quarter.
+- [PPP pricing](https://ratelark.com/en/ppp-pricing-calculator/): Enter your US price and see a fair price for each country, based on what money buys there.
+
+## Tax calculators (by country)
+
+- [US Freelance & 1099 Tax Calculator (Self-Employment Tax, 2026)](https://ratelark.com/en/us-freelance-tax-calculator/): Free 1099 tax calculator for US freelancers and independent contractors. Estimate self-employment tax and see annual and quarterly amounts to set aside.
+- [UK Self-Employed Tax Calculator (2026/27)](https://ratelark.com/en/uk-self-employed-tax-calculator/): Estimate income tax and Class 4 National Insurance on your self-employed profit for 2026/27.
+- [Canada Self-Employed Tax Calculator (2026)](https://ratelark.com/en/canada-self-employed-tax-calculator/): Estimate federal tax, CPP and provincial tax on your self-employed income for 2026.
+- [Australia Sole Trader Tax Calculator (2026-27)](https://ratelark.com/en/australia-sole-trader-tax-calculator/): Estimate income tax and the Medicare levy on your sole trader income for 2026-27.
+
+## Guides
+
+- [How to Calculate Your Freelance Hourly Rate](https://ratelark.com/en/how-to-calculate-freelance-hourly-rate/): A step-by-step method for working out the hourly rate you need as a freelancer, with a worked example and a free calculator.
+- [How to Price a Freelance Project (With a Buffer and Deposit)](https://ratelark.com/en/how-to-price-freelance-projects/): How to turn an hourly rate into a fixed-price project quote, with a buffer for surprises and a worked example.
+- [Freelance Invoice Guide: What to Include and How to Get Paid Faster](https://ratelark.com/en/freelance-invoice-guide/): What a freelance invoice needs, how to number and word it, and a worked example with tax added.
+
+## More
+
+- [All tools](https://ratelark.com/en/): full list of calculators
+- [Privacy](https://ratelark.com/privacy/): how RateLark handles (and doesn't collect) your data
