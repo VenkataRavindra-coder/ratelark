@@ -36,5 +36,5 @@
 
 ## More
 
-- [All tools](https://ratelark.com/en/): full list of calculators
+- [All tools](https://ratelark.com/#tools): full list of calculators
 - [Privacy](https://ratelark.com/privacy/): how RateLark handles (and doesn't collect) your data

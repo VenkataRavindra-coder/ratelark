@@ -394,7 +394,7 @@ def build_page(lang, tool):
     hdr.find('div', class_='pick').insert(0, kb)
 
     nav = BeautifulSoup('<nav class="tabs" aria-label="Freelancer tools"></nav>', 'html.parser').nav
-    home_tab = BeautifulSoup('<a class="tab tab-home" href="/#tools"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>%s</span></a>' % ui['all'], 'html.parser')
+    home_tab = BeautifulSoup('<a class="tab tab-home" href="%s"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>%s</span></a>' % (('/#tools' if lang == 'en' else '/%s/' % lang), ui['all']), 'html.parser')
     nav.append(home_tab)
     for t in TOOLS:
         a = BeautifulSoup('<a class="tab"></a>', 'html.parser').a
@@ -542,6 +542,47 @@ def build_page(lang, tool):
     return page
 
 
+# English lives at the site root: "/" is the English home page and /en/ 301-redirects to it.
+# (Before this, "/" and "/en/" were two near-identical English homepages that each claimed to be
+# canonical, which Search Console reported as "Duplicate, Google chose different canonical".)
+def home_path(lang):
+    return '/' if lang == 'en' else '/%s/' % lang
+
+
+def home_alternates(fmt):
+    """hreflang alternates for the home cluster (/, /es/, /pt/ ...), as <link> tags ('html')
+    or sitemap <xhtml:link> entries ('xml'). x-default is the root."""
+    tag = ('<link rel="alternate" hreflang="%s" href="%s">' if fmt == 'html'
+           else '<xhtml:link rel="alternate" hreflang="%s" href="%s"/>')
+    out = [tag % (h, BASE + home_path(c)) for c, _, h, _ in LANGS]
+    out.append(tag % ('x-default', BASE + '/'))
+    return ('\n' if fmt == 'html' else '').join(out)
+
+
+# a short introduction on every home page, so the hubs are more than a grid of cards
+HUB_INTRO = {
+ 'en': 'RateLark is a set of free calculators for freelancers and independent contractors. Work out the hourly rate you need, price a fixed project, create an invoice, compare a retainer with hourly billing, add a late fee to an unpaid invoice, set fair prices for clients in other countries, and estimate how much tax to set aside in the US, UK, Canada or Australia. Every tool runs in your browser, so nothing you type is uploaded, and there is no account to create.',
+ 'es': 'RateLark es un conjunto de calculadoras gratuitas para freelancers y contratistas independientes. Calcula la tarifa por hora que necesitas, pon precio a un proyecto cerrado, crea una factura, compara una iguala mensual con la facturación por horas, añade un recargo por mora a una factura impagada, fija precios justos para clientes de otros países y estima cuánto apartar para impuestos en EE. UU., Reino Unido, Canadá o Australia. Todas las herramientas funcionan en tu navegador: nada de lo que escribes se sube y no necesitas crear una cuenta.',
+ 'pt': 'O RateLark é um conjunto de calculadoras gratuitas para freelancers e profissionais autônomos. Descubra o valor da hora de que você precisa, defina o preço de um projeto fechado, crie uma fatura, compare um retainer mensal com a cobrança por hora, acrescente juros e multa a uma fatura atrasada, defina preços justos para clientes de outros países e estime quanto reservar para impostos nos EUA, no Reino Unido, no Canadá ou na Austrália. Todas as ferramentas funcionam no seu navegador: nada do que você digita é enviado e não é preciso criar conta.',
+ 'fr': "RateLark réunit des calculateurs gratuits pour les freelances et les travailleurs indépendants. Calculez le taux horaire dont vous avez besoin, chiffrez un projet au forfait, créez une facture, comparez un forfait mensuel à la facturation à l'heure, ajoutez des pénalités de retard à une facture impayée, fixez des prix justes pour des clients à l'étranger et estimez l'impôt à mettre de côté aux États-Unis, au Royaume-Uni, au Canada ou en Australie. Tout fonctionne dans votre navigateur : rien de ce que vous saisissez n'est envoyé, et aucun compte n'est nécessaire.",
+ 'de': 'RateLark ist eine Sammlung kostenloser Rechner für Freelancer und Selbstständige. Ermitteln Sie den Stundensatz, den Sie brauchen, kalkulieren Sie einen Festpreis für ein Projekt, erstellen Sie eine Rechnung, vergleichen Sie eine monatliche Pauschale mit Abrechnung nach Stunden, berechnen Sie Verzugszinsen für eine offene Rechnung, legen Sie faire Preise für Kunden in anderen Ländern fest und schätzen Sie die Steuerrücklage für die USA, Großbritannien, Kanada oder Australien. Alle Tools laufen in Ihrem Browser: Nichts, was Sie eingeben, wird hochgeladen, und Sie brauchen kein Konto.',
+ 'hi': 'RateLark फ्रीलांसरों और स्वतंत्र कॉन्ट्रैक्टरों के लिए मुफ़्त कैलकुलेटरों का संग्रह है। अपनी ज़रूरत की घंटे की दर निकालें, किसी फ़िक्स्ड प्रोजेक्ट की कीमत तय करें, इनवॉइस बनाएं, मासिक रिटेनर की तुलना घंटे के हिसाब से बिलिंग से करें, बकाया इनवॉइस पर लेट फ़ीस जोड़ें, दूसरे देशों के क्लाइंट्स के लिए उचित कीमत तय करें, और अमेरिका, ब्रिटेन, कनाडा या ऑस्ट्रेलिया में टैक्स के लिए कितना अलग रखना है, इसका अनुमान लगाएं। हर टूल आपके ब्राउज़र में चलता है: आप जो भी लिखते हैं वह कहीं अपलोड नहीं होता, और कोई अकाउंट बनाने की ज़रूरत नहीं है।',
+ 'ar': 'RateLark مجموعة من الحاسبات المجانية للمستقلين والمتعاقدين المستقلين. احسب سعر الساعة الذي تحتاجه، وسعّر مشروعًا بسعر ثابت، وأنشئ فاتورة، وقارن الاشتراك الشهري بالفوترة بالساعة، وأضف رسوم تأخير إلى فاتورة غير مدفوعة، وحدد أسعارًا عادلة للعملاء في بلدان أخرى، وقدّر المبلغ الذي يجب تجنيبه للضرائب في الولايات المتحدة أو المملكة المتحدة أو كندا أو أستراليا. تعمل كل الأدوات في متصفحك، فلا يُرفع أي شيء تكتبه، ولا حاجة لإنشاء حساب.',
+ 'zh': 'RateLark 是一套面向自由职业者和独立承包人的免费计算器。算出你需要的时薪，为固定价格项目报价，开具发票，比较包月费与按小时计费，为逾期发票加收滞纳金，为其他国家的客户设定公平价格，并估算在美国、英国、加拿大或澳大利亚需要预留多少税款。所有工具都在你的浏览器中运行：你输入的内容不会被上传，也无需注册账户。',
+ 'id': 'RateLark adalah kumpulan kalkulator gratis untuk freelancer dan kontraktor independen. Hitung tarif per jam yang Anda butuhkan, tentukan harga proyek borongan, buat invoice, bandingkan retainer bulanan dengan penagihan per jam, tambahkan denda keterlambatan pada invoice yang belum dibayar, tetapkan harga yang adil untuk klien di negara lain, dan perkirakan berapa yang perlu disisihkan untuk pajak di AS, Inggris, Kanada, atau Australia. Semua alat berjalan di browser Anda: apa pun yang Anda ketik tidak diunggah, dan tidak perlu membuat akun.',
+}
+TAX_BY_COUNTRY = {
+ 'en': 'Tax calculators by country', 'es': 'Calculadoras de impuestos por país',
+ 'pt': 'Calculadoras de impostos por país', 'fr': 'Calculateurs d’impôt par pays',
+ 'de': 'Steuerrechner nach Land', 'hi': 'देश के अनुसार टैक्स कैलकुलेटर',
+ 'ar': 'حاسبات الضرائب حسب البلد', 'zh': '各国税务计算器', 'id': 'Kalkulator pajak per negara',
+}
+
+
+def tax_title(lang, country):
+    return (TAX_PAGE[country] if lang == 'en' else TAX_I18N[country][lang])['title']
+
+
 def hub_card(lang, t):
     e = lambda x: html.escape(x, quote=True)
     slug = t['slug']
@@ -578,7 +619,7 @@ def build_tax_page(lang, country):
     hdr.find('div', class_='pick').insert(0, kb)
 
     nav = BeautifulSoup('<nav class="tabs" aria-label="Freelancer tools"></nav>', 'html.parser').nav
-    home_tab = BeautifulSoup('<a class="tab tab-home" href="/#tools"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>%s</span></a>' % ui['all'], 'html.parser')
+    home_tab = BeautifulSoup('<a class="tab tab-home" href="%s"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>%s</span></a>' % (('/#tools' if lang == 'en' else '/%s/' % lang), ui['all']), 'html.parser')
     nav.append(home_tab)
     for t in TOOLS:
         a = BeautifulSoup('<a class="tab"></a>', 'html.parser').a
@@ -608,6 +649,14 @@ def build_tax_page(lang, country):
         country_field.append(keep)
         wrap = country_field.find_parent('label', class_='field')
         (wrap or country_field)['hidden'] = ''
+    # money on a tax page is always in that country's currency (setax() uses TCUR, not the
+    # site-wide picker), so print the right symbol in the HTML and hide the misleading picker
+    # (hidden, not removed: app.js binds a listener to #cur on every tool page)
+    for el in sec.select('.tsym'):
+        el.string = {'us': '$', 'uk': '£', 'ca': '$', 'au': '$'}[country]
+    _cur = hdr.find('select', id='cur')
+    if _cur is not None:
+        (_cur.find_parent('label') or _cur)['hidden'] = ''
 
     head = sec.find(class_='head')
     head.find('h1').string = TP['title']
@@ -1233,7 +1282,7 @@ def build_hub(lang):
     langs_nav = BeautifulSoup('<nav class="langs" aria-label="Languages"></nav>', 'html.parser').nav
     for code, nm, h, _ in LANGS:
         a = BeautifulSoup('<a></a>', 'html.parser').a
-        a['href'] = '/%s/' % code
+        a['href'] = home_path(code)
         a['hreflang'] = h
         a['lang'] = code
         if code == lang:
@@ -1248,8 +1297,9 @@ def build_hub(lang):
     description = HUB_DESC[lang]
     url = '%s/%s/' % (BASE, lang)
     cards = ''.join(hub_card(lang, t) for t in REG)
-    alts = ''.join('<link rel="alternate" hreflang="%s" href="%s/%s/">' % (h, BASE, c) for c, _, h, _ in LANGS)
-    alts += '<link rel="alternate" hreflang="x-default" href="%s/en/">' % BASE
+    alts = home_alternates('html')
+    tax_links = ''.join('<li><a href="/%s/%s/">%s</a></li>' % (lang, TAX_SLUG[c], e(tax_title(lang, c)))
+                        for c in ('us', 'uk', 'ca', 'au'))
     ld = {'@context': 'https://schema.org', '@type': 'CollectionPage', 'name': title.split(' | ')[0],
           'url': url, 'inLanguage': hl, 'description': description}
     ld_json = json.dumps(ld, ensure_ascii=False).replace('</', '<\\/')
@@ -1285,7 +1335,7 @@ def build_hub(lang):
 <link rel="stylesheet" href="/assets/app.css?v={VER['app.css']}">
 <script type="application/ld+json">{ld_json}</script>
 </head>
-<body data-tool="">
+<body data-tool="" data-hub>
 <div class="tfx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
 {hdr}
 <main id="main">
@@ -1293,10 +1343,14 @@ def build_hub(lang):
 <h1>{e(HUB_H1[lang])}</h1>
 <p>{e(tr('Freelance pricing, quote, invoice and tax tools in one place.', lang))}</p>
 </div>
+<p class="hub-intro">{e(HUB_INTRO[lang])}</p>
 <h2 class="sr-only">{e(UI[lang]['all'])}</h2>
 <div class="hub-grid">{cards}</div>
+<h2 class="hub-h2">{e(TAX_BY_COUNTRY[lang])}</h2>
+<ul class="hub-links">{tax_links}</ul>
 </main>
 {ft}
+<script src="/assets/shell.js?v={VER['shell.js']}" defer></script>
 <script src="/assets/palette.js?v={VER['palette.js']}" defer></script>
 </body>
 </html>
@@ -1325,6 +1379,9 @@ a.tab{text-decoration:none}
 .hub-card .hc-cat{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .hub-card h3{margin:0;font:700 1.05rem var(--display);color:var(--ink)}
 .hub-card p{margin:.35rem 0 0;color:var(--muted);font-size:.88rem;line-height:1.4}
+.hub-intro{max-width:46rem;margin:.6rem 0 0;color:var(--muted);line-height:1.6}
+.hub-h2{margin:2rem 0 .6rem;font:700 1.15rem var(--display);color:var(--ink)}
+.hub-links{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin:0;padding:0;list-style:none}
 a.btn{text-decoration:none;display:inline-block}
 .cta-row{margin:0 0 1.25rem}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -1395,8 +1452,9 @@ for code, *_ in LANGS:
     for country in TAX_SLUG:
         write('%s/%s/index.html' % (code, TAX_SLUG[country]), build_tax_page(code, country))
         count += 1
-    write('%s/index.html' % code, build_hub(code))
-    count += 1
+    if code != 'en':          # English home is the root page, below; /en/ redirects there
+        write('%s/index.html' % code, build_hub(code))
+        count += 1
 
 # Stage 5: the three how-to articles, English only (see ARTICLES above)
 for slug in ARTICLES:
@@ -1409,11 +1467,11 @@ for prof_key in PROFESSIONS:
     count += 1
 
 # sitemap with hreflang alternates
-urls = ['<url><loc>%s/</loc><lastmod>%s</lastmod></url>' % (BASE, TODAY)]
+hub_alts = home_alternates('xml')
+urls = ['<url><loc>%s/</loc><lastmod>%s</lastmod>%s</url>' % (BASE, TODAY, hub_alts)]
 for code, *_ in LANGS:
-    hub_alts = ''.join('<xhtml:link rel="alternate" hreflang="%s" href="%s/%s/"/>' % (h, BASE, c) for c, _, h, _ in LANGS)
-    hub_alts += '<xhtml:link rel="alternate" hreflang="x-default" href="%s/en/"/>' % BASE
-    urls.append('<url><loc>%s/%s/</loc><lastmod>%s</lastmod>%s</url>' % (BASE, code, TODAY, hub_alts))
+    if code != 'en':
+        urls.append('<url><loc>%s/%s/</loc><lastmod>%s</lastmod>%s</url>' % (BASE, code, TODAY, hub_alts))
     for tool in TOOLS:
         if tool == 'tax':
             continue
@@ -1472,7 +1530,7 @@ write('llms.txt', """# RateLark
 
 ## More
 
-- [All tools](%s/en/): full list of calculators
+- [All tools](%s/#tools): full list of calculators
 - [Privacy](%s/privacy/): how RateLark handles (and doesn't collect) your data
 """ % (_llms_tools, _llms_tax, _llms_articles, _llms_professions, BASE, BASE))
 
@@ -1484,6 +1542,9 @@ redirect_lines = []
 for old_slug, new_slug in URL_SLUG.items():
     for code, *_ in LANGS:
         redirect_lines.append('/%s/%s/ /%s/%s/ 301' % (code, old_slug, code, new_slug))
+# English home moved to the root (see home_path)
+redirect_lines.append('/en/ / 301')
+redirect_lines.append('/en / 301')
 write('_redirects', '\n'.join(redirect_lines) + '\n')
 write('.nojekyll', '')
 
@@ -1519,19 +1580,33 @@ def _cats():
     for t in REG:
         if t['cat'] not in order: order.append(t['cat'])
     return order
+TAX_SHORT = {'uk': 'UK self-employed tax', 'ca': 'Canada self-employed tax', 'au': 'Australia sole trader tax'}
+def tax_extra_items(kind):
+    out = ''
+    for c in ('uk', 'ca', 'au'):
+        sl = TAX_SLUG[c]
+        if kind == 'mega':
+            out += ('<li><a data-tool="%s" href="/en/%s/"><span class="ico">%s</span><span class="mi"><b>%s</b><small>%s</small></span></a></li>'
+                    % (sl, sl, icon_svg('landmark', 20), e(TAX_SHORT[c]), e(TAX_PAGE[c]['desc'])))
+        else:
+            out += '<li><a data-tool="%s" href="/en/%s/">%s</a></li>' % (sl, sl, e(TAX_SHORT[c]))
+    return out
 def mega_html():
     cols = ''
     for c in _cats():
         items = ''.join('<li><a data-tool="%s" href="/en/%s/"><span class="ico">%s</span><span class="mi"><b>%s</b><small>%s</small></span></a></li>'
                         % (url_slug(t['slug']), url_slug(t['slug']), icon_svg(t['icon'], 20), e(tool_name('en', t['slug'])), e(tool_desc('en', t['slug'])))
                         for t in REG if t['cat'] == c)
+        if c == 'tax':
+            items += tax_extra_items('mega')
         cols += '<div class="mc"><h3>%s</h3><ul>%s</ul></div>' % (e(CATS[c]['en']), items)
     return cols
 def footer_tools():
     out = ''
     for c in _cats():
         out += '<div class="fc"><h3>%s</h3><ul>%s</ul></div>' % (e(CATS[c]['en']), ''.join(
-            '<li><a data-tool="%s" href="/en/%s/">%s</a></li>' % (url_slug(t['slug']), url_slug(t['slug']), e(tool_name('en', t['slug']))) for t in REG if t['cat'] == c))
+            '<li><a data-tool="%s" href="/en/%s/">%s</a></li>' % (url_slug(t['slug']), url_slug(t['slug']), e(tool_name('en', t['slug']))) for t in REG if t['cat'] == c)
+            + (tax_extra_items('footer') if c == 'tax' else ''))
     return out
 cat_order = []
 for t in REG:
@@ -1544,7 +1619,18 @@ write('assets/hero.css', HERO_CSS)
 LAYERS = logo.hero_art()
 MEGA = mega_html()
 FOOTER_TOOLS = footer_tools()
-LANGLIS = ''.join('<li><a href="/%s/" hreflang="%s" lang="%s">%s</a></li>' % (c, h, c, n) for c, n, h, _ in LANGS)
+LANGLIS = ''.join('<li><a href="%s" hreflang="%s" lang="%s">%s</a></li>' % (home_path(c), h, c, n) for c, n, h, _ in LANGS)
+ROOT_ALTS = home_alternates('html')
+ROOT_LD = json.dumps([
+    {'@context': 'https://schema.org', '@type': 'WebSite', 'name': 'RateLark', 'url': BASE + '/',
+     'inLanguage': 'en', 'description': HUB_DESC['en']},
+    {'@context': 'https://schema.org', '@type': 'Organization', 'name': 'RateLark', 'url': BASE + '/',
+     'logo': BASE + '/icon-512.png', 'email': CONTACT_EMAIL},
+], ensure_ascii=False).replace('</', '<\\/')
+ROOT_TAX = ''.join('<li><a data-tool="%s" href="/en/%s/">%s</a></li>' % (TAX_SLUG[c], TAX_SLUG[c], e(TAX_PAGE[c]['title']))
+                   for c in ('us', 'uk', 'ca', 'au'))
+ROOT_GUIDES = ''.join('<li><a href="/en/%s/">%s</a></li>' % (sl, e(ARTICLES[sl]['title'])) for sl in ARTICLES) + \
+              ''.join('<li><a href="/en/%s/">%s</a></li>' % (PROFESSIONS[k]['slug'], e(PROFESSIONS[k]['title'])) for k in PROFESSIONS)
 write('index.html', f"""<!doctype html>
 <html lang="en">
 <head>
@@ -1557,7 +1643,9 @@ write('index.html', f"""<!doctype html>
 <title>RateLark: free tools for freelancers</title>
 <meta name="description" content="Hourly rate, project quote, invoice, markup and margin, retainer, late fee and tax tools for freelancers, in 9 languages. Free, private, no sign-up.">
 <link rel="canonical" href="{BASE}/">
+{ROOT_ALTS}
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="RateLark">
 <meta property="og:title" content="RateLark: free tools for freelancers">
 <meta property="og:description" content="Price your work, send the invoice, set aside the tax. Seven free tools in 9 languages.">
@@ -1569,6 +1657,7 @@ write('index.html', f"""<!doctype html>
 <link rel="stylesheet" href="/assets/fonts.css?v={VER['fonts.css']}">
 <link rel="stylesheet" href="/assets/hero.css?v={VER['hero.css']}">
 <link rel="stylesheet" href="/assets/palette.css?v={VER['palette.css']}">
+<script type="application/ld+json">{ROOT_LD}</script>
 </head>
 <body>
 <div class="fx" aria-hidden="true"><i class="arc l"></i><i class="arc r"></i></div>
@@ -1590,6 +1679,14 @@ write('index.html', f"""<!doctype html>
     <div class="cta"><a class="pill light" data-tool="{url_slug('hourly-rate')}" href="/en/{url_slug('hourly-rate')}/">Get started</a><a class="pill solid" data-tool="{url_slug('invoice')}" href="/en/{url_slug('invoice')}/">Make an invoice</a></div>
   </section>
 </main>
+<section class="dir" id="tools" aria-labelledby="tools-h">
+  <div class="dir-head"><div><h2 id="tools-h">Every tool, free</h2><p>{e(HUB_INTRO['en'])}</p></div><div class="filters" role="group" aria-label="Filter tools">{filters}</div></div>
+  <div class="bento" id="bento">{bento}</div>
+  <div class="dir-more">
+    <h3>{TAX_BY_COUNTRY['en']}</h3><ul class="chips">{ROOT_TAX}</ul>
+    <h3>Guides</h3><ul class="chips">{ROOT_GUIDES}</ul>
+  </div>
+</section>
 <section class="why" id="why" aria-labelledby="why-h">
   <h2 id="why-h">Built to be used in a minute</h2>
   <ul>
