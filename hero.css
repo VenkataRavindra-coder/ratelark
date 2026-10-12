@@ -190,3 +190,9 @@ h1 em{font-style:normal;color:var(--y)}
  .foot2{contain-intrinsic-size:auto 900px}
 }
 @media (max-width:560px){.fgrid{grid-template-columns:1fr 1fr}}
+
+/* tools directory on the home page: country tax pages and guides under the bento grid */
+.dir-more{margin-top:2.2rem}
+.dir-more h3{margin:0;font:700 1.05rem/1.2 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.01em;color:#fff}
+.dir-more .chips{justify-content:flex-start;margin:.7rem 0 1.6rem;padding:0;max-width:none}
+.dir-head p{max-width:46rem;line-height:1.6}

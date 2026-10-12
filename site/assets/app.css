@@ -167,6 +167,9 @@ a.tab{text-decoration:none}
 .hub-card .hc-cat{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .hub-card h3{margin:0;font:700 1.05rem var(--display);color:var(--ink)}
 .hub-card p{margin:.35rem 0 0;color:var(--muted);font-size:.88rem;line-height:1.4}
+.hub-intro{max-width:46rem;margin:.6rem 0 0;color:var(--muted);line-height:1.6}
+.hub-h2{margin:2rem 0 .6rem;font:700 1.15rem var(--display);color:var(--ink)}
+.hub-links{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin:0;padding:0;list-style:none}
 a.btn{text-decoration:none;display:inline-block}
 .cta-row{margin:0 0 1.25rem}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
